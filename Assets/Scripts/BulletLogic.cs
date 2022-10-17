@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
-    private int dmgValue = 10;
-    private float muzzleVelocity = 3f;
+    public int dmgValue = 10;
+    public float muzzleVelocity = 3f;
 
     private Rigidbody rb;
     private bool movementPossible;

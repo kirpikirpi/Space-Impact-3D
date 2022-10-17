@@ -7,6 +7,7 @@ public class BasicEnemy : Spaceship
 {
     public GameObject muzzle;
     private float maxDetectionDistance = 30f;
+    private float movementSpeed = 0.0025f;
     public LayerMask engagebleTargets;
 
     void Start()
@@ -37,14 +38,20 @@ public class BasicEnemy : Spaceship
         DefenseModule = DefenseModulePrefab.GetComponent<IDefenseModule>();
     }
 
+    void Update()
+    {
+        gameObject.transform.position = new Vector3(transform.position.x,
+            transform.position.y,
+            transform.position.z - movementSpeed);
+    }
+
     void FixedUpdate()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, engagebleTargets))
         {
-           OffenseModule.ActivateOffense(ep, muzzle);
+            OffenseModule.ActivateOffense(ep, muzzle);
         }
-        
     }
 
     public override void OnDestroy()
