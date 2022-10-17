@@ -34,6 +34,7 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
     public int ActivateDefense(int energy)
     {
         if (energy < shieldEpValue) return energy;
+        if (shieldGameObject != null) shieldGameObject.SetActive(true);
 
         int maxColliders = 10;
 
@@ -63,16 +64,16 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
                 //perfect block
                 energy += shieldEpValue;
             }
+
             hitColliders[i].gameObject.SetActive(false);
         }
 
         return energy;
     }
 
-    public void SetDefenseEffects(int energy, bool active)
+    public void DeactivateDefense()
     {
-        if (active && shieldGameObject != null && energy >= shieldEpValue) shieldGameObject.SetActive(true);
-        else if (shieldGameObject != null)
+        if (shieldGameObject != null)
         {
             shieldGameObject.SetActive(false);
         }

@@ -53,13 +53,12 @@ public class PlayerShip : Spaceship
         if (Input.GetKey(KeyCode.E))
         {
             ep = DefenseModule.ActivateDefense(ep);
-            DefenseModule.SetDefenseEffects(ep, true);
             isBlocking = true;
         }
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            DefenseModule.SetDefenseEffects(ep,false);
+            DefenseModule.DeactivateDefense();
             isBlocking = false;
         }
 
