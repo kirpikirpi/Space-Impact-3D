@@ -18,6 +18,8 @@ public class MapManager : MonoBehaviour
     private int numEnemies = 15;
     private float enemySpawnOffset = 5f;
 
+    private float playerSpeed = 0.005f;
+
     void Start()
     {
         Instantiate(PlayerGameObject, transform.position, Quaternion.identity);
@@ -39,6 +41,12 @@ public class MapManager : MonoBehaviour
                 Instantiate(MapSegmentPrefab, segmentPos, Quaternion.identity, mapHolder.transform);
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        mapHolder.transform.position = new Vector3(mapHolder.transform.position.x,
+            mapHolder.transform.position.y, mapHolder.transform.position.z - playerSpeed);
     }
 
     Vector3 GenerateRandomPosition()
