@@ -7,7 +7,7 @@ public class PlayerShip : Spaceship
 {
     private int startHealth = 100;
     private int startEnergy = 100;
-    
+
     public GameObject muzzle;
     bool isShooting;
     bool isBlocking;
@@ -16,7 +16,7 @@ public class PlayerShip : Spaceship
     private float energyRegenerationTime = 0.5f;
     private int epRegenerationValue = 1;
     private float nextRegeneration = 0;
-    
+
     void Start()
     {
         hp = 100;
@@ -26,6 +26,7 @@ public class PlayerShip : Spaceship
         {
             throw new Exception("Offensive module not attached!");
         }
+
         if (DefenseModulePrefab == null)
         {
             throw new Exception("Defensive module not attached!");
@@ -36,8 +37,10 @@ public class PlayerShip : Spaceship
             throw new Exception("No muzzle assigned in player ship!");
         }
 
-        OffenseModulePrefab = Instantiate(OffenseModulePrefab, transform.position, Quaternion.identity, gameObject.transform);
-        DefenseModulePrefab = Instantiate(DefenseModulePrefab, transform.position, Quaternion.identity, gameObject.transform);
+        OffenseModulePrefab = Instantiate(OffenseModulePrefab, transform.position, Quaternion.identity,
+            gameObject.transform);
+        DefenseModulePrefab = Instantiate(DefenseModulePrefab, transform.position, Quaternion.identity,
+            gameObject.transform);
 
         OffenseModule = OffenseModulePrefab.GetComponent<IOffenseModule>();
         DefenseModule = DefenseModulePrefab.GetComponent<IDefenseModule>();
@@ -64,19 +67,19 @@ public class PlayerShip : Spaceship
         }
 
         float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
 
-        gameObject.transform.position = new Vector3 (transform.position.x + (h * speed), transform.position.y, 
+        gameObject.transform.position = new Vector3(transform.position.x + (h * speed),
+            transform.position.y + (v * speed),
             transform.position.z);
 
         if (Time.time > nextRegeneration && ep < startEnergy)
         {
             ep += epRegenerationValue;
             nextRegeneration = Time.time + energyRegenerationTime;
-            print("Energy: " + ep);
         }
     }
 
-    
 
     public override void OnDestroy()
     {
@@ -85,6 +88,5 @@ public class PlayerShip : Spaceship
 
     public override void OnHit()
     {
-        
     }
 }
