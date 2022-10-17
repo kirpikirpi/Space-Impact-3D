@@ -12,7 +12,7 @@ public class PlayerShip : Spaceship
     private Rigidbody rb;
     bool isShooting;
     bool isBlocking;
-    private float speed = 0.005f;
+    private float speed = 0.05f;
 
     private float energyRegenerationTime = 0.5f;
     private int epRegenerationValue = 1;

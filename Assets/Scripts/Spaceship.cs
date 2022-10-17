@@ -8,7 +8,7 @@ public class Spaceship : MonoBehaviour, IDamageLogic
     public int hp;
     public int ep;
 
-    private int collisionDamage = 100;
+    private int collisionDamage = 0;
 
     public GameObject OffenseModulePrefab;
     public GameObject DefenseModulePrefab;

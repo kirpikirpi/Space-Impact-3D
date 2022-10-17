@@ -7,7 +7,7 @@ public class BasicEnemy : Spaceship
 {
     public GameObject muzzle;
     private float maxDetectionDistance = 30f;
-    private float movementSpeed = 0.0025f;
+    private float movementSpeed = 0.025f;
     public LayerMask engagebleTargets;
 
     void Start()
