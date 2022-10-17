@@ -8,13 +8,15 @@ public class MapManager : MonoBehaviour
     public GameObject EnemyGameObject;
 
     public GameObject MapSegmentPrefab;
+    private GameObject mapHolder;
 
     private float tunnelRadius = 15f;
     private float tunnelLength = 100f;
-    private float unitsBetweenCompleteSegments = 2f;
+    private float unitsBetweenCompleteSegments = 1.5f;
     private float segmentSpaceing = 0.1f;
     
-    private int numEnemies = 5;
+    private int numEnemies = 15;
+    private float enemySpawnOffset = 5f;
 
     void Start()
     {
@@ -25,21 +27,25 @@ public class MapManager : MonoBehaviour
         {
             Instantiate(EnemyGameObject, GenerateRandomPosition(), enemyRotation);
         }
+        
+        mapHolder = new GameObject("Map Holder");
+        mapHolder.transform.parent = transform;
 
         for (float i = 0; i < tunnelLength; i+= unitsBetweenCompleteSegments)
         {
             for (float j = 0; j < 2 * Mathf.PI; j += segmentSpaceing)
             {
                 Vector3 segmentPos = new Vector3(Mathf.Cos(j) * tunnelRadius, Mathf.Sin(j) * tunnelRadius, i);
-                Instantiate(MapSegmentPrefab, segmentPos, Quaternion.identity);
+                Instantiate(MapSegmentPrefab, segmentPos, Quaternion.identity, mapHolder.transform);
             }
         }
     }
 
     Vector3 GenerateRandomPosition()
     {
-        float x = Random.Range(-tunnelRadius, tunnelRadius);
-        float y = Random.Range(-tunnelRadius, tunnelRadius);
+        float spawnRadius = tunnelRadius - enemySpawnOffset;
+        float x = Random.Range(-spawnRadius, spawnRadius);
+        float y = Random.Range(-spawnRadius, spawnRadius);
         float z = Random.Range(15f, tunnelLength);
         
         return new Vector3(x,y,z);

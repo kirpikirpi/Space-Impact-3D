@@ -8,7 +8,7 @@ public class Spaceship : MonoBehaviour, IDamageLogic
     public int hp;
     public int ep;
 
-    private int collisionDamage = 50;
+    private int collisionDamage = 100;
 
     public GameObject OffenseModulePrefab;
     public GameObject DefenseModulePrefab;
@@ -39,10 +39,9 @@ public class Spaceship : MonoBehaviour, IDamageLogic
         IDamageLogic target = collision.gameObject.GetComponent<IDamageLogic>();
         if (target != null)
         {
-            print(gameObject.name + " collided with " + collision.gameObject.name);
             target.ApplyDamage(collisionDamage);
-            ApplyDamage(collisionDamage);
         }
+        ApplyDamage(collisionDamage);
     }
     
 }
