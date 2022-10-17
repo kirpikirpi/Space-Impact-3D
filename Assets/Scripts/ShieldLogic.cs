@@ -1,0 +1,80 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ShieldLogic : MonoBehaviour, IDefenseModule
+{
+    public LayerMask blockableLayer;
+    public GameObject shieldPrefab;
+    private GameObject shieldGameObject;
+
+    private float lateBlockRadius = 1.5f;
+    private float perfectBlockRadius = 3f;
+    private float earlyBlockRadius = 3.5f;
+
+    private int shieldEpValue = 5;
+
+    void Start()
+    {
+        if (shieldPrefab == null)
+        {
+            throw new Exception("No shield prefab attached to shield module!");
+        }
+
+        if (shieldGameObject == null)
+        {
+            shieldGameObject = Instantiate(shieldPrefab, transform.position, Quaternion.identity, gameObject.transform);
+            shieldGameObject.transform.localScale =
+                new Vector3(2 * perfectBlockRadius, 2 * perfectBlockRadius, 2 * perfectBlockRadius);
+            shieldGameObject.SetActive(false);
+        }
+    }
+
+    public int ActivateDefense(int energy)
+    {
+        if (energy < shieldEpValue) return energy;
+
+        int maxColliders = 10;
+
+        Collider[] hitColliders = new Collider[maxColliders];
+        int NumColliders =
+            Physics.OverlapSphereNonAlloc(transform.position, earlyBlockRadius, hitColliders, blockableLayer);
+
+        for (int i = 0; i < NumColliders; i++)
+        {
+            Vector3 bulletPos = hitColliders[i].transform.position;
+            Vector3 shieldMiddlePoint = transform.position;
+
+            float distance = Vector3.Distance(shieldMiddlePoint, bulletPos);
+
+            if (distance > perfectBlockRadius)
+            {
+                //early block
+                energy -= shieldEpValue;
+            }
+            else if (distance < lateBlockRadius)
+            {
+                //late block
+                continue;
+            }
+            else
+            {
+                //perfect block
+                energy += shieldEpValue;
+            }
+            hitColliders[i].gameObject.SetActive(false);
+        }
+
+        return energy;
+    }
+
+    public void SetDefenseEffects(int energy, bool active)
+    {
+        if (active && shieldGameObject != null && energy >= shieldEpValue) shieldGameObject.SetActive(true);
+        else if (shieldGameObject != null)
+        {
+            shieldGameObject.SetActive(false);
+        }
+    }
+}
