@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5563671167714843810}
   - component: {fileID: 5563671167714843811}
   - component: {fileID: 5563671167714843815}
+  - component: {fileID: -8636347911142622578}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -115,6 +116,22 @@ MonoBehaviour:
   OffenseModulePrefab: {fileID: 3966831278867150844, guid: dae6236e222edd6408008ecd70bd9330, type: 3}
   DefenseModulePrefab: {fileID: 1627479612815801528, guid: dc047372cf8e6a44eb46f844dc39d2cd, type: 3}
   muzzle: {fileID: 5563671167869254181}
+--- !u!54 &-8636347911142622578
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563671167714843808}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &5563671167869254181
 GameObject:
   m_ObjectHideFlags: 0

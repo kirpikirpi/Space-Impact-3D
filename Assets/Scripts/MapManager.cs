@@ -8,7 +8,7 @@ public class MapManager : MonoBehaviour
     public GameObject EnemyGameObject;
 
     private float tunnelRadius = 15f;
-    private float tunnelLength = 50f;
+    private float tunnelLength = 100f;
     
     private int numEnemies = 5;
 

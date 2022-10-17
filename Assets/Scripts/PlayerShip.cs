@@ -9,6 +9,7 @@ public class PlayerShip : Spaceship
     private int startEnergy = 100;
 
     public GameObject muzzle;
+    private Rigidbody rb;
     bool isShooting;
     bool isBlocking;
     private float speed = 0.005f;
@@ -35,6 +36,13 @@ public class PlayerShip : Spaceship
         if (muzzle == null)
         {
             throw new Exception("No muzzle assigned in player ship!");
+        }
+
+        rb = gameObject.GetComponent<Rigidbody>();
+
+        if (rb == null)
+        {
+            throw new Exception("no rigidbody attached to player ship!");
         }
 
         OffenseModulePrefab = Instantiate(OffenseModulePrefab, transform.position, Quaternion.identity,
