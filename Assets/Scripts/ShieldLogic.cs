@@ -9,9 +9,12 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
     public GameObject shieldPrefab;
     private GameObject shieldGameObject;
 
-    private float lateBlockRadius = 1.5f;
+    private float lateBlockRadius = 2.5f;
     private float perfectBlockRadius = 3f;
-    private float earlyBlockRadius = 3.5f;
+
+    private float earlyBlockTime = 0.25f;
+    private float lastShieldActivateTime = 0;
+    private bool shieldActive;
 
     private int shieldEpValue = 5;
 
@@ -34,13 +37,21 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
     public int ActivateDefense(int energy)
     {
         if (energy < shieldEpValue) return energy;
+        if (!shieldActive)
+        {
+            shieldActive = true;
+            lastShieldActivateTime = Time.time;
+        }
+
+
         if (shieldGameObject != null) shieldGameObject.SetActive(true);
+
 
         int maxColliders = 10;
 
         Collider[] hitColliders = new Collider[maxColliders];
         int NumColliders =
-            Physics.OverlapSphereNonAlloc(transform.position, earlyBlockRadius, hitColliders, blockableLayer);
+            Physics.OverlapSphereNonAlloc(transform.position, perfectBlockRadius, hitColliders, blockableLayer);
 
         for (int i = 0; i < NumColliders; i++)
         {
@@ -49,20 +60,24 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
 
             float distance = Vector3.Distance(shieldMiddlePoint, bulletPos);
 
-            if (distance > perfectBlockRadius)
+            if (distance > lateBlockRadius)
             {
-                //early block
-                energy -= shieldEpValue;
+                float time = lastShieldActivateTime + earlyBlockTime;
+                if (lastShieldActivateTime + earlyBlockTime > Time.time)
+                {
+                    //perfect block
+                    energy += shieldEpValue;
+                }
+                else
+                {
+                    //early block
+                    energy -= shieldEpValue;
+                }
             }
             else if (distance < lateBlockRadius)
             {
                 //late block
                 continue;
-            }
-            else
-            {
-                //perfect block
-                energy += shieldEpValue;
             }
 
             hitColliders[i].gameObject.SetActive(false);
@@ -77,5 +92,8 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
         {
             shieldGameObject.SetActive(false);
         }
+
+        lastShieldActivateTime = 0;
+        shieldActive = false;
     }
 }

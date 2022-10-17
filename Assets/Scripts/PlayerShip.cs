@@ -52,7 +52,8 @@ public class PlayerShip : Spaceship
 
         if (Input.GetKey(KeyCode.E))
         {
-            ep = DefenseModule.ActivateDefense(ep);
+            int newEp = DefenseModule.ActivateDefense(ep);
+            ep = newEp <= startEnergy ? newEp : startEnergy;
             isBlocking = true;
         }
 
