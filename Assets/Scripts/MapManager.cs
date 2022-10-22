@@ -10,19 +10,21 @@ public class MapManager : MonoBehaviour
     public GameObject MapSegmentPrefab;
     private GameObject mapHolder;
 
-    private float tunnelRadius = 15f;
+    private float tunnelRadius = 5f;
     private float tunnelLength = 100f;
     private float unitsBetweenCompleteSegments = 1.5f;
     private float segmentSpaceing = 0.1f;
     
     private int numEnemies = 15;
-    private float enemySpawnOffset = 5f;
+    private float enemySpawnOffset = 2f;
 
-    private float playerSpeed = 0.005f;
+    private float playerSpeed = 0.01f;
+    private float playerCameraOffset = 8.5f;
 
     void Start()
     {
-        Instantiate(PlayerGameObject, transform.position, Quaternion.identity);
+        Vector3 playerSpawnPos = new Vector3(0,0,playerCameraOffset);
+        Instantiate(PlayerGameObject, playerSpawnPos, Quaternion.identity);
         
         Quaternion enemyRotation = Quaternion.Euler(0,180,0);
         for (int i = 0; i < numEnemies; i++)
@@ -32,6 +34,10 @@ public class MapManager : MonoBehaviour
         
         mapHolder = new GameObject("Map Holder");
         mapHolder.transform.parent = transform;
+        
+        
+        GameObject mainCamera = new GameObject("Main Camera");
+        mainCamera.AddComponent<Camera>();
 
         for (float i = 0; i < tunnelLength; i+= unitsBetweenCompleteSegments)
         {
