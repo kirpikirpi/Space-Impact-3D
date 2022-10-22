@@ -12,8 +12,8 @@ public class BasicEnemy : Spaceship
 
     void Start()
     {
-        hp = 100;
-        ep = 50;
+        hp = 50;
+        ep = 25;
         if (OffenseModulePrefab == null)
         {
             throw new Exception("Offensive module not attached to enemy ship!");

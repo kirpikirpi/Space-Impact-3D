@@ -14,6 +14,7 @@
           <e p="IDefenseModule.cs" t="Include" />
           <e p="IOffenseModule.cs" t="Include" />
           <e p="MapManager.cs" t="Include" />
+          <e p="MapPooler.cs" t="Include" />
           <e p="PlayerShip.cs" t="Include" />
           <e p="ShieldLogic.cs" t="Include" />
           <e p="ShootLogic.cs" t="Include" />
