@@ -20,9 +20,10 @@ public class MapPooler : MonoBehaviour
 
     #endregion
 
-    private int poolSize; 
+    private int poolSize;
     Queue<GameObject> mapSegmentPool = new Queue<GameObject>();
-    
+    private GameObject objectPoolParent;
+
 
     /**
      * get an object from the pool
@@ -58,15 +59,30 @@ public class MapPooler : MonoBehaviour
      */
     public int FillPool(GameObject prefab, int count)
     {
+        objectPoolParent = new GameObject("Object Pool");
         for (int i = 0; i < count; i++)
         {
-            GameObject newPoolObject = Instantiate(prefab, transform.position, Quaternion.identity);
+            GameObject newPoolObject =
+                Instantiate(prefab, transform.position, Quaternion.identity, objectPoolParent.transform);
             mapSegmentPool.Enqueue(newPoolObject);
             newPoolObject.SetActive(false);
         }
 
         poolSize = count;
-        
+        return mapSegmentPool.Count;
+    }
+
+    public int FillPool(GameObject prefab, GameObject parent, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            GameObject newPoolObject = Instantiate(prefab, transform.position, Quaternion.identity, parent.transform);
+            mapSegmentPool.Enqueue(newPoolObject);
+            newPoolObject.SetActive(false);
+        }
+
+        poolSize = count;
+
         return mapSegmentPool.Count;
     }
 }

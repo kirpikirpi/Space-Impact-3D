@@ -111,6 +111,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   ep: 0
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 512
   OffenseModulePrefab: {fileID: 3966831278867150844, guid: 27a2e849ef93b124c95a28c6602b082a, type: 3}
   DefenseModulePrefab: {fileID: 3966831278867150844, guid: 27a2e849ef93b124c95a28c6602b082a, type: 3}
   muzzle: {fileID: 4440544803868100215}

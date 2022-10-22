@@ -20,8 +20,8 @@ public class PlayerShip : Spaceship
 
     void Start()
     {
-        hp = 100;
-        ep = 100;
+        hp = startHealth;
+        ep = startEnergy;
 
         if (OffenseModulePrefab == null)
         {

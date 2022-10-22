@@ -12,7 +12,7 @@ public class BasicEnemy : Spaceship
 
     void Start()
     {
-        hp = 50;
+        hp = 5;
         ep = 25;
         if (OffenseModulePrefab == null)
         {

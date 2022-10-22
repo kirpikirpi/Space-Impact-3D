@@ -60,7 +60,7 @@ public class MapManager : MonoBehaviour
         mapHolder = new GameObject("Map Holder");
         mapHolder.transform.parent = transform;
         mapPooler = mapHolder.AddComponent<MapPooler>();
-        mapPooler.FillPool(MapSegmentPrefab, 100000);
+        mapPooler.FillPool(MapSegmentPrefab, mapHolder, 10000);
 
         for (float i = 0; i < tunnelLength; i += unitsBetweenCompleteSegments)
         {

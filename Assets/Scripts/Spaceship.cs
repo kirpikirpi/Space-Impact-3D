@@ -8,13 +8,15 @@ public class Spaceship : MonoBehaviour, IDamageLogic
     public int hp;
     public int ep;
 
-    private int collisionDamage = 0;
+    private int collisionDamage = 15;
+    public LayerMask collisionLayers;
 
     public GameObject OffenseModulePrefab;
     public GameObject DefenseModulePrefab;
 
     public IOffenseModule OffenseModule;
     public IDefenseModule DefenseModule;
+    
 
 
     public virtual void ApplyDamage(int dmg)
@@ -34,11 +36,15 @@ public class Spaceship : MonoBehaviour, IDamageLogic
         throw new System.NotImplementedException();
     }
     
+    
+    //layer check: layermask == (layermask | (1 << layer))
     void OnCollisionEnter(Collision collision)
     {
         IDamageLogic target = collision.gameObject.GetComponent<IDamageLogic>();
-        if (target != null)
+        bool isHittable = collisionLayers == (collisionLayers | (1 << collision.gameObject.layer));
+        if (target != null && isHittable)
         {
+            print("collision damage applied!!");
             target.ApplyDamage(collisionDamage);
         }
         ApplyDamage(collisionDamage);
