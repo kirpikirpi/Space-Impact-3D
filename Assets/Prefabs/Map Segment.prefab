@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9061871449047677567}
   - component: {fileID: 9061871449047677566}
   - component: {fileID: 9061871449047677537}
+  - component: {fileID: 1891780078202714141}
   m_Layer: 10
   m_Name: Map Segment
   m_TagString: Untagged
@@ -95,3 +96,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1891780078202714141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9061871449047677536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc38c40a7e8e734aa7a762fd52a6dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 960

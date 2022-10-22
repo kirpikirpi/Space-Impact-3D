@@ -10,6 +10,7 @@
           <e p="BasicEnemy.cs" t="Include" />
           <e p="BulletDamageSystem.cs" t="Include" />
           <e p="BulletLogic.cs" t="Include" />
+          <e p="CollisionWall.cs" t="Include" />
           <e p="IDamageLogic.cs" t="Include" />
           <e p="IDefenseModule.cs" t="Include" />
           <e p="IOffenseModule.cs" t="Include" />

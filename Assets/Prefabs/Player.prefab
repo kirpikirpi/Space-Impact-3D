@@ -115,7 +115,7 @@ MonoBehaviour:
   ep: 0
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 256
   OffenseModulePrefab: {fileID: 3966831278867150844, guid: dae6236e222edd6408008ecd70bd9330, type: 3}
   DefenseModulePrefab: {fileID: 1627479612815801528, guid: dc047372cf8e6a44eb46f844dc39d2cd, type: 3}
   muzzle: {fileID: 5563671167869254181}

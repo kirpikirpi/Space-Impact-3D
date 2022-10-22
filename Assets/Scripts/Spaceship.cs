@@ -44,10 +44,8 @@ public class Spaceship : MonoBehaviour, IDamageLogic
         bool isHittable = collisionLayers == (collisionLayers | (1 << collision.gameObject.layer));
         if (target != null && isHittable)
         {
-            print("collision damage applied!!");
             target.ApplyDamage(collisionDamage);
         }
-        ApplyDamage(collisionDamage);
     }
     
 }
