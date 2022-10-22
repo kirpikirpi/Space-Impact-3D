@@ -12,7 +12,7 @@ public class PlayerShip : Spaceship
     private Rigidbody rb;
     bool isShooting;
     bool isBlocking;
-    private float speed = 0.05f;
+    private float speed = 5f;
 
     private float energyRegenerationTime = 0.5f;
     private int epRegenerationValue = 1;
@@ -74,13 +74,17 @@ public class PlayerShip : Spaceship
             isBlocking = false;
         }
 
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        RegenerateEnergy();
+    }
 
-        gameObject.transform.position = new Vector3(transform.position.x + (h * speed),
-            transform.position.y + (v * speed),
-            transform.position.z);
+    void FixedUpdate()
+    {
+        Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        rb.MovePosition(transform.position + m_Input * Time.deltaTime * speed);
+    }
 
+    void RegenerateEnergy()
+    {
         if (Time.time > nextRegeneration && ep < startEnergy)
         {
             ep += epRegenerationValue;
