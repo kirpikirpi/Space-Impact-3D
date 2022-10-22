@@ -20,14 +20,9 @@ public class MapPooler : MonoBehaviour
 
     #endregion
 
-    public GameObject mapSegmentPrefab;
-    private int poolSize = 1000; //stable up to 2000 units max
+    private int poolSize; 
     Queue<GameObject> mapSegmentPool = new Queue<GameObject>();
-
-    void Start()
-    {
-        FillPool(mapSegmentPrefab, poolSize);
-    }
+    
 
     /**
      * get an object from the pool
@@ -58,6 +53,9 @@ public class MapPooler : MonoBehaviour
         return fillPercentage;
     }
 
+    /**
+     * fills the object pool with deactivated game objects
+     */
     public int FillPool(GameObject prefab, int count)
     {
         for (int i = 0; i < count; i++)
@@ -67,6 +65,8 @@ public class MapPooler : MonoBehaviour
             newPoolObject.SetActive(false);
         }
 
+        poolSize = count;
+        
         return mapSegmentPool.Count;
     }
 }
