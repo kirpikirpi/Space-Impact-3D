@@ -8,7 +8,6 @@
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/BasicEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BasicEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +78,7 @@
       <workItem from="1665836783454" duration="1309000" />
       <workItem from="1665996557683" duration="7421000" />
       <workItem from="1666416585496" duration="7147000" />
-      <workItem from="1666504701732" duration="4101000" />
+      <workItem from="1666504701732" duration="4963000" />
     </task>
     <servers />
   </component>
