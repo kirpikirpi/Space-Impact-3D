@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BasicEnemy : Spaceship
 {
-    private float maxDetectionDistance = 30f;
-    private float movementSpeed = 0.025f;
+    private float maxDetectionDistance = 35f;
+    private float movementSpeed = 0.05f;
     public LayerMask engagebleTargets;
 
     void Start()
@@ -29,7 +29,7 @@ public class BasicEnemy : Spaceship
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, engagebleTargets))
         {
-            OffenseModule.ActivateOffense(ep, muzzle);
+            ep = OffenseModule.ActivateOffense(ep, muzzle);
         }
     }
 
@@ -40,6 +40,6 @@ public class BasicEnemy : Spaceship
 
     public override void OnHit()
     {
-        OffenseModule.ActivateOffense(ep, muzzle);
+        ep = OffenseModule.ActivateOffense(ep, muzzle);
     }
 }

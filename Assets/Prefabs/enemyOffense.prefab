@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   epPerShot: 2
-  timeBetweenShots: 0.8
+  timeBetweenShots: 1.6
   projectile: {fileID: 5471644323142832638, guid: 82646225bd90cd746a400d02cc6efc04, type: 3}

@@ -5,10 +5,8 @@ using UnityEngine;
 public class CollisionWall : MonoBehaviour
 {
     public LayerMask collisionLayers;
-    private int collisionDamage = 50;
-    
-    //Todo: apply force to rigidbody
-    
+    private int collisionDamage = 5;
+
     void OnCollisionEnter(Collision collision)
     {
         IDamageLogic target = collision.gameObject.GetComponent<IDamageLogic>();
