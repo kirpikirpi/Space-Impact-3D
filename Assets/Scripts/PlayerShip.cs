@@ -7,11 +7,11 @@ public class PlayerShip : Spaceship
 {
     private int startHealth = 100;
     private int startEnergy = 100;
-    
+
     private Rigidbody rb;
+    private PlayerMovement playerMovement;
     bool isShooting;
     bool isBlocking;
-    private float speed = 5f;
 
     private float energyRegenerationTime = 0.5f;
     private int epRegenerationValue = 1;
@@ -22,13 +22,16 @@ public class PlayerShip : Spaceship
         hp = startHealth;
         ep = startEnergy;
 
+        SetupModules();
+
         rb = gameObject.GetComponent<Rigidbody>();
 
         if (rb == null)
         {
             throw new Exception("no rigidbody attached to player ship!");
         }
-        SetupModules();
+        playerMovement = gameObject.AddComponent<PlayerMovement>();
+        playerMovement.Setup(rb);
     }
 
     void Update()
@@ -54,12 +57,6 @@ public class PlayerShip : Spaceship
         RegenerateEnergy();
     }
 
-    void FixedUpdate()
-    {
-        Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        rb.MovePosition(transform.position + m_Input * Time.deltaTime * speed);
-    }
-
     void RegenerateEnergy()
     {
         if (Time.time > nextRegeneration && ep < startEnergy)
@@ -72,7 +69,10 @@ public class PlayerShip : Spaceship
 
     public override void OnDestroy()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        playerMovement.SetActive(false);
+        rb.constraints = RigidbodyConstraints.None;
+        rb.useGravity = true;
     }
 
     public override void OnHit()
