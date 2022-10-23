@@ -19,7 +19,7 @@ public class MapManager : MonoBehaviour
     private int numEnemies = 15;
     private float enemySpawnOffset = 2f;
 
-    private float playerSpeed = 0.01f;
+    private float playerSpeed = 0.08f;
     private float playerCameraOffset = 8.5f;
 
     void Start()
