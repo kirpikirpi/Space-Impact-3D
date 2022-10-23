@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BasicEnemy : Spaceship
 {
-    private float maxDetectionDistance = 35f;
-    private float movementSpeed = 0.05f;
+    private float maxDetectionDistance = 140f;
+    private float movementSpeed = 0.025f;
     public LayerMask engagebleTargets;
 
     void Start()

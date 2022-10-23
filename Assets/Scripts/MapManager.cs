@@ -6,6 +6,7 @@ public class MapManager : MonoBehaviour
 {
     public GameObject PlayerGameObject;
     public GameObject EnemyGameObject;
+    private GameObject enemyHolder;
 
     public GameObject MapSegmentPrefab;
     private GameObject mapHolder;
@@ -16,7 +17,7 @@ public class MapManager : MonoBehaviour
     private float unitsBetweenCompleteSegments = 1.5f;
     private float segmentSpaceing = 0.1f;
 
-    private int numEnemies = 15;
+    private int numEnemies = 30;
     private float enemySpawnOffset = 2f;
 
     private float playerSpeed = 0.08f;
@@ -27,10 +28,11 @@ public class MapManager : MonoBehaviour
         Vector3 playerSpawnPos = new Vector3(0, 0, playerCameraOffset);
         Instantiate(PlayerGameObject, playerSpawnPos, Quaternion.identity);
 
+        enemyHolder = new GameObject();
         Quaternion enemyRotation = Quaternion.Euler(0, 180, 0);
         for (int i = 0; i < numEnemies; i++)
         {
-            Instantiate(EnemyGameObject, GenerateRandomPosition(), enemyRotation);
+            Instantiate(EnemyGameObject, GenerateRandomPosition(), enemyRotation, enemyHolder.transform);
         }
 
         GameObject mainCamera = new GameObject("Main Camera");
