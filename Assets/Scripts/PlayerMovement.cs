@@ -6,14 +6,18 @@ public class PlayerMovement : MonoBehaviour
 {
     private bool active = false;
     private float speed = 5f;
+    private float aimpointOnZAxis = 35f;
     private Rigidbody rb;
-    
+
     void FixedUpdate()
     {
         if (active)
         {
             Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
             rb.MovePosition(transform.position + m_Input * Time.deltaTime * speed);
+            
+            Vector3 lookPosition = new Vector3(0,0, aimpointOnZAxis);
+            transform.LookAt(lookPosition);
         }
     }
 

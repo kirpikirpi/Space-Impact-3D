@@ -11,7 +11,7 @@ public class MapManager : MonoBehaviour
     private GameObject mapHolder;
     private MapPooler mapPooler;
 
-    private float tunnelRadius = 5f;
+    private float tunnelRadius = 6f;
     private float tunnelLength = 100f;
     private float unitsBetweenCompleteSegments = 1.5f;
     private float segmentSpaceing = 0.1f;
