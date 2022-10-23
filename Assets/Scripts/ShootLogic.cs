@@ -10,11 +10,16 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
     private float timeToNextShot = 0;
     private bool shootingPossible;
 
-    public GameObject projectile;
+    public GameObject standardProjectile;
+    public GameObject alternativeProjectile;
+
+    private GameObject muzzle;
+    private bool setupComplete = false;
 
 
     void Update()
     {
+        if(!setupComplete) return;
         if (Time.time > timeToNextShot)
         {
             shootingPossible = true;
@@ -25,16 +30,35 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
         }
     }
 
-
-    public int ActivateOffense(int ep, GameObject muzzle)
+    public void Setup(GameObject origin)
     {
-        if (ep >= epPerShot && projectile != null && muzzle != null && shootingPossible)
+        muzzle = origin;
+        setupComplete = true;
+    }
+
+    public int ActivateOffense(int ep)
+    {
+        if (ep >= epPerShot && standardProjectile != null && muzzle != null && shootingPossible)
         {
-            GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, Quaternion.identity);
+            GameObject newProjectile = Instantiate(standardProjectile, muzzle.transform.position, Quaternion.identity);
             newProjectile.transform.rotation = muzzle.transform.rotation;
             timeToNextShot = Time.time + timeBetweenShots;
             return ep - epPerShot;
         }
+
+        return ep;
+    }
+
+    public int ActivateAlternativeOffense(int ep)
+    {
+        if (ep >= epPerShot && standardProjectile != null && muzzle != null && shootingPossible)
+        {
+            GameObject newProjectile = Instantiate(alternativeProjectile, muzzle.transform.position, Quaternion.identity);
+            newProjectile.transform.rotation = muzzle.transform.rotation;
+            timeToNextShot = Time.time + timeBetweenShots;
+            return ep - epPerShot;
+        }
+
         return ep;
     }
 }

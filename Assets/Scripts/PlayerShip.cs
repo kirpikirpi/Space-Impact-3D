@@ -38,7 +38,7 @@ public class PlayerShip : Spaceship
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isBlocking)
         {
-            ep = OffenseModule.ActivateOffense(ep, muzzle);
+            ep = OffenseModule.ActivateOffense(ep);
         }
 
         if (Input.GetKey(KeyCode.E))

@@ -9,6 +9,8 @@ public class BasicEnemy : Spaceship
     private float maxDetectionDistance = 70f;
     private float movementSpeed = 0.025f;
     public LayerMask engagebleTargets;
+
+    private float randomShotTimeRange = 10f;
     private float timeToNextShot = 0;
     private float randomShotTime;
 
@@ -16,7 +18,7 @@ public class BasicEnemy : Spaceship
     {
         hp = 5;
         ep = 25;
-        randomShotTime = Random.Range(0, 10f);
+        randomShotTime = Random.Range(0, randomShotTimeRange);
        
         SetupModules();
     }
@@ -29,8 +31,8 @@ public class BasicEnemy : Spaceship
         
         if (Time.time > timeToNextShot)
         {
-            ep = OffenseModule.ActivateOffense(ep, muzzle);
-            randomShotTime = Random.Range(0, 10f);
+            ep = OffenseModule.ActivateOffense(ep);
+            randomShotTime = Random.Range(0, randomShotTimeRange);
             timeToNextShot = Time.time + randomShotTime;
         }
     }
@@ -40,7 +42,7 @@ public class BasicEnemy : Spaceship
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, engagebleTargets))
         {
-            ep = OffenseModule.ActivateOffense(ep, muzzle);
+            ep = OffenseModule.ActivateOffense(ep);
         }
     }
 
@@ -51,6 +53,6 @@ public class BasicEnemy : Spaceship
 
     public override void OnHit()
     {
-        ep = OffenseModule.ActivateOffense(ep, muzzle);
+        ep = OffenseModule.ActivateOffense(ep);
     }
 }

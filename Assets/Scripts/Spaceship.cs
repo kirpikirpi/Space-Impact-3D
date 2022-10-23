@@ -61,6 +61,8 @@ public class Spaceship : MonoBehaviour, IDamageLogic
 
         OffenseModule = OffenseModulePrefab.GetComponent<IOffenseModule>();
         DefenseModule = DefenseModulePrefab.GetComponent<IDefenseModule>();
+        
+        OffenseModule.Setup(muzzle);
     }
 
 

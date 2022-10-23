@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface IOffenseModule
 {
-    int ActivateOffense(int ep, GameObject origin);
+    void Setup(GameObject origin);
+    int ActivateOffense(int ep);
+
+    int ActivateAlternativeOffense(int ep);
 }
