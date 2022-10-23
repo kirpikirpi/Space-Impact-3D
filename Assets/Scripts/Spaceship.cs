@@ -8,6 +8,8 @@ public class Spaceship : MonoBehaviour, IDamageLogic
     public int hp;
     public int ep;
 
+    public GameObject muzzle;
+
     private int collisionDamage = 15;
     public LayerMask collisionLayers;
 
@@ -16,7 +18,6 @@ public class Spaceship : MonoBehaviour, IDamageLogic
 
     public IOffenseModule OffenseModule;
     public IDefenseModule DefenseModule;
-    
 
 
     public virtual void ApplyDamage(int dmg)
@@ -35,8 +36,34 @@ public class Spaceship : MonoBehaviour, IDamageLogic
     {
         throw new System.NotImplementedException();
     }
-    
-    
+
+    public void SetupModules()
+    {
+        if (OffenseModulePrefab == null)
+        {
+            throw new Exception("Offensive module not attached! " + gameObject.tag);
+        }
+
+        if (DefenseModulePrefab == null)
+        {
+            throw new Exception("Defensive module not attached! " + gameObject.tag);
+        }
+
+        if (muzzle == null)
+        {
+            throw new Exception("No muzzle assigned! " + gameObject.tag);
+        }
+
+        OffenseModulePrefab = Instantiate(OffenseModulePrefab, transform.position, Quaternion.identity,
+            gameObject.transform);
+        DefenseModulePrefab = Instantiate(DefenseModulePrefab, transform.position, Quaternion.identity,
+            gameObject.transform);
+
+        OffenseModule = OffenseModulePrefab.GetComponent<IOffenseModule>();
+        DefenseModule = DefenseModulePrefab.GetComponent<IDefenseModule>();
+    }
+
+
     //layer check: layermask == (layermask | (1 << layer))
     void OnCollisionEnter(Collision collision)
     {
@@ -47,5 +74,4 @@ public class Spaceship : MonoBehaviour, IDamageLogic
             target.ApplyDamage(collisionDamage);
         }
     }
-    
 }

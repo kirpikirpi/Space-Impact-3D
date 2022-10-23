@@ -8,8 +8,10 @@
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CollisionWall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CollisionWall.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BasicEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BasicEnemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spaceship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spaceship.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +45,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapPooler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CollisionWall.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BasicEnemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Spaceship.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CollisionWall.cs" />
       </list>
     </option>
   </component>
@@ -77,7 +79,8 @@
       <workItem from="1665813920367" duration="9733000" />
       <workItem from="1665836783454" duration="1309000" />
       <workItem from="1665996557683" duration="7421000" />
-      <workItem from="1666416585496" duration="6547000" />
+      <workItem from="1666416585496" duration="7147000" />
+      <workItem from="1666504701732" duration="398000" />
     </task>
     <servers />
   </component>

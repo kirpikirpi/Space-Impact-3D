@@ -7,8 +7,7 @@ public class PlayerShip : Spaceship
 {
     private int startHealth = 100;
     private int startEnergy = 100;
-
-    public GameObject muzzle;
+    
     private Rigidbody rb;
     bool isShooting;
     bool isBlocking;
@@ -23,35 +22,13 @@ public class PlayerShip : Spaceship
         hp = startHealth;
         ep = startEnergy;
 
-        if (OffenseModulePrefab == null)
-        {
-            throw new Exception("Offensive module not attached!");
-        }
-
-        if (DefenseModulePrefab == null)
-        {
-            throw new Exception("Defensive module not attached!");
-        }
-
-        if (muzzle == null)
-        {
-            throw new Exception("No muzzle assigned in player ship!");
-        }
-
         rb = gameObject.GetComponent<Rigidbody>();
 
         if (rb == null)
         {
             throw new Exception("no rigidbody attached to player ship!");
         }
-
-        OffenseModulePrefab = Instantiate(OffenseModulePrefab, transform.position, Quaternion.identity,
-            gameObject.transform);
-        DefenseModulePrefab = Instantiate(DefenseModulePrefab, transform.position, Quaternion.identity,
-            gameObject.transform);
-
-        OffenseModule = OffenseModulePrefab.GetComponent<IOffenseModule>();
-        DefenseModule = DefenseModulePrefab.GetComponent<IDefenseModule>();
+        SetupModules();
     }
 
     void Update()
