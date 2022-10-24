@@ -16,6 +16,8 @@ public class MapManager : MonoBehaviour
     private float tunnelLength = 100f;
     private float unitsBetweenCompleteSegments = 1.5f;
     private float segmentSpaceing = 0.1f;
+    private GameObject firstElement;
+    private GameObject lastElement;
 
     private int numEnemies = 30;
     private float enemySpawnOffset = 2f;
@@ -45,6 +47,9 @@ public class MapManager : MonoBehaviour
     {
         mapHolder.transform.position = new Vector3(mapHolder.transform.position.x,
             mapHolder.transform.position.y, mapHolder.transform.position.z - playerSpeed);
+        
+        print("first segment: " + firstElement.transform.position);
+        print("last segment: " + lastElement.transform.position);
     }
 
     Vector3 GenerateRandomPosition()
@@ -81,9 +86,14 @@ public class MapManager : MonoBehaviour
         mapPooler = mapHolder.AddComponent<MapPooler>();
         mapPooler.FillPool(MapSegmentPrefab, mapHolder, 10000);
 
+        GameObject currentSegment = new GameObject("empty segment");
+
         for (float i = 0; i < tunnelLength; i += unitsBetweenCompleteSegments)
         {
-            BuildSegment(i);
+            currentSegment = BuildSegment(i);
+            if (i <= 0) firstElement = currentSegment;
         }
+
+        lastElement = currentSegment;
     }
 }
