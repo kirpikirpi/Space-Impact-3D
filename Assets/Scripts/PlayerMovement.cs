@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
             rb.MovePosition(transform.position + m_Input * Time.deltaTime * speed);
             
             Vector3 lookPosition = new Vector3(0,0, aimpointOnZAxis);
-            transform.LookAt(lookPosition);
+            //transform.LookAt(lookPosition);
         }
     }
 

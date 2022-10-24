@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerShip : Spaceship
 {
-    private int startHealth = 100;
-    private int startEnergy = 100;
+    private int startHealth = 50;
+    private int startEnergy = 50;
 
     private Rigidbody rb;
     private PlayerMovement playerMovement;
@@ -44,8 +44,9 @@ public class PlayerShip : Spaceship
         if (Input.GetKey(KeyCode.E))
         {
             int newEp = DefenseModule.ActivateDefense(ep);
-            ep = newEp <= startEnergy ? newEp : startEnergy;
+            ep = newEp <= startEnergy*2 ? newEp : startEnergy;
             isBlocking = true;
+            print("energy: " + ep + " hp: " + hp);
         }
 
         if (Input.GetKeyUp(KeyCode.E))
@@ -77,5 +78,6 @@ public class PlayerShip : Spaceship
 
     public override void OnHit()
     {
+        print("energy: " + ep + " hp: " + hp);
     }
 }

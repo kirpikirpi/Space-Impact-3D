@@ -6,20 +6,19 @@ using Random = UnityEngine.Random;
 
 public class BasicEnemy : Spaceship
 {
-    private float maxDetectionDistance = 70f;
-    private float movementSpeed = 0.025f;
+    private float maxDetectionDistance = 60f;
+    private float movementSpeed = 0.015f;
     public LayerMask engagebleTargets;
 
-    private float randomShotTimeRange = 10f;
+    private float timeBetweenShots = 5f;
     private float timeToNextShot = 0;
     private float randomShotTime;
+    private bool targetDetected = false;
 
     void Start()
     {
         hp = 5;
         ep = 25;
-        randomShotTime = Random.Range(0, randomShotTimeRange);
-       
         SetupModules();
     }
 
@@ -29,10 +28,9 @@ public class BasicEnemy : Spaceship
             transform.position.y,
             transform.position.z - movementSpeed);
         
-        if (Time.time > timeToNextShot)
+        if (Time.time > timeToNextShot && targetDetected)
         {
             ep = OffenseModule.ActivateOffense(ep);
-            randomShotTime = Random.Range(0, randomShotTimeRange);
             timeToNextShot = Time.time + randomShotTime;
         }
     }
@@ -42,7 +40,11 @@ public class BasicEnemy : Spaceship
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, engagebleTargets))
         {
-            ep = OffenseModule.ActivateOffense(ep);
+            targetDetected = true;
+        }
+        else
+        {
+            targetDetected = false;
         }
     }
 

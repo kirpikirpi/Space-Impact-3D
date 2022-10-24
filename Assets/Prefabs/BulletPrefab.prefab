@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmgValue: 10
-  muzzleVelocity: 5
+  muzzleVelocity: 10
 --- !u!114 &1457888846735331371
 MonoBehaviour:
   m_ObjectHideFlags: 0

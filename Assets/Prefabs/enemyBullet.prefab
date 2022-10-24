@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c16aef9c271340a43881273be45359ab, type: 2}
+  - {fileID: 2100000, guid: d2730c62dbde9c84fb7618e496a36bb3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmgValue: 20
-  muzzleVelocity: 14
+  muzzleVelocity: 30
 --- !u!114 &7723459785087320338
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class MapManager : MonoBehaviour
     private GameObject firstElement;
     private GameObject lastElement;
 
-    private int numEnemies = 30;
+    private int numEnemies = 50;
     private float enemySpawnOffset = 2f;
 
     private float playerSpeed = 0.08f;
@@ -27,14 +27,15 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        Vector3 playerSpawnPos = new Vector3(0, 0, playerCameraOffset);
+        Vector3 playerSpawnPos = new Vector3(0, -2.5f, playerCameraOffset);
         Instantiate(PlayerGameObject, playerSpawnPos, Quaternion.identity);
 
         enemyHolder = new GameObject("enemy holder");
         Quaternion enemyRotation = Quaternion.Euler(0, 180, 0);
         for (int i = 0; i < numEnemies; i++)
         {
-            Instantiate(EnemyGameObject, GenerateRandomPosition(), enemyRotation, enemyHolder.transform);
+            Vector3 randomZ = new Vector3(0,-2.5f,i*40+20);
+            Instantiate(EnemyGameObject, randomZ, enemyRotation, enemyHolder.transform);
         }
 
         GameObject mainCamera = new GameObject("Main Camera");
@@ -48,8 +49,6 @@ public class MapManager : MonoBehaviour
         mapHolder.transform.position = new Vector3(mapHolder.transform.position.x,
             mapHolder.transform.position.y, mapHolder.transform.position.z - playerSpeed);
         
-        print("first segment: " + firstElement.transform.position);
-        print("last segment: " + lastElement.transform.position);
     }
 
     Vector3 GenerateRandomPosition()
