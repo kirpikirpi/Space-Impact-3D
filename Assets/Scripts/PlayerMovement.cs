@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private float aimpointOnZAxis = 35f;
     private Rigidbody rb;
 
+    
+    //Todo: add rubberbanding
     void FixedUpdate()
     {
         if (active)
