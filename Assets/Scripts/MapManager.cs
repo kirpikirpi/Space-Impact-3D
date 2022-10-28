@@ -23,7 +23,7 @@ public class MapManager : MonoBehaviour
     private int numEnemies = 50;
     private float enemySpawnOffset = 2f;
 
-    private float playerSpeed = 0.08f;
+    private float playerSpeed = 2f; //0.08f
     private float playerCameraOffset = 8.5f;
 
     void Start()
@@ -52,22 +52,21 @@ public class MapManager : MonoBehaviour
     {
         mapHolder.transform.position = new Vector3(mapHolder.transform.position.x, mapHolder.transform.position.y,
             mapHolder.transform.position.z - playerSpeed);
-        
+    }
+
+    void Update()
+    {
         firstElementZ = activeSegments[0].transform.GetChild(0).transform.position.z;
 
         if (firstElementZ <= 0)
         {
             GameObject firstElement = activeSegments[0];
-            Vector3 offset = new Vector3(0,0,unitsBetweenCompleteSegments);
-            firstElement.transform.position = activeSegments[activeSegments.Count - 1].transform.position + offset;
+            //float zOffset = activeSegments[activeSegments.Count - 1].transform.GetChild(0).transform.position.z;
+            Vector3 offset = new Vector3(0,0,tunnelLength);
+            firstElement.transform.position = offset;
             activeSegments.RemoveAt(0);
             activeSegments.Add(firstElement);
         }
-    }
-
-    void Update()
-    {
-        
     }
 
     Vector3 GenerateRandomPosition()
