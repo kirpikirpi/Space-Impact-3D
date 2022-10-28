@@ -10,14 +10,15 @@ public class MapManager : MonoBehaviour
 
     public GameObject MapSegmentPrefab;
     private GameObject mapHolder;
-    private MapPooler mapPooler;
 
     private float tunnelRadius = 6f;
     private float tunnelLength = 100f;
     private float unitsBetweenCompleteSegments = 1.5f;
     private float segmentSpaceing = 0.1f;
-    private GameObject firstElement;
-    private GameObject lastElement;
+
+    private List<GameObject> activeSegments;
+    private float firstElementZ;
+    private float lastElementZ;
 
     private int numEnemies = 50;
     private float enemySpawnOffset = 2f;
@@ -27,6 +28,7 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
+        /*
         Vector3 playerSpawnPos = new Vector3(0, -2.5f, playerCameraOffset);
         Instantiate(PlayerGameObject, playerSpawnPos, Quaternion.identity);
 
@@ -34,20 +36,37 @@ public class MapManager : MonoBehaviour
         Quaternion enemyRotation = Quaternion.Euler(0, 180, 0);
         for (int i = 0; i < numEnemies; i++)
         {
-            Vector3 randomZ = new Vector3(0,-2.5f,i*40+20);
+            Vector3 randomZ = new Vector3(0, -2.5f, i * 40 + 20);
             Instantiate(EnemyGameObject, randomZ, enemyRotation, enemyHolder.transform);
         }
+        */
 
         GameObject mainCamera = new GameObject("Main Camera");
         mainCamera.AddComponent<Camera>();
+
+        BuildMap();
         
-        SetupMapSegments();
     }
 
     void FixedUpdate()
     {
-        mapHolder.transform.position = new Vector3(mapHolder.transform.position.x,
-            mapHolder.transform.position.y, mapHolder.transform.position.z - playerSpeed);
+        mapHolder.transform.position = new Vector3(mapHolder.transform.position.x, mapHolder.transform.position.y,
+            mapHolder.transform.position.z - playerSpeed);
+        
+        firstElementZ = activeSegments[0].transform.GetChild(0).transform.position.z;
+
+        if (firstElementZ <= 0)
+        {
+            GameObject firstElement = activeSegments[0];
+            Vector3 offset = new Vector3(0,0,unitsBetweenCompleteSegments);
+            firstElement.transform.position = activeSegments[activeSegments.Count - 1].transform.position + offset;
+            activeSegments.RemoveAt(0);
+            activeSegments.Add(firstElement);
+        }
+    }
+
+    void Update()
+    {
         
     }
 
@@ -65,11 +84,11 @@ public class MapManager : MonoBehaviour
     {
         GameObject circularSegment = new GameObject("circular segment");
         circularSegment.transform.parent = mapHolder.transform;
-        
+
         for (float j = 0; j < 2 * Mathf.PI; j += segmentSpaceing)
         {
             Vector3 segmentPos = new Vector3(Mathf.Cos(j) * tunnelRadius, Mathf.Sin(j) * tunnelRadius, zPos);
-            GameObject currentElement = mapPooler.PopPool();
+            GameObject currentElement = Instantiate(MapSegmentPrefab,segmentPos, Quaternion.identity, circularSegment.transform);
             currentElement.gameObject.SetActive(true);
             currentElement.transform.position = segmentPos;
             currentElement.transform.parent = circularSegment.transform;
@@ -78,21 +97,16 @@ public class MapManager : MonoBehaviour
         return circularSegment;
     }
 
-    void SetupMapSegments()
+    void BuildMap()
     {
         mapHolder = new GameObject("Map Holder");
         mapHolder.transform.parent = transform;
-        mapPooler = mapHolder.AddComponent<MapPooler>();
-        mapPooler.FillPool(MapSegmentPrefab, mapHolder, 10000);
-
-        GameObject currentSegment = new GameObject("empty segment");
+        activeSegments = new List<GameObject>();
 
         for (float i = 0; i < tunnelLength; i += unitsBetweenCompleteSegments)
         {
-            currentSegment = BuildSegment(i);
-            if (i <= 0) firstElement = currentSegment;
+            GameObject currentSegement = BuildSegment(i);
+            activeSegments.Add(currentSegement);
         }
-
-        lastElement = currentSegment;
     }
 }
