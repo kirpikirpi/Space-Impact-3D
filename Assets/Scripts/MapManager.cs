@@ -24,7 +24,7 @@ public class MapManager : MonoBehaviour
     private int numEnemies = 50;
     private float enemySpawnOffset = 2f;
 
-    private float playerSpeed = 0.005f; //0.08f
+    private float playerSpeed = 0.05f; //0.08f
     private float playerCameraOffset = 8.5f;
 
     void Start()
@@ -60,9 +60,11 @@ public class MapManager : MonoBehaviour
 
     void Update()
     {
+        
         foreach (var segment in activeSegments)
         {
-            segment.transform.Translate(Vector3.back * Time.time * playerSpeed, Space.Self);
+            segment.transform.position = new Vector3(segment.transform.position.x, 
+                segment.transform.position.y, segment.transform.position.z - playerSpeed);
             if (segment.transform.position.z <= 0) segment.transform.position = tunnelEndPos;
         }
     }
