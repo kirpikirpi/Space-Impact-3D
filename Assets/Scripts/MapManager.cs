@@ -24,23 +24,24 @@ public class MapManager : MonoBehaviour
     private int numEnemies = 50;
     private float enemySpawnOffset = 2f;
 
-    private float playerSpeed = 0.05f; //0.08f
-    private float playerCameraOffset = 8.5f;
+    private float playerSpeed = 0.2f; //0.08f
+    private float playerCameraOffset = 7.5f;
 
     void Start()
     {
-        /*
-        Vector3 playerSpawnPos = new Vector3(0, -2.5f, playerCameraOffset);
+        
+        Vector3 playerSpawnPos = new Vector3(0, -1.5f, playerCameraOffset*2);
         Instantiate(PlayerGameObject, playerSpawnPos, Quaternion.identity);
 
+        
         enemyHolder = new GameObject("enemy holder");
         Quaternion enemyRotation = Quaternion.Euler(0, 180, 0);
         for (int i = 0; i < numEnemies; i++)
         {
-            Vector3 randomZ = new Vector3(0, -2.5f, i * 40 + 20);
+            Vector3 randomZ = new Vector3(0, -1.5f, i * 40 + 20);
             Instantiate(EnemyGameObject, randomZ, enemyRotation, enemyHolder.transform);
         }
-        */
+        
 
         GameObject mainCamera = new GameObject("Main Camera");
         mainCamera.AddComponent<Camera>();

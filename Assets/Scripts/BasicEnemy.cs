@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class BasicEnemy : Spaceship
 {
     private float maxDetectionDistance = 60f;
-    private float movementSpeed = 0.015f;
+    private float movementSpeed = 0.5f;
     public LayerMask engagebleTargets;
 
     private float timeBetweenShots = 5f;
@@ -30,7 +30,7 @@ public class BasicEnemy : Spaceship
         
         if (Time.time > timeToNextShot && targetDetected)
         {
-            ep = OffenseModule.ActivateOffense(ep);
+            //ep = OffenseModule.ActivateOffense(ep);
             timeToNextShot = Time.time + randomShotTime;
         }
     }
