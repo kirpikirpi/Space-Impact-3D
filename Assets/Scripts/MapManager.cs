@@ -15,7 +15,7 @@ public class MapManager : MonoBehaviour
     private float tunnelLength = 100f;
     private Vector3 tunnelEndPos;
     private float unitsBetweenCompleteSegments = 1.5f;
-    private float segmentSpaceing = 0.1f;
+    private float segmentSpaceing = 0.2f;
 
     private List<GameObject> activeSegments;
     private float firstElementZ;
@@ -24,7 +24,7 @@ public class MapManager : MonoBehaviour
     private int numEnemies = 50;
     private float enemySpawnOffset = 2f;
 
-    private float playerSpeed = 0.2f; //0.08f
+    private float playerSpeed = 0.2f;
     private float playerCameraOffset = 7.5f;
 
     void Start()
@@ -39,7 +39,7 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < numEnemies; i++)
         {
             Vector3 randomZ = new Vector3(0, -1.5f, i * 40 + 20);
-            Instantiate(EnemyGameObject, randomZ, enemyRotation, enemyHolder.transform);
+            //Instantiate(EnemyGameObject, randomZ, enemyRotation, enemyHolder.transform);
         }
         
 
@@ -95,6 +95,7 @@ public class MapManager : MonoBehaviour
             Vector3 segmentPos = new Vector3(Mathf.Cos(j) * tunnelRadius, Mathf.Sin(j) * tunnelRadius, zPos);
             GameObject currentElement = Instantiate(MapSegmentPrefab, segmentPos, Quaternion.identity,
                 circularSegment.transform);
+            currentElement.transform.LookAt(circularSegment.transform);
             currentElement.gameObject.SetActive(true);
             currentElement.transform.position = segmentPos;
             currentElement.transform.parent = circularSegment.transform;

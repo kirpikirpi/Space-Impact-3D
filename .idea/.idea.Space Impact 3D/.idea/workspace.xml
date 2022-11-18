@@ -7,8 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/target.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/target.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BasicEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BasicEnemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +84,8 @@
       <workItem from="1666861322932" duration="614000" />
       <workItem from="1666945928771" duration="3309000" />
       <workItem from="1668320261590" duration="595000" />
-      <workItem from="1668595633206" duration="3786000" />
+      <workItem from="1668595633206" duration="4383000" />
+      <workItem from="1668746724259" duration="1013000" />
     </task>
     <servers />
   </component>
