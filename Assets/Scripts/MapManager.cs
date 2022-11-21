@@ -8,23 +8,11 @@ public class MapManager : MonoBehaviour
     public GameObject EnemyGameObject;
     private GameObject enemyHolder;
 
-    public GameObject MapSegmentPrefab;
     private GameObject mapHolder;
 
-    private float tunnelRadius = 6f;
-    private float tunnelLength = 100f;
-    private Vector3 tunnelEndPos;
-    private float unitsBetweenCompleteSegments = 1.5f;
-    private float segmentSpaceing = 0.2f;
-
-    private List<GameObject> activeSegments;
-    private float firstElementZ;
-    private float lastElementZ;
-
     private int numEnemies = 50;
-    private float enemySpawnOffset = 2f;
-
-    private float playerSpeed = 0.2f;
+    private float enemySpawnOffset = 20f;
+    
     private float playerCameraOffset = 7.5f;
 
     void Start()
@@ -38,14 +26,17 @@ public class MapManager : MonoBehaviour
         Quaternion enemyRotation = Quaternion.Euler(0, 180, 0);
         for (int i = 0; i < numEnemies; i++)
         {
-            Vector3 randomZ = new Vector3(0, -1.5f, i * 40 + 20);
-            //Instantiate(EnemyGameObject, randomZ, enemyRotation, enemyHolder.transform);
+            float zPos = enemySpawnOffset + enemySpawnOffset * i;
+            Vector3 pos = GenerateRandomPosition(zPos);
+            Instantiate(EnemyGameObject, pos, enemyRotation, enemyHolder.transform);
         }
         
 
         GameObject mainCamera = new GameObject("Main Camera");
         mainCamera.AddComponent<Camera>();
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
+        
+        print("width: " + Screen.width + " height: " + Screen.height);
         
     }
 
@@ -54,12 +45,16 @@ public class MapManager : MonoBehaviour
         
     }
 
-    Vector3 GenerateRandomPosition()
+    /*
+     * creates random pos on a specific point on the z axis
+     */
+    Vector3 GenerateRandomPosition(float zPos)
     {
-        float spawnRadius = tunnelRadius - enemySpawnOffset;
-        float x = Random.Range(-spawnRadius, spawnRadius);
-        float y = Random.Range(-spawnRadius, spawnRadius);
-        float z = Random.Range(15f, tunnelLength);
+        float screenWidth = Screen.width/2;
+        float screenHeight = Screen.height/2;
+        float x = Random.Range(-screenWidth, screenWidth);
+        float y = Random.Range(-screenHeight, screenHeight);
+        float z = zPos;
 
         return new Vector3(x, y, z);
     }

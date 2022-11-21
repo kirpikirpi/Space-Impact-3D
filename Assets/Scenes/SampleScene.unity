@@ -168,7 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerGameObject: {fileID: 5563671167714843808, guid: e4825ea04cdd3a14fb05f57b22f40a75, type: 3}
   EnemyGameObject: {fileID: 4440544802707292383, guid: 16802da3a7548374d8fdc67fa0591020, type: 3}
-  MapSegmentPrefab: {fileID: 9061871449047677536, guid: 6b9573299bf89d648b61bc579f5175ab, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
