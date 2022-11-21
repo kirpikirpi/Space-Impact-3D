@@ -46,28 +46,12 @@ public class MapManager : MonoBehaviour
         GameObject mainCamera = new GameObject("Main Camera");
         mainCamera.AddComponent<Camera>();
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
-
-
-        activeSegments = new List<GameObject>();
-        tunnelLength -= tunnelLength % unitsBetweenCompleteSegments;
-        for (float i = 0; i < tunnelLength; i += unitsBetweenCompleteSegments)
-        {
-            GameObject segment = BuildSegment(i);
-            activeSegments.Add(segment);
-        }
-
-        tunnelEndPos = new Vector3(0, 0, tunnelLength);
+        
     }
 
     void Update()
     {
         
-        foreach (var segment in activeSegments)
-        {
-            segment.transform.position = new Vector3(segment.transform.position.x, 
-                segment.transform.position.y, segment.transform.position.z - playerSpeed);
-            if (segment.transform.position.z <= 0) segment.transform.position = tunnelEndPos;
-        }
     }
 
     Vector3 GenerateRandomPosition()
@@ -80,40 +64,4 @@ public class MapManager : MonoBehaviour
         return new Vector3(x, y, z);
     }
 
-    /**
-     * Instantiates a circular segment at a specific position on the Z axis
-     */
-    GameObject BuildSegment(float zPos)
-    {
-        if (mapHolder == null) mapHolder = new GameObject("Map Holder");
-        GameObject circularSegment = new GameObject("circular segment");
-        circularSegment.transform.position = new Vector3(0, 0, zPos);
-        circularSegment.transform.parent = mapHolder.transform;
-
-        for (float j = 0; j < 2 * Mathf.PI; j += segmentSpaceing)
-        {
-            Vector3 segmentPos = new Vector3(Mathf.Cos(j) * tunnelRadius, Mathf.Sin(j) * tunnelRadius, zPos);
-            GameObject currentElement = Instantiate(MapSegmentPrefab, segmentPos, Quaternion.identity,
-                circularSegment.transform);
-            currentElement.transform.LookAt(circularSegment.transform);
-            currentElement.gameObject.SetActive(true);
-            currentElement.transform.position = segmentPos;
-            currentElement.transform.parent = circularSegment.transform;
-        }
-
-        return circularSegment;
-    }
-
-    void BuildMap()
-    {
-        if (mapHolder == null) mapHolder = new GameObject("Map Holder");
-        mapHolder.transform.parent = transform;
-        activeSegments = new List<GameObject>();
-
-        for (float i = 0; i < tunnelLength; i += unitsBetweenCompleteSegments)
-        {
-            GameObject currentSegement = BuildSegment(i);
-            activeSegments.Add(currentSegement);
-        }
-    }
 }
