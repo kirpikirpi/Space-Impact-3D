@@ -10,29 +10,41 @@ public class MapManager : MonoBehaviour
 
     private GameObject mapHolder;
 
-    private int numEnemies = 50;
+    private int numEnemies = 5;
     private float enemySpawnOffset = 20f;
+    private float enemySpawnZ = 100f;
     private bool spawnActive = true;
-    
+
     private float playerCameraOffset = 7.5f;
 
     void Start()
     {
-        
-        Vector3 playerSpawnPos = new Vector3(0, -1.5f, playerCameraOffset*2);
+        Vector3 playerSpawnPos = new Vector3(0, -1.5f, playerCameraOffset * 2);
         Instantiate(PlayerGameObject, playerSpawnPos, Quaternion.identity);
-
-        pooler = gameObject.AddComponent<Pooler>();
-        pooler = Pooler.instance;
-        pooler.FillPool(EnemyGameObject, 5);
 
 
         GameObject mainCamera = new GameObject("Main Camera");
         mainCamera.AddComponent<Camera>();
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
+        
+        SpawnEnemies(numEnemies);
+    }
+
+    void SpawnEnemies(int num)
+    {
+        pooler = gameObject.AddComponent<Pooler>();
+        pooler = Pooler.instance;
+        pooler.FillPool(EnemyGameObject, 5);
+
+        //rotate the enemy ships so they face player
+        for (int i = 0; i < num; i++)
+        {
+            GameObject enemyShip = pooler.PopPool();
+            enemyShip.transform.Rotate(Vector3.up,180);
+            pooler.PushPool(enemyShip);
+        }
 
         StartCoroutine(EnemySpawner());
-
     }
 
     IEnumerator EnemySpawner()
@@ -43,12 +55,10 @@ public class MapManager : MonoBehaviour
             if (fillstate > 0)
             {
                 GameObject enemy = pooler.PopPool();
-                enemy.transform.Rotate(Vector3.up,180);
-                enemy.transform.position = new Vector3(0,-1.5f,50);
+                enemy.transform.position = new Vector3(0, -1.5f, enemySpawnZ);
             }
+
             yield return new WaitForSeconds(4);
         }
     }
-    
-
 }

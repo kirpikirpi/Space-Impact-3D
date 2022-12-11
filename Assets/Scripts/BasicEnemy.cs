@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class BasicEnemy : Spaceship
 {
     private float maxDetectionDistance = 60f;
-    private float movementSpeed = 0.01f;
+    private float movementSpeed = 2f;
     public LayerMask engagebleTargets;
 
     private float timeBetweenShots = 1.25f;
@@ -18,15 +18,11 @@ public class BasicEnemy : Spaceship
     {
         hp = 5;
         ep = 25;
-        SetupModules();
+        SetupModulesWithSpeed(movementSpeed);
     }
 
     void Update()
     {
-        gameObject.transform.position = new Vector3(transform.position.x,
-            transform.position.y,
-            transform.position.z - movementSpeed);
-
         if (Time.time > timeToNextShot && targetDetected)
         {
             ep = OffenseModule.ActivateOffense(ep);
@@ -45,6 +41,9 @@ public class BasicEnemy : Spaceship
         {
             targetDetected = false;
         }
+        
+        Vector3 pos = transform.position + transform.forward * Time.deltaTime * movementSpeed;
+        rb.MovePosition(pos);
     }
 
     public override void OnDestroy()

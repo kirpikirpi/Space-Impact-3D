@@ -15,6 +15,11 @@ public class BulletLogic : MonoBehaviour
     private Rigidbody rb;
     private bool movementPossible;
 
+
+    public void AdaptMuzzleVelocity(float movementSpeed)
+    {
+        muzzleVelocity += movementSpeed;
+    }
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -44,7 +49,6 @@ public class BulletLogic : MonoBehaviour
     {
         if (movementPossible) MoveProjectile();
         CheckDistance();
-        
     }
 
 

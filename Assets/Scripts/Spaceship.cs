@@ -73,6 +73,41 @@ public class Spaceship : MonoBehaviour, IDamageLogic
         
         OffenseModule.Setup(muzzle);
     }
+    
+    public void SetupModulesWithSpeed(float movementSpeed)
+    {
+        if (OffenseModulePrefab == null)
+        {
+            throw new Exception("Offensive module not attached! " + gameObject.tag);
+        }
+
+        if (DefenseModulePrefab == null)
+        {
+            throw new Exception("Defensive module not attached! " + gameObject.tag);
+        }
+
+        if (muzzle == null)
+        {
+            throw new Exception("No muzzle assigned! " + gameObject.tag);
+        }
+
+        rb = gameObject.GetComponent<Rigidbody>();
+        
+        if (rb == null)
+        {
+            throw new Exception("no rigidbody attached! " + gameObject.tag);
+        }
+
+        OffenseModulePrefab = Instantiate(OffenseModulePrefab, transform.position, Quaternion.identity,
+            gameObject.transform);
+        DefenseModulePrefab = Instantiate(DefenseModulePrefab, transform.position, Quaternion.identity,
+            gameObject.transform);
+
+        OffenseModule = OffenseModulePrefab.GetComponent<IOffenseModule>();
+        DefenseModule = DefenseModulePrefab.GetComponent<IDefenseModule>();
+        
+        OffenseModule.Setup(muzzle, movementSpeed);
+    }
 
 
     //layer check: layermask == (layermask | (1 << layer))

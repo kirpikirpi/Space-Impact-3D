@@ -35,6 +35,13 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
         muzzle = origin;
         setupComplete = true;
     }
+    public void Setup(GameObject origin, float movementSpeed)
+    {
+        muzzle = origin;
+        BulletLogic bulletLogic = standardProjectile.GetComponent<BulletLogic>();
+        bulletLogic.AdaptMuzzleVelocity(movementSpeed);
+        setupComplete = true;
+    }
 
     public int ActivateOffense(int ep)
     {
