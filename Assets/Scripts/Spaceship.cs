@@ -10,6 +10,8 @@ public class Spaceship : MonoBehaviour, IDamageLogic
 
     public GameObject muzzle;
 
+    protected Rigidbody rb;
+
     private int collisionDamage = 15;
     public LayerMask collisionLayers;
 
@@ -52,6 +54,11 @@ public class Spaceship : MonoBehaviour, IDamageLogic
         if (muzzle == null)
         {
             throw new Exception("No muzzle assigned! " + gameObject.tag);
+        }
+        
+        if (rb == null)
+        {
+            throw new Exception("no rigidbody attached! " + gameObject.tag);
         }
 
         OffenseModulePrefab = Instantiate(OffenseModulePrefab, transform.position, Quaternion.identity,

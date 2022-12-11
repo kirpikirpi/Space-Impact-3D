@@ -50,7 +50,9 @@ public class BasicEnemy : Spaceship
 
     public override void OnDestroy()
     {
-        gameObject.SetActive(false);
+        rb.constraints = RigidbodyConstraints.None;
+        rb.useGravity = true;
+        Pooler.instance.PushPool(gameObject);
     }
 
     public override void OnHit()

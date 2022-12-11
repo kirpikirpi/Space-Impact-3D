@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapPooler : MonoBehaviour
+public class Pooler : MonoBehaviour
 {
     #region Singleton
 
-    public static MapPooler instance;
+    public static Pooler instance;
 
     void Awake()
     {
@@ -21,7 +21,7 @@ public class MapPooler : MonoBehaviour
     #endregion
 
     private int poolSize;
-    Queue<GameObject> mapSegmentPool = new Queue<GameObject>();
+    Queue<GameObject> objectPool = new Queue<GameObject>();
     private GameObject objectPoolParent;
 
 
@@ -30,8 +30,9 @@ public class MapPooler : MonoBehaviour
      */
     public GameObject PopPool()
     {
-        if (mapSegmentPool.Count <= 0) return null;
-        GameObject currentObject = mapSegmentPool.Dequeue();
+        if (objectPool.Count <= 0) return null;
+        GameObject currentObject = objectPool.Dequeue();
+        currentObject.SetActive(true);
         return currentObject;
     }
 
@@ -40,7 +41,8 @@ public class MapPooler : MonoBehaviour
      */
     public void PushPool(GameObject objectToPush)
     {
-        mapSegmentPool.Enqueue(objectToPush);
+        objectToPush.SetActive(false);
+        objectPool.Enqueue(objectToPush);
     }
 
     /**
@@ -48,7 +50,7 @@ public class MapPooler : MonoBehaviour
      */
     public float GetPoolFillstate()
     {
-        int currentSize = mapSegmentPool.Count;
+        int currentSize = objectPool.Count;
         float fillPercentage = (float) currentSize / poolSize;
 
         return fillPercentage;
@@ -64,12 +66,12 @@ public class MapPooler : MonoBehaviour
         {
             GameObject newPoolObject =
                 Instantiate(prefab, transform.position, Quaternion.identity, objectPoolParent.transform);
-            mapSegmentPool.Enqueue(newPoolObject);
+            objectPool.Enqueue(newPoolObject);
             newPoolObject.SetActive(false);
         }
 
         poolSize = count;
-        return mapSegmentPool.Count;
+        return objectPool.Count;
     }
 
     public int FillPool(GameObject prefab, GameObject parent, int count)
@@ -77,12 +79,12 @@ public class MapPooler : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             GameObject newPoolObject = Instantiate(prefab, transform.position, Quaternion.identity, parent.transform);
-            mapSegmentPool.Enqueue(newPoolObject);
+            objectPool.Enqueue(newPoolObject);
             newPoolObject.SetActive(false);
         }
 
         poolSize = count;
 
-        return mapSegmentPool.Count;
+        return objectPool.Count;
     }
 }
