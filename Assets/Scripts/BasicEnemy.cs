@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class BasicEnemy : Spaceship
 {
     private float maxDetectionDistance = 60f;
-    private float movementSpeed = 0f;
+    private float movementSpeed = 0.01f;
     public LayerMask engagebleTargets;
 
     private float timeBetweenShots = 1.25f;

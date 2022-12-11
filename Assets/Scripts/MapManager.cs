@@ -12,6 +12,7 @@ public class MapManager : MonoBehaviour
 
     private int numEnemies = 50;
     private float enemySpawnOffset = 20f;
+    private bool spawnActive = true;
     
     private float playerCameraOffset = 7.5f;
 
@@ -25,17 +26,28 @@ public class MapManager : MonoBehaviour
         pooler = Pooler.instance;
         pooler.FillPool(EnemyGameObject, 5);
 
-        
-        GameObject enemy = pooler.PopPool();
-        enemy.transform.Rotate(Vector3.up,180);
-        enemy.transform.position = new Vector3(0,-1.5f,30);
-        
-       
-        
+
         GameObject mainCamera = new GameObject("Main Camera");
         mainCamera.AddComponent<Camera>();
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
 
+        StartCoroutine(EnemySpawner());
+
+    }
+
+    IEnumerator EnemySpawner()
+    {
+        while (spawnActive)
+        {
+            float fillstate = pooler.GetPoolFillstate();
+            if (fillstate > 0)
+            {
+                GameObject enemy = pooler.PopPool();
+                enemy.transform.Rotate(Vector3.up,180);
+                enemy.transform.position = new Vector3(0,-1.5f,50);
+            }
+            yield return new WaitForSeconds(4);
+        }
     }
     
 
