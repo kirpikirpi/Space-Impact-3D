@@ -7,6 +7,7 @@ public class PlayerShip : Spaceship
 {
     private int startHealth = 50;
     private int startEnergy = 50;
+    private float bulletSpeed = 30f;
     
     bool isShooting;
     bool isBlocking;
@@ -20,7 +21,7 @@ public class PlayerShip : Spaceship
         hp = startHealth;
         ep = startEnergy;
 
-        SetupModules();
+        SetupModulesWithSpeed(bulletSpeed);
     }
 
     void Update()

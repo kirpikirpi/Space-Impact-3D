@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmgValue: 20
-  muzzleVelocity: 30
+  cumulativeMuzzleVelocity: 0
 --- !u!114 &1412839862
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ public class MapManager : MonoBehaviour
     {
         pooler = gameObject.AddComponent<Pooler>();
         pooler = Pooler.instance;
-        pooler.FillPool(EnemyGameObject, 5);
+        pooler.FillPool(EnemyGameObject, num);
 
         //rotate the enemy ships so they face player
         for (int i = 0; i < num; i++)
@@ -56,9 +56,12 @@ public class MapManager : MonoBehaviour
             {
                 GameObject enemy = pooler.PopPool();
                 enemy.transform.position = new Vector3(0, -1.5f, enemySpawnZ);
+                yield return new WaitForSeconds(4);
             }
-
-            yield return new WaitForSeconds(4);
+            else
+            {
+                spawnActive = false;
+            }
         }
     }
 }

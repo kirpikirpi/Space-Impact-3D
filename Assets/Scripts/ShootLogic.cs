@@ -9,6 +9,7 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
     public float timeBetweenShots = 0.2f;
     private float timeToNextShot = 0;
     private bool shootingPossible;
+    private float movementSpeed;
 
     public GameObject standardProjectile;
     public GameObject alternativeProjectile;
@@ -40,6 +41,7 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
         muzzle = origin;
         BulletLogic bulletLogic = standardProjectile.GetComponent<BulletLogic>();
         bulletLogic.AdaptMuzzleVelocity(movementSpeed);
+        this.movementSpeed = movementSpeed;
         setupComplete = true;
     }
 

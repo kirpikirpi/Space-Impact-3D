@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class BasicEnemy : Spaceship
 {
     private float maxDetectionDistance = 60f;
-    private float movementSpeed = 2f;
+    private float movementSpeed = 30f;
     public LayerMask engagebleTargets;
 
     private float timeBetweenShots = 1.25f;
@@ -48,9 +48,9 @@ public class BasicEnemy : Spaceship
 
     public override void OnDestroy()
     {
-        //rb.constraints = RigidbodyConstraints.None; throws errors, why? todo
-        //rb.useGravity = true;
-        Pooler.instance.PushPool(gameObject);
+        rb.constraints = RigidbodyConstraints.None;
+        rb.useGravity = true;
+        //Pooler.instance.PushPool(gameObject);
     }
 
     public override void OnHit()

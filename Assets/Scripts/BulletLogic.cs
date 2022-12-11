@@ -6,7 +6,8 @@ using UnityEngine;
 public class BulletLogic : MonoBehaviour
 {
     public int dmgValue = 10;
-    public float muzzleVelocity = 3f;
+    private float projectileSpeed = 30f;
+    public float cumulativeMuzzleVelocity; //public needed to change velocity in prefab
     
     private float range = 100f;
     private Vector3 startPoint;
@@ -18,7 +19,8 @@ public class BulletLogic : MonoBehaviour
 
     public void AdaptMuzzleVelocity(float movementSpeed)
     {
-        muzzleVelocity += movementSpeed;
+        cumulativeMuzzleVelocity = movementSpeed + projectileSpeed;
+        print(cumulativeMuzzleVelocity);
     }
     void Start()
     {
@@ -54,7 +56,7 @@ public class BulletLogic : MonoBehaviour
 
     void MoveProjectile()
     {
-        Vector3 pos = transform.position + transform.forward * Time.deltaTime * muzzleVelocity;
+        Vector3 pos = transform.position + transform.forward * Time.deltaTime * cumulativeMuzzleVelocity;
         rb.MovePosition(pos);
     }
 
