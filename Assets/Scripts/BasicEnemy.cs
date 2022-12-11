@@ -50,8 +50,8 @@ public class BasicEnemy : Spaceship
 
     public override void OnDestroy()
     {
-        rb.constraints = RigidbodyConstraints.None;
-        rb.useGravity = true;
+        //rb.constraints = RigidbodyConstraints.None; throws errors, why? todo
+        //rb.useGravity = true;
         Pooler.instance.PushPool(gameObject);
     }
 

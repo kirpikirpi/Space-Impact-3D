@@ -26,7 +26,8 @@ public class MapManager : MonoBehaviour
         pooler.FillPool(EnemyGameObject, 5);
 
         GameObject enemy = pooler.PopPool();
-        enemy.transform.position = new Vector3(0,0,30);
+        enemy.transform.Rotate(Vector3.up,180);
+        enemy.transform.position = new Vector3(0,-1.5f,30);
        
         
         GameObject mainCamera = new GameObject("Main Camera");
@@ -34,10 +35,6 @@ public class MapManager : MonoBehaviour
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
 
     }
-
-    void Update()
-    {
-        
-    }
+    
 
 }
