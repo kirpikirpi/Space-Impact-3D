@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerShip : Spaceship
 {
     private int startHealth = 50;
-    private int startEnergy = 50;
+    private int startEnergy = 25;
     private float bulletSpeed = 30f;
     
     bool isShooting;
@@ -26,25 +26,26 @@ public class PlayerShip : Spaceship
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isBlocking)
+        UISingleton.instance.SetStats(ep.ToString(),hp.ToString());
+        if(isDestroyed) return;
+        if (Input.GetKeyDown(KeyCode.W) && !isBlocking)
         {
             ep = OffenseModule.ActivateOffense(ep);
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.Space))
         {
             int newEp = DefenseModule.ActivateDefense(ep);
             ep = newEp <= startEnergy*2 ? newEp : startEnergy;
             isBlocking = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             DefenseModule.DeactivateDefense();
             isBlocking = false;
         }
-
-        UISingleton.instance.SetStats(ep.ToString(),hp.ToString());
+        
         RegenerateEnergy();
         
     }
@@ -62,12 +63,12 @@ public class PlayerShip : Spaceship
     public override void OnDestroy()
     {
         //gameObject.SetActive(false);
+        isDestroyed = true;
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = true;
     }
 
     public override void OnHit()
     {
-        print("energy: " + ep + " hp: " + hp);
     }
 }

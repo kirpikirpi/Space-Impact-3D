@@ -7,6 +7,8 @@ public class Spaceship : MonoBehaviour, IDamageLogic
 {
     public int hp;
     public int ep;
+    
+    protected bool isDestroyed = false;
 
     public GameObject muzzle;
 
@@ -25,7 +27,11 @@ public class Spaceship : MonoBehaviour, IDamageLogic
     public virtual void ApplyDamage(int dmg)
     {
         hp -= dmg;
-        if (hp <= 0) OnDestroy();
+        if (hp <= 0)
+        {
+            hp = 0;
+            OnDestroy();
+        }
         else OnHit();
     }
 

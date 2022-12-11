@@ -10,7 +10,7 @@ public class MapManager : MonoBehaviour
 
     private GameObject mapHolder;
 
-    private int numEnemies = 5;
+    private int numEnemies = 50;
     private float enemySpawnOffset = 20f;
     private float enemySpawnZ = 100f;
     private bool spawnActive = true;
@@ -26,6 +26,7 @@ public class MapManager : MonoBehaviour
         GameObject mainCamera = new GameObject("Main Camera");
         mainCamera.AddComponent<Camera>();
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
+        mainCamera.transform.Rotate(0,0,0);
         
         SpawnEnemies(numEnemies);
     }

@@ -14,8 +14,6 @@ public class BasicEnemy : Spaceship
     private float timeToNextShot = 0;
     private bool targetDetected = false;
 
-    private bool isDestroyed = false;
-
     void Start()
     {
         hp = 5;
