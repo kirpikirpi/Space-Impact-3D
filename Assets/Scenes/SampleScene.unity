@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 15dd50c6b5dd8314da36e151f222de3c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.051441513, g: 0.1500552, b: 0.19368404, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0270b3111aaeca441912a28119543e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerGameObject: {fileID: 5563671167714843808, guid: e4825ea04cdd3a14fb05f57b22f40a75, type: 3}
+  PlayerGameObject: {fileID: 2013998710418132812, guid: 948cd2204f4ec974a913008f0ec23485, type: 3}
   EnemyGameObject: {fileID: 4440544802707292383, guid: 16802da3a7548374d8fdc67fa0591020, type: 3}
 --- !u!1 &705507993
 GameObject:

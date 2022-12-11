@@ -57,7 +57,6 @@ public class BulletLogic : MonoBehaviour
     {
         currentPoint = transform.position;
         float difference = (currentPoint - startPoint).sqrMagnitude;
-        print(difference);
         if (difference > range * range)
         {
             Destroy(gameObject);

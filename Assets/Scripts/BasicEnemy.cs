@@ -10,9 +10,8 @@ public class BasicEnemy : Spaceship
     private float movementSpeed = 0f;
     public LayerMask engagebleTargets;
 
-    private float timeBetweenShots = 5f;
+    private float timeBetweenShots = 1.25f;
     private float timeToNextShot = 0;
-    private float randomShotTime;
     private bool targetDetected = false;
 
     void Start()
@@ -31,7 +30,7 @@ public class BasicEnemy : Spaceship
         if (Time.time > timeToNextShot && targetDetected)
         {
             ep = OffenseModule.ActivateOffense(ep);
-            timeToNextShot = Time.time + randomShotTime;
+            timeToNextShot = Time.time + timeBetweenShots;
         }
     }
 
@@ -41,8 +40,6 @@ public class BasicEnemy : Spaceship
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, engagebleTargets))
         {
             targetDetected = true;
-            Debug.DrawLine(transform.position,
-                hit.point, Color.red);
         }
         else
         {
@@ -59,6 +56,6 @@ public class BasicEnemy : Spaceship
 
     public override void OnHit()
     {
-        ep = OffenseModule.ActivateOffense(ep);
+        //ep = OffenseModule.ActivateOffense(ep);
     }
 }
