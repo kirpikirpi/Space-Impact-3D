@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4440544802707292381}
   - component: {fileID: 4440544802707292380}
   - component: {fileID: 4440544802707292376}
-  m_Layer: 8
+  - component: {fileID: 6185913358345892239}
+  m_Layer: 11
   m_Name: Enemy
   m_TagString: target
   m_Icon: {fileID: 0}
@@ -111,15 +112,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   ep: 0
+  muzzle: {fileID: 4440544803868100215}
   collisionLayers:
     serializedVersion: 2
     m_Bits: 512
   OffenseModulePrefab: {fileID: 3966831278867150844, guid: 27a2e849ef93b124c95a28c6602b082a, type: 3}
   DefenseModulePrefab: {fileID: 3966831278867150844, guid: 27a2e849ef93b124c95a28c6602b082a, type: 3}
-  muzzle: {fileID: 4440544803868100215}
   engagebleTargets:
     serializedVersion: 2
     m_Bits: 512
+--- !u!54 &6185913358345892239
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440544802707292383}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &4440544803868100215
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4440544803868100212}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

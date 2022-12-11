@@ -55,6 +55,8 @@ public class Spaceship : MonoBehaviour, IDamageLogic
         {
             throw new Exception("No muzzle assigned! " + gameObject.tag);
         }
+
+        rb = gameObject.GetComponent<Rigidbody>();
         
         if (rb == null)
         {
