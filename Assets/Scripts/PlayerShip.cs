@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerShip : Spaceship
 {
-    private int startHealth = 50;
+    private int startHealth = 100;
     private int startEnergy = 25;
     private float bulletSpeed = 30f;
     

@@ -681,21 +681,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 824698722, guid: 948cd2204f4ec974a913008f0ec23485, type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 51.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 824698722, guid: 948cd2204f4ec974a913008f0ec23485, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2013998710418132812, guid: 948cd2204f4ec974a913008f0ec23485, type: 3}
       propertyPath: m_Name
       value: PlayerJet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2013998710418132812, guid: 948cd2204f4ec974a913008f0ec23485, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2013998710418494316, guid: 948cd2204f4ec974a913008f0ec23485, type: 3}
       propertyPath: m_RootOrder

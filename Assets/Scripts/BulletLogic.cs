@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
-    public int dmgValue = 10;
+    private int dmgValue = 25;
     private float projectileSpeed = 30f;
     public float cumulativeMuzzleVelocity; //public needed to change velocity in prefab
     

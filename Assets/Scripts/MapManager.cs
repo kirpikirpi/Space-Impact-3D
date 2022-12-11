@@ -19,14 +19,14 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        Vector3 playerSpawnPos = new Vector3(0, -1.5f, playerCameraOffset * 2);
+        Vector3 playerSpawnPos = new Vector3(0, -5f, playerCameraOffset * 2);
         Instantiate(PlayerGameObject, playerSpawnPos, Quaternion.identity);
 
 
         GameObject mainCamera = new GameObject("Main Camera");
         mainCamera.AddComponent<Camera>();
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
-        mainCamera.transform.Rotate(0,0,0);
+        mainCamera.transform.Rotate(20f,0,0);
         
         SpawnEnemies(numEnemies);
     }
@@ -56,7 +56,7 @@ public class MapManager : MonoBehaviour
             if (fillstate > 0)
             {
                 GameObject enemy = pooler.PopPool();
-                enemy.transform.position = new Vector3(0, -1.5f, enemySpawnZ);
+                enemy.transform.position = new Vector3(0, -5f, enemySpawnZ);
                 yield return new WaitForSeconds(4);
             }
             else
