@@ -36,7 +36,6 @@ public class PlayerShip : Spaceship
             int newEp = DefenseModule.ActivateDefense(ep);
             ep = newEp <= startEnergy*2 ? newEp : startEnergy;
             isBlocking = true;
-            print("energy: " + ep + " hp: " + hp);
         }
 
         if (Input.GetKeyUp(KeyCode.E))
@@ -45,7 +44,9 @@ public class PlayerShip : Spaceship
             isBlocking = false;
         }
 
+        UISingleton.instance.SetStats(ep.ToString(),hp.ToString());
         RegenerateEnergy();
+        
     }
 
     void RegenerateEnergy()

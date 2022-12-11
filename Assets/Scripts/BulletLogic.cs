@@ -20,7 +20,6 @@ public class BulletLogic : MonoBehaviour
     public void AdaptMuzzleVelocity(float movementSpeed)
     {
         cumulativeMuzzleVelocity = movementSpeed + projectileSpeed;
-        print(cumulativeMuzzleVelocity);
     }
     void Start()
     {

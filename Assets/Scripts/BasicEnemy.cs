@@ -14,6 +14,8 @@ public class BasicEnemy : Spaceship
     private float timeToNextShot = 0;
     private bool targetDetected = false;
 
+    private bool isDestroyed = false;
+
     void Start()
     {
         hp = 5;
@@ -41,15 +43,19 @@ public class BasicEnemy : Spaceship
         {
             targetDetected = false;
         }
-        
-        Vector3 pos = transform.position + transform.forward * Time.deltaTime * movementSpeed;
-        rb.MovePosition(pos);
+
+        if (!isDestroyed)
+        {
+            Vector3 pos = transform.position + transform.forward * Time.deltaTime * movementSpeed;
+            rb.MovePosition(pos);
+        }
     }
 
     public override void OnDestroy()
     {
-        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.None; //error why todo???!
         rb.useGravity = true;
+        isDestroyed = true;
         //Pooler.instance.PushPool(gameObject);
     }
 
