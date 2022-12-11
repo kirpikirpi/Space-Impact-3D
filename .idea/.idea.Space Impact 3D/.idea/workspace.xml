@@ -6,8 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerJet Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerJet Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +37,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/IDamageLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletDamageSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/IDefenseModule.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CollisionWall.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/IOffenseModule.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
@@ -48,6 +48,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BasicEnemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" />
       </list>
     </option>
   </component>
@@ -88,7 +89,7 @@
       <workItem from="1668595633206" duration="4383000" />
       <workItem from="1668746724259" duration="1084000" />
       <workItem from="1669005586335" duration="1652000" />
-      <workItem from="1670737858847" duration="5394000" />
+      <workItem from="1670737858847" duration="6006000" />
     </task>
     <servers />
   </component>

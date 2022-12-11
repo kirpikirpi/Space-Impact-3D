@@ -27,10 +27,11 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
 
         if (shieldGameObject == null)
         {
-            shieldGameObject = Instantiate(shieldPrefab, transform.position, Quaternion.identity, gameObject.transform);
+            shieldGameObject = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
             shieldGameObject.transform.localScale =
                 new Vector3(2 * perfectBlockRadius, 2 * perfectBlockRadius, 2 * perfectBlockRadius);
             shieldGameObject.SetActive(false);
+            shieldGameObject.transform.parent = gameObject.transform;
         }
     }
 
