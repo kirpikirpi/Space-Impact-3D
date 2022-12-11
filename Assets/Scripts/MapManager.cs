@@ -25,9 +25,11 @@ public class MapManager : MonoBehaviour
         pooler = Pooler.instance;
         pooler.FillPool(EnemyGameObject, 5);
 
+        /*
         GameObject enemy = pooler.PopPool();
         enemy.transform.Rotate(Vector3.up,180);
         enemy.transform.position = new Vector3(0,-1.5f,30);
+        */
        
         
         GameObject mainCamera = new GameObject("Main Camera");

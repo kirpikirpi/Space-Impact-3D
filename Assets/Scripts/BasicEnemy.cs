@@ -27,10 +27,10 @@ public class BasicEnemy : Spaceship
         gameObject.transform.position = new Vector3(transform.position.x,
             transform.position.y,
             transform.position.z - movementSpeed);
-        
+
         if (Time.time > timeToNextShot && targetDetected)
         {
-            //ep = OffenseModule.ActivateOffense(ep);
+            ep = OffenseModule.ActivateOffense(ep);
             timeToNextShot = Time.time + randomShotTime;
         }
     }
@@ -41,6 +41,8 @@ public class BasicEnemy : Spaceship
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, engagebleTargets))
         {
             targetDetected = true;
+            Debug.DrawLine(transform.position,
+                hit.point, Color.red);
         }
         else
         {

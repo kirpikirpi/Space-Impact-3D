@@ -7,6 +7,10 @@ public class BulletLogic : MonoBehaviour
 {
     public int dmgValue = 10;
     public float muzzleVelocity = 3f;
+    
+    private float range = 100f;
+    private Vector3 startPoint;
+    private Vector3 currentPoint;
 
     private Rigidbody rb;
     private bool movementPossible;
@@ -21,6 +25,8 @@ public class BulletLogic : MonoBehaviour
         }
 
         movementPossible = true;
+
+        startPoint = transform.position;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -36,6 +42,8 @@ public class BulletLogic : MonoBehaviour
     void FixedUpdate()
     {
         if (movementPossible) MoveProjectile();
+        CheckDistance();
+        
     }
 
 
@@ -44,4 +52,17 @@ public class BulletLogic : MonoBehaviour
         Vector3 pos = transform.position + transform.forward * Time.deltaTime * muzzleVelocity;
         rb.MovePosition(pos);
     }
+
+    void CheckDistance()
+    {
+        currentPoint = transform.position;
+        float difference = (currentPoint - startPoint).sqrMagnitude;
+        print(difference);
+        if (difference > range * range)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    
 }
