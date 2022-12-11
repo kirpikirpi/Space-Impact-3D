@@ -36,6 +36,7 @@ public class BulletLogic : MonoBehaviour
         {
             target.ApplyDamage(dmgValue);
             gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
