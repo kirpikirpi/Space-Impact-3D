@@ -7,6 +7,7 @@ public class PlayerShip : Spaceship
 {
     private int startHealth = 100;
     private int startEnergy = 25;
+    private int maxEnergy = 100;
     private float bulletSpeed = 30f;
 
     bool isShooting;
@@ -42,7 +43,7 @@ public class PlayerShip : Spaceship
         if (Input.GetKey(KeyCode.Space))
         {
             int newEp = DefenseModule.ActivateDefense(ep);
-            ep = newEp <= startEnergy * 2 ? newEp : startEnergy;
+            ep = Mathf.Clamp(newEp, startEnergy, maxEnergy);
             isBlocking = true;
         }
 
@@ -94,6 +95,7 @@ public class PlayerShip : Spaceship
         rb.MovePosition(targetPos);
     }
 
+    //regenerates to start energy
     void RegenerateEnergy()
     {
         if (Time.time > nextRegeneration && ep < startEnergy)

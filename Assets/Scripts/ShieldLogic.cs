@@ -22,7 +22,8 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
     private float lastShieldActivateTime = 0;
     private bool shieldActive;
 
-    private int shieldEpValue = 5;
+    private int shieldEnergyCost = 5;
+    private int shieldEnergyYield = 10;
 
     void Start()
     {
@@ -44,7 +45,7 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
 
     public int ActivateDefense(int energy)
     {
-        if (energy < shieldEpValue) return energy;
+        if (energy < shieldEnergyCost) return energy;
         if (!shieldActive)
         {
             shieldActive = true;
@@ -75,13 +76,13 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
                 {
                     //perfect block
                     if(colorChangable) StartCoroutine(ChangeShieldColor(perfectBlockColor));
-                    energy += shieldEpValue;
+                    energy += shieldEnergyYield;
                 }
                 else
                 {
                     //early block
                     if(colorChangable) StartCoroutine(ChangeShieldColor(earlyBlockColor));
-                    energy -= shieldEpValue;
+                    energy -= shieldEnergyCost;
                 }
             }
             else if (distance < lateBlockRadius)
