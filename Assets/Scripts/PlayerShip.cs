@@ -46,6 +46,7 @@ public class PlayerShip : Spaceship
             isBlocking = false;
         }
         
+        
         RegenerateEnergy();
         
     }

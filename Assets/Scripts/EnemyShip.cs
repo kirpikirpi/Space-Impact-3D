@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BasicEnemy : Spaceship
+public class EnemyShip : Spaceship
 {
     private float maxDetectionDistance = 60f;
     private float movementSpeed = 30f;
