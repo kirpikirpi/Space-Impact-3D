@@ -10,9 +10,10 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
     private GameObject shieldGameObject;
     
     public Color colorIdle;
-    public Color colorPerfectHit;
-    public Color colorLateHit;
+    public Color perfectBlockColor;
+    public Color earlyBlockColor;
     Renderer shieldRenderer;
+    private bool colorChangable = true;
 
     private float lateBlockRadius = 2.5f;
     private float perfectBlockRadius = 3f;
@@ -73,20 +74,19 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
                 if (lastShieldActivateTime + earlyBlockTime > Time.time)
                 {
                     //perfect block
-                    if (shieldRenderer != null) shieldRenderer.material.SetColor("_Color", colorPerfectHit);
+                    if(colorChangable) StartCoroutine(ChangeShieldColor(perfectBlockColor));
                     energy += shieldEpValue;
                 }
                 else
                 {
                     //early block
-                    if (shieldRenderer != null) shieldRenderer.material.SetColor("_Color", colorLateHit);
+                    if(colorChangable) StartCoroutine(ChangeShieldColor(earlyBlockColor));
                     energy -= shieldEpValue;
                 }
             }
             else if (distance < lateBlockRadius)
             {
                 //late block
-                if (shieldRenderer != null) shieldRenderer.material.SetColor("_Color", colorIdle);
                 continue;
             }
 
@@ -105,5 +105,14 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
 
         lastShieldActivateTime = 0;
         shieldActive = false;
+    }
+
+    IEnumerator ChangeShieldColor(Color shieldColor)
+    {
+        if (shieldRenderer != null) shieldRenderer.material.SetColor("_Color", shieldColor);
+        colorChangable = false;
+        yield return new WaitForSeconds(0.3f);
+        if (shieldRenderer != null) shieldRenderer.material.SetColor("_Color", colorIdle);
+        colorChangable = true;
     }
 }
