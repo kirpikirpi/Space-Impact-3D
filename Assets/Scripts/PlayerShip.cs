@@ -8,7 +8,7 @@ public class PlayerShip : Spaceship
     private int startHealth = 100;
     private int startEnergy = 25;
     private float bulletSpeed = 30f;
-    
+
     bool isShooting;
     bool isBlocking;
 
@@ -17,20 +17,23 @@ public class PlayerShip : Spaceship
     private float nextRegeneration = 0;
 
     private float horizontalSpeed = 8;
+    private float horizontalConstraint = 5;
     private float horizontalMovement;
+    private Vector3 spawnPosition;
 
     void Start()
     {
         hp = startHealth;
         ep = startEnergy;
+        spawnPosition = transform.position;
 
         SetupModulesWithSpeed(bulletSpeed);
     }
 
     void Update()
     {
-        UISingleton.instance.SetStats(ep.ToString(),hp.ToString());
-        if(isDestroyed) return;
+        UISingleton.instance.SetStats(ep.ToString(), hp.ToString());
+        if (isDestroyed) return;
         if (Input.GetKeyDown(KeyCode.W) && !isBlocking)
         {
             ep = OffenseModule.ActivateOffense(ep);
@@ -39,7 +42,7 @@ public class PlayerShip : Spaceship
         if (Input.GetKey(KeyCode.Space))
         {
             int newEp = DefenseModule.ActivateDefense(ep);
-            ep = newEp <= startEnergy*2 ? newEp : startEnergy;
+            ep = newEp <= startEnergy * 2 ? newEp : startEnergy;
             isBlocking = true;
         }
 
@@ -48,26 +51,47 @@ public class PlayerShip : Spaceship
             DefenseModule.DeactivateDefense();
             isBlocking = false;
         }
-        
-        
+
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             DefenseModule.DeactivateDefense();
             isBlocking = false;
         }
 
-        horizontalMovement = Input.GetAxisRaw("Horizontal") * horizontalSpeed;
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
 
 
         RegenerateEnergy();
-        
     }
 
     void FixedUpdate()
     {
+        Vector3 targetPos = Vector3.zero;
         Vector3 currentPos = transform.position;
-        Vector3 pos = new Vector3(currentPos.x + horizontalMovement * Time.deltaTime, currentPos.y, currentPos.z);
-        rb.MovePosition(pos);
+
+        if (horizontalMovement > 0 || horizontalMovement < 0)
+        {
+            float xPos = currentPos.x + horizontalMovement * horizontalSpeed * Time.deltaTime;
+            xPos = Mathf.Clamp(xPos, -horizontalConstraint, horizontalConstraint);
+            targetPos = new Vector3(xPos, currentPos.y, currentPos.z);
+        }
+        else
+        {
+            Vector3 directionToTarget = spawnPosition - currentPos;
+            float distanceToTarget = directionToTarget.magnitude;
+
+            if (distanceToTarget <= 0.2f) targetPos = spawnPosition;
+            else
+            {
+                float x = currentPos.x + directionToTarget.normalized.x * horizontalSpeed * Time.deltaTime;
+                float y = currentPos.y + directionToTarget.normalized.y * horizontalSpeed * Time.deltaTime;
+                float z = currentPos.z + directionToTarget.normalized.z * horizontalSpeed * Time.deltaTime;
+                targetPos = new Vector3(x, y, z);
+            }
+        }
+
+        rb.MovePosition(targetPos);
     }
 
     void RegenerateEnergy()
