@@ -47,3 +47,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   shieldPrefab: {fileID: 8200649566776505611, guid: 85104f527d6c970459392e4536719680, type: 3}
+  colorIdle: {r: 0, g: 1, b: 0.84153175, a: 0.19607843}
+  colorPerfectHit: {r: 0, g: 1, b: 0.10152292, a: 0.19607843}
+  colorLateHit: {r: 1, g: 0, b: 0, a: 0.19607843}

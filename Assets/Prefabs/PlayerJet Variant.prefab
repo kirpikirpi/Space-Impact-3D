@@ -4863,30 +4863,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25291288, y: 0.07473113, z: 0.24329063}
   m_Center: {x: -1.9852332e-23, y: -0.0000000055879354, z: -0.000000029802322}
---- !u!145 &7535746879784007414
-SpringJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013998710418132812}
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.037365556, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 253.03941, y: 370.22525, z: -123.14623}
-  serializedVersion: 2
-  m_Spring: 10
-  m_Damper: 0.4
-  m_MinDistance: 0
-  m_MaxDistance: 0
-  m_Tolerance: 0.025
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!114 &5578051940182384168
 MonoBehaviour:
   m_ObjectHideFlags: 0

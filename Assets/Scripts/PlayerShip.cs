@@ -16,6 +16,9 @@ public class PlayerShip : Spaceship
     private int epRegenerationValue = 1;
     private float nextRegeneration = 0;
 
+    private float horizontalSpeed = 8;
+    private float horizontalMovement;
+
     void Start()
     {
         hp = startHealth;
@@ -47,8 +50,24 @@ public class PlayerShip : Spaceship
         }
         
         
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            DefenseModule.DeactivateDefense();
+            isBlocking = false;
+        }
+
+        horizontalMovement = Input.GetAxisRaw("Horizontal") * horizontalSpeed;
+
+
         RegenerateEnergy();
         
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 currentPos = transform.position;
+        Vector3 pos = new Vector3(currentPos.x + horizontalMovement * Time.deltaTime, currentPos.y, currentPos.z);
+        rb.MovePosition(pos);
     }
 
     void RegenerateEnergy()

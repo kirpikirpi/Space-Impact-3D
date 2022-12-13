@@ -8,6 +8,11 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
     public LayerMask blockableLayer;
     public GameObject shieldPrefab;
     private GameObject shieldGameObject;
+    
+    public Color colorIdle;
+    public Color colorPerfectHit;
+    public Color colorLateHit;
+    Renderer shieldRenderer;
 
     private float lateBlockRadius = 2.5f;
     private float perfectBlockRadius = 3f;
@@ -32,6 +37,7 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
                 new Vector3(2 * perfectBlockRadius, 2 * perfectBlockRadius, 2 * perfectBlockRadius);
             shieldGameObject.SetActive(false);
             shieldGameObject.transform.parent = gameObject.transform;
+            shieldRenderer = shieldGameObject.GetComponent<Renderer>();
         }
     }
 
@@ -67,17 +73,20 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
                 if (lastShieldActivateTime + earlyBlockTime > Time.time)
                 {
                     //perfect block
+                    if (shieldRenderer != null) shieldRenderer.material.SetColor("_Color", colorPerfectHit);
                     energy += shieldEpValue;
                 }
                 else
                 {
                     //early block
+                    if (shieldRenderer != null) shieldRenderer.material.SetColor("_Color", colorLateHit);
                     energy -= shieldEpValue;
                 }
             }
             else if (distance < lateBlockRadius)
             {
                 //late block
+                if (shieldRenderer != null) shieldRenderer.material.SetColor("_Color", colorIdle);
                 continue;
             }
 
