@@ -9,10 +9,13 @@ public class EnemyShip : Spaceship
     private float maxDetectionDistance = 60f;
     private float movementSpeed = 30f;
     public LayerMask engagebleTargets;
+    public ParticleSystem onDestroy;
 
     private float timeBetweenShots = 1.25f;
     private float timeToNextShot = 0;
     private bool targetDetected = false;
+    
+    
 
     void Start()
     {
@@ -42,7 +45,7 @@ public class EnemyShip : Spaceship
             targetDetected = false;
         }
 
-        if (!isDestroyed)
+        if (!movementDisabled)
         {
             Vector3 pos = transform.position + transform.forward * Time.deltaTime * movementSpeed;
             rb.MovePosition(pos);
@@ -51,9 +54,13 @@ public class EnemyShip : Spaceship
 
     public override void OnDestroy()
     {
-        rb.constraints = RigidbodyConstraints.None; //error why todo???!
-        rb.useGravity = true;
         isDestroyed = true;
+        UISingleton.instance.ActivateHitmarker();
+        Collider shipCollider = gameObject.GetComponent<Collider>();
+        MeshRenderer shipRenderer = gameObject.GetComponent<MeshRenderer>();
+        shipCollider.enabled = false;
+        shipRenderer.enabled = false;
+        //particle system
         //Pooler.instance.PushPool(gameObject);
     }
 

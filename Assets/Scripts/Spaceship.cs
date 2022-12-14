@@ -9,6 +9,7 @@ public class Spaceship : MonoBehaviour, IDamageLogic
     public int ep;
     
     protected bool isDestroyed = false;
+    protected bool movementDisabled = false;
 
     public GameObject muzzle;
 
