@@ -9,7 +9,7 @@ public class EnemyShip : Spaceship
     private float maxDetectionDistance = 60f;
     private float movementSpeed = 30f;
     public LayerMask engagebleTargets;
-    public ParticleSystem onDestroy;
+    public ParticleSystem ParticleSystemOnDestroy;
 
     private float timeBetweenShots = 1.25f;
     private float timeToNextShot = 0;
@@ -26,7 +26,7 @@ public class EnemyShip : Spaceship
 
     void Update()
     {
-        if (Time.time > timeToNextShot && targetDetected)
+        if (Time.time > timeToNextShot && targetDetected && !isDestroyed)
         {
             ep = OffenseModule.ActivateOffense(ep);
             timeToNextShot = Time.time + timeBetweenShots;
@@ -60,6 +60,8 @@ public class EnemyShip : Spaceship
         MeshRenderer shipRenderer = gameObject.GetComponent<MeshRenderer>();
         shipCollider.enabled = false;
         shipRenderer.enabled = false;
+        ParticleSystemOnDestroy.Play();
+        movementSpeed = movementSpeed / 2;
         //particle system
         //Pooler.instance.PushPool(gameObject);
     }
