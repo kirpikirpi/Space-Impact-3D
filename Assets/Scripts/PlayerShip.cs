@@ -13,7 +13,7 @@ public class PlayerShip : Spaceship
     bool isShooting;
     bool isBlocking;
 
-    private float energyRegenerationTime = 0.5f;
+    private float energyRegenerationTime = 1f;
     private int epRegenerationValue = 1;
     private float nextRegeneration = 0;
 
@@ -43,7 +43,7 @@ public class PlayerShip : Spaceship
         if (Input.GetKey(KeyCode.Space))
         {
             int newEp = DefenseModule.ActivateDefense(ep);
-            ep = Mathf.Clamp(newEp, startEnergy, maxEnergy);
+            ep = Mathf.Clamp(newEp, 0, maxEnergy);
             isBlocking = true;
         }
 

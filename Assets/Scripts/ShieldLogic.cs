@@ -8,7 +8,7 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
     public LayerMask blockableLayer;
     public GameObject shieldPrefab;
     private GameObject shieldGameObject;
-    
+
     public Color colorIdle;
     public Color perfectBlockColor;
     public Color earlyBlockColor;
@@ -18,12 +18,12 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
     private float lateBlockRadius = 2.5f;
     private float perfectBlockRadius = 3f;
 
-    private float earlyBlockTime = 0.25f;
+    private float earlyBlockTime = 0.09f;
     private float lastShieldActivateTime = 0;
     private bool shieldActive;
 
     private int shieldEnergyCost = 5;
-    private int shieldEnergyYield = 10;
+    private int shieldEnergyYield = 7;
 
     void Start()
     {
@@ -45,7 +45,7 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
 
     public int ActivateDefense(int energy)
     {
-        if (energy < shieldEnergyCost) return energy;
+        if (energy <= 0) return energy;
         if (!shieldActive)
         {
             shieldActive = true;
@@ -75,14 +75,20 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
                 if (lastShieldActivateTime + earlyBlockTime > Time.time)
                 {
                     //perfect block
-                    if(colorChangable) StartCoroutine(ChangeShieldColor(perfectBlockColor));
+                    if (colorChangable) StartCoroutine(ChangeShieldColor(perfectBlockColor));
                     energy += shieldEnergyYield;
                 }
                 else
                 {
                     //early block
-                    if(colorChangable) StartCoroutine(ChangeShieldColor(earlyBlockColor));
+                    if (colorChangable) StartCoroutine(ChangeShieldColor(earlyBlockColor));
                     energy -= shieldEnergyCost;
+                    print(energy);
+                    if (energy < 0)
+                    {
+                        energy = 0;
+                        DeactivateDefense();
+                    }
                 }
             }
             else if (distance < lateBlockRadius)
