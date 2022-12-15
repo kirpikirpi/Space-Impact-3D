@@ -6,9 +6,10 @@ using UnityEngine;
 public class BulletLogic : MonoBehaviour
 {
     private int dmgValue = 25;
+    private int collisionDamage = 50;
     private float projectileSpeed = 30f;
     public float cumulativeMuzzleVelocity; //public needed to change velocity in prefab
-    
+
     private float range = 100f;
     private Vector3 startPoint;
     private Vector3 currentPoint;
@@ -41,8 +42,9 @@ public class BulletLogic : MonoBehaviour
         if (target != null)
         {
             target.ApplyDamage(dmgValue);
-            gameObject.SetActive(false);
-            Destroy(gameObject);
+            cumulativeMuzzleVelocity = cumulativeMuzzleVelocity / 4;
+            IDamageLogic bulletDamageLogic = gameObject.GetComponent<IDamageLogic>();
+            bulletDamageLogic.ApplyDamage(50);
         }
     }
 

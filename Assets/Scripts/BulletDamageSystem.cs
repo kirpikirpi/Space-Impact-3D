@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class BulletDamageSystem : MonoBehaviour, IDamageLogic
 {
-   private int hp = 1;
+    private int hp = 1;
+
+    public ParticleSystem onDestroyEffect;
 
 
-   public void ApplyDamage(int dmg)
-   {
-      hp -= dmg;
-      if (hp <= 0) OnDestroy();
-      else OnHit();
-   }
+    public void ApplyDamage(int dmg)
+    {
+        hp -= dmg;
+        if (hp <= 0) OnDestroy();
+        else OnHit();
+    }
 
-   public void OnHit()
-   {
-   }
+    public void OnHit()
+    {
+    }
 
-   public void OnDestroy()
-   {
-      gameObject.SetActive(false);
-   }
+    public void OnDestroy()
+    {
+        MeshRenderer renderer = gameObject.GetComponent<MeshRenderer>();
+        Collider collider = gameObject.GetComponent<Collider>();
+        renderer.enabled = false;
+        collider.enabled = false;
+        if (onDestroyEffect != null) onDestroyEffect.Play();
+    }
 }
