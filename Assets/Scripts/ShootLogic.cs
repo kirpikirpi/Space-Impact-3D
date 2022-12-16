@@ -6,13 +6,15 @@ using UnityEngine;
 public class ShootLogic : MonoBehaviour, IOffenseModule
 {
     public int epPerShot = 5;
+    public int epPerSecondaryFireShot = 10;
+    
     public float timeBetweenShots = 0.2f;
     private float timeToNextShot = 0;
     private bool shootingPossible;
     private float movementSpeed;
 
     public GameObject standardProjectile;
-    public GameObject alternativeProjectile;
+    public GameObject secondaryFireProjectile;
 
     private GameObject muzzle;
     private bool setupComplete = false;
@@ -52,6 +54,9 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
             GameObject newProjectile = Instantiate(standardProjectile, muzzle.transform.position, Quaternion.identity);
             newProjectile.transform.rotation = muzzle.transform.rotation;
             timeToNextShot = Time.time + timeBetweenShots;
+            
+            print("primary fire");
+            
             return ep - epPerShot;
         }
 
@@ -60,12 +65,19 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
 
     public int ActivateAlternativeOffense(int ep)
     {
-        if (ep >= epPerShot && standardProjectile != null && muzzle != null && shootingPossible)
+        if (ep >= epPerSecondaryFireShot && secondaryFireProjectile != null && muzzle != null && shootingPossible)
         {
-            GameObject newProjectile = Instantiate(alternativeProjectile, muzzle.transform.position, Quaternion.identity);
+            GameObject newProjectile = Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
             newProjectile.transform.rotation = muzzle.transform.rotation;
             timeToNextShot = Time.time + timeBetweenShots;
-            return ep - epPerShot;
+            
+            print("secondary fire");
+            
+            return ep - epPerSecondaryFireShot;
+        }
+        if (ep < epPerSecondaryFireShot)
+        {
+            ep = ActivateOffense(ep);
         }
 
         return ep;

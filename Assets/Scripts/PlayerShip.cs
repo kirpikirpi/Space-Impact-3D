@@ -10,6 +10,9 @@ public class PlayerShip : Spaceship
     private int maxEnergy = 100;
     private float bulletSpeed = 30f;
 
+    private float secondaryFireInputTime = 0.2f;
+    private float currentImputTime;
+
     bool isShooting;
     bool isBlocking;
 
@@ -35,9 +38,21 @@ public class PlayerShip : Spaceship
     {
         UISingleton.instance.SetStats(ep.ToString(), hp.ToString());
         if (isDestroyed) return;
-        if (Input.GetKeyDown(KeyCode.W) && !isBlocking)
+        
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            ep = OffenseModule.ActivateOffense(ep);
+            currentImputTime = Time.time + secondaryFireInputTime;
+        }
+        if (Input.GetKeyUp(KeyCode.W) && !isBlocking)
+        {
+            if (Time.time < currentImputTime)
+            {
+                ep = OffenseModule.ActivateOffense(ep);
+            }
+            else
+            {
+                ep = OffenseModule.ActivateAlternativeOffense(ep);
+            }
         }
 
         if (Input.GetKey(KeyCode.Space))
