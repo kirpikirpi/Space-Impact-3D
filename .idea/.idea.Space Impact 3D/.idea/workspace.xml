@@ -7,9 +7,10 @@
   <component name="ChangeListManager">
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BulletPrefab.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BulletPrefab.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Shoot Module.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Shoot Module.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +99,9 @@
       <workItem from="1670960995233" duration="5757000" />
       <workItem from="1670991822836" duration="2650000" />
       <workItem from="1671078663215" duration="2146000" />
-      <workItem from="1671166316274" duration="1326000" />
+      <workItem from="1671166316274" duration="1423000" />
+      <workItem from="1671220117947" duration="604000" />
+      <workItem from="1671275286864" duration="632000" />
     </task>
     <servers />
   </component>

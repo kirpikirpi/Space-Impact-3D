@@ -54,9 +54,7 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
             GameObject newProjectile = Instantiate(standardProjectile, muzzle.transform.position, Quaternion.identity);
             newProjectile.transform.rotation = muzzle.transform.rotation;
             timeToNextShot = Time.time + timeBetweenShots;
-            
-            print("primary fire");
-            
+
             return ep - epPerShot;
         }
 

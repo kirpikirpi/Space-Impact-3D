@@ -28,7 +28,7 @@ public class MapManager : MonoBehaviour
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
         mainCamera.transform.Rotate(20f,0,0);
         
-        //SpawnEnemies(numEnemies);
+        SpawnEnemies(numEnemies);
     }
 
     void SpawnEnemies(int num)
