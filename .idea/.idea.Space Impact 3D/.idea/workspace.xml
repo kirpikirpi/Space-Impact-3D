@@ -54,9 +54,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FormationBuilder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Formations.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FormationBuilder.cs" />
       </list>
     </option>
   </component>
@@ -104,7 +104,7 @@
       <workItem from="1671166316274" duration="1423000" />
       <workItem from="1671220117947" duration="604000" />
       <workItem from="1671275286864" duration="632000" />
-      <workItem from="1671362605424" duration="7870000" />
+      <workItem from="1671362605424" duration="10787000" />
     </task>
     <servers />
   </component>

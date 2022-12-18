@@ -6,8 +6,8 @@ using UnityEngine;
 public class FormationBuilder : MonoBehaviour
 {
     Formations _formations = new Formations();
-    private float xAxisLength = 10;
-    float zAxisLength = 10;
+    private float xAxisLength = 15;
+    float zAxisLength = 15;
 
     void Start()
     {
@@ -28,13 +28,13 @@ public class FormationBuilder : MonoBehaviour
 
         lead.transform.position = position;
 
-        for (int x = 0; x < formation.GetLength(0); x++)
+        for (int z = 0; z < formation.GetLength(0); z++)
         {
-            for (int z = 0; z < formation.GetLength(1); z++)
+            for (int x = 0; x < formation.GetLength(1); x++)
             {
-                if (formation[x, z])
+                if (formation[z, x])
                 {
-                    Vector3 spawnPos = new Vector3(x * xOffsetPerUnit +1, position.y, z * zOffsetPerUnit+1);
+                    Vector3 spawnPos = new Vector3(x * xOffsetPerUnit, position.y, z * zOffsetPerUnit);
                     spawnPos += iterationStartingPoint;
                     GameObject currentEscortShip =
                         Instantiate(escortShips, spawnPos, Quaternion.identity, lead.transform);

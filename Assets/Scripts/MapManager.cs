@@ -29,13 +29,16 @@ public class MapManager : MonoBehaviour
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
         mainCamera.transform.Rotate(20f, 0, 0);
 
-        _formationBuilder = gameObject.AddComponent<FormationBuilder>();
-        Vector3 enemySpawnPoint = new Vector3(0, -5f, enemySpawnZ);
-        GameObject formation = _formationBuilder.SpawnFormation(EnemyGameObject, EnemyGameObject, enemySpawnPoint,
-            FormationType.FormationX);
-        formation.transform.Rotate(Vector3.up, 180);
-
-        //SpawnEnemies(numEnemies);
+        FormationType[] spawnFormations = new[]
+        {
+            FormationType.Diamond,
+            FormationType.Wedge,
+            FormationType.Column,
+            FormationType.StackLeft,
+            FormationType.StackRight,
+            FormationType.Vee
+        };
+        StartCoroutine(SpawnEnemies(numEnemies, spawnFormations));
     }
 
     void SpawnEnemies(int num)
@@ -53,6 +56,21 @@ public class MapManager : MonoBehaviour
         }
 
         StartCoroutine(EnemySpawner());
+    }
+
+    IEnumerator SpawnEnemies(int num, FormationType[] formationTypes)
+    {
+        _formationBuilder = gameObject.AddComponent<FormationBuilder>();
+        Vector3 enemySpawnPoint = new Vector3(0, -5f, enemySpawnZ);
+
+        foreach (var type in formationTypes)
+        {
+            GameObject formation = _formationBuilder.SpawnFormation(EnemyGameObject, EnemyGameObject, enemySpawnPoint,
+                type);
+            formation.transform.Rotate(Vector3.up, 180);
+            
+            yield return new WaitForSeconds(4);
+        }
     }
 
     IEnumerator EnemySpawner()

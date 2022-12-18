@@ -10,17 +10,17 @@ public enum FormationType
     Line,
     Column,
     File,
-    Diamond
+    Diamond,
+    StackLeft,
+    StackRight
 }
+
 public class Formations
 {
-    bool[,] vee = new bool[5, 5];
-    bool[,] diamond = new bool[5, 5];
-
     public bool[,] GetFormationType(FormationType type)
     {
         bool[,] formation = new bool[5, 5];
-        
+
         switch (type)
         {
             case FormationType.FormationX:
@@ -30,7 +30,7 @@ public class Formations
                 formation = getFormationWedge();
                 break;
             case FormationType.Vee:
-                formation = vee;
+                formation = getFormationVee();
                 break;
             case FormationType.Line:
                 formation = getFormationLine();
@@ -42,9 +42,16 @@ public class Formations
                 formation = getFormationFile();
                 break;
             case FormationType.Diamond:
-                formation = diamond;
+                formation = getFormationDiamond();
+                break;
+            case FormationType.StackLeft:
+                formation = getFormationStackLeft();
+                break;
+            case FormationType.StackRight:
+                formation = getFormationStackRight();
                 break;
         }
+
         return formation;
     }
 
@@ -71,15 +78,29 @@ public class Formations
     private bool[,] getFormationWedge()
     {
         bool[,] wedge = new bool[5, 5];
-        wedge[0, 2] = true;
+        wedge[4, 2] = true;
 
-        wedge[1, 1] = true;
-        wedge[1, 3] = true;
+        wedge[3, 1] = true;
+        wedge[3, 3] = true;
 
         wedge[2, 0] = true;
         wedge[2, 4] = true;
 
         return wedge;
+    }
+
+    private bool[,] getFormationVee()
+    {
+        bool[,] vee = new bool[5, 5];
+        vee[0, 2] = true;
+
+        vee[1, 1] = true;
+        vee[1, 3] = true;
+
+        vee[2, 0] = true;
+        vee[2, 4] = true;
+
+        return vee;
     }
 
     private bool[,] getFormationLine()
@@ -115,7 +136,6 @@ public class Formations
 
     private bool[,] getFormationFile()
     {
-        
         bool[,] file = new bool[5, 5];
         for (int i = 0; i < file.GetLength(1); i++)
         {
@@ -123,5 +143,50 @@ public class Formations
         }
 
         return file;
+    }
+
+    private bool[,] getFormationDiamond()
+    {
+        bool[,] diamond = new bool[5, 5];
+
+        diamond[0, 2] = true;
+
+        diamond[1, 1] = true;
+        diamond[1, 3] = true;
+
+        diamond[2, 0] = true;
+        diamond[2, 2] = true;
+        diamond[2, 4] = true;
+
+        diamond[3, 1] = true;
+        diamond[3, 3] = true;
+
+        diamond[4, 2] = true;
+
+        return diamond;
+    }
+
+    private bool[,] getFormationStackRight()
+    {
+        bool[,] stackRight = new bool[5, 5];
+        for (int i = 0; i < stackRight.GetLength(0); i++)
+        {
+            stackRight[i, i] = true;
+        }
+
+        return stackRight;
+    }
+
+    private bool[,] getFormationStackLeft()
+    {
+        bool[,] stackLeft = new bool[5, 5];
+        int j = 0;
+        for (int i = stackLeft.GetLength(0) - 1; i >= 0; i--)
+        {
+            stackLeft[i, j] = true;
+            j++;
+        }
+
+        return stackLeft;
     }
 }
