@@ -36,7 +36,11 @@ public class MapManager : MonoBehaviour
             FormationType.Column,
             FormationType.StackLeft,
             FormationType.StackRight,
-            FormationType.Vee
+            FormationType.Vee,
+            FormationType.Line,
+            FormationType.FileLeft,
+            FormationType.FileRight,
+            FormationType.FormationX
         };
         StartCoroutine(SpawnEnemies(numEnemies, spawnFormations));
     }

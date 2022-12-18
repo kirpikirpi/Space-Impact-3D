@@ -9,7 +9,8 @@ public enum FormationType
     Vee,
     Line,
     Column,
-    File,
+    FileLeft,
+    FileRight,
     Diamond,
     StackLeft,
     StackRight
@@ -38,8 +39,11 @@ public class Formations
             case FormationType.Column:
                 formation = getFormationColumn();
                 break;
-            case FormationType.File:
-                formation = getFormationFile();
+            case FormationType.FileLeft:
+                formation = getFormationFileLeft();
+                break;
+            case FormationType.FileRight:
+                formation = getFormationFileRight();
                 break;
             case FormationType.Diamond:
                 formation = getFormationDiamond();
@@ -113,7 +117,6 @@ public class Formations
 
         return line;
     }
-
     private bool[,] getFormationColumn()
     {
         bool[,] column = new bool[5, 5];
@@ -134,12 +137,23 @@ public class Formations
         return column;
     }
 
-    private bool[,] getFormationFile()
+    private bool[,] getFormationFileLeft()
     {
         bool[,] file = new bool[5, 5];
         for (int i = 0; i < file.GetLength(1); i++)
         {
             file[i, 0] = true;
+        }
+
+        return file;
+    }
+    
+    private bool[,] getFormationFileRight()
+    {
+        bool[,] file = new bool[5, 5];
+        for (int i = 0; i < file.GetLength(1); i++)
+        {
+            file[i, file.GetLength(0)-1] = true;
         }
 
         return file;
