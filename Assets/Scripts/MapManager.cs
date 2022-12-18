@@ -7,6 +7,7 @@ public class MapManager : MonoBehaviour
     public GameObject PlayerGameObject;
     public GameObject EnemyGameObject;
     private Pooler pooler;
+    private FormationBuilder _formationBuilder;
 
     private GameObject mapHolder;
 
@@ -26,8 +27,14 @@ public class MapManager : MonoBehaviour
         GameObject mainCamera = new GameObject("Main Camera");
         mainCamera.AddComponent<Camera>();
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
-        mainCamera.transform.Rotate(20f,0,0);
-        
+        mainCamera.transform.Rotate(20f, 0, 0);
+
+        _formationBuilder = gameObject.AddComponent<FormationBuilder>();
+        Vector3 enemySpawnPoint = new Vector3(0, -5f, enemySpawnZ);
+        GameObject formation = _formationBuilder.SpawnFormation(EnemyGameObject, EnemyGameObject, enemySpawnPoint,
+            FormationType.FormationX);
+        formation.transform.Rotate(Vector3.up, 180);
+
         //SpawnEnemies(numEnemies);
     }
 
@@ -41,7 +48,7 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < num; i++)
         {
             GameObject enemyShip = pooler.PopPool();
-            enemyShip.transform.Rotate(Vector3.up,180);
+            enemyShip.transform.Rotate(Vector3.up, 180);
             pooler.PushPool(enemyShip);
         }
 
