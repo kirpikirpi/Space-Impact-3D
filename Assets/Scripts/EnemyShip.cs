@@ -9,13 +9,13 @@ public class EnemyShip : Spaceship
     private float maxDetectionDistance = 60f;
     private float movementSpeed = 30f;
     public LayerMask engagebleTargets;
+    public LayerMask friendlyShips;
     public ParticleSystem ParticleSystemOnDestroy;
 
     private float timeBetweenShots = 1.25f;
     private float timeToNextShot = 0;
     private bool targetDetected = false;
-    
-    
+
 
     void Start()
     {
@@ -36,9 +36,10 @@ public class EnemyShip : Spaceship
     void FixedUpdate()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, engagebleTargets))
+        if (!Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, friendlyShips))
         {
-            targetDetected = true;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, engagebleTargets))
+                targetDetected = true;
         }
         else
         {

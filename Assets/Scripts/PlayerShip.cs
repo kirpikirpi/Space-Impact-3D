@@ -21,7 +21,7 @@ public class PlayerShip : Spaceship
     private float nextRegeneration = 0;
 
     private float horizontalSpeed = 8;
-    private float rubberBandSpeed = 2;
+    private float rubberBandSpeed = 1;
     private float horizontalConstraint = 7;
     private float horizontalMovement;
     private Vector3 spawnPosition;
@@ -89,6 +89,7 @@ public class PlayerShip : Spaceship
         }
         else
         {
+            
             Vector3 directionToTarget = spawnPosition - currentPos;
             float distanceToTarget = directionToTarget.magnitude;
 
@@ -100,6 +101,7 @@ public class PlayerShip : Spaceship
                 float z = currentPos.z + directionToTarget.normalized.z * rubberBandSpeed * Time.deltaTime;
                 targetPos = new Vector3(x, y, z);
             }
+            
         }
 
         rb.MovePosition(targetPos);

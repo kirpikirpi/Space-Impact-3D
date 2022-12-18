@@ -118,6 +118,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3080413779442500487, guid: adc8a98e73ca77a41b7d79a6beec2ccb, type: 3}
+      propertyPath: friendlyShips.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080413779442500487, guid: adc8a98e73ca77a41b7d79a6beec2ccb, type: 3}
       propertyPath: ParticleSystemOnDestroy
       value: 
       objectReference: {fileID: 3758012745292758731}

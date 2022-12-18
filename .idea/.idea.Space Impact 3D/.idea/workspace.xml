@@ -7,8 +7,11 @@
   <component name="ChangeListManager">
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FormationBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FormationBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UISingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UISingleton.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,16 +49,16 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/IOffenseModule.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BasicEnemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Spaceship.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UISingleton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletDamageSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Formations.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FormationBuilder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UISingleton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
       </list>
     </option>
   </component>
@@ -103,7 +106,7 @@
       <workItem from="1671166316274" duration="1423000" />
       <workItem from="1671220117947" duration="604000" />
       <workItem from="1671275286864" duration="632000" />
-      <workItem from="1671362605424" duration="11261000" />
+      <workItem from="1671362605424" duration="11903000" />
     </task>
     <servers />
   </component>

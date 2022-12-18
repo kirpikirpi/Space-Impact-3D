@@ -42,6 +42,11 @@ public class UISingleton : MonoBehaviour
         crosshair.transform.SetParent(crosshair.transform);
     }
 
+    public void CrosshairPosition(Vector2 currentPos)
+    {
+        crosshair.transform.position = new Vector3(currentPos.x,currentPos.y,0);
+    }
+
     public void ActivateHitmarker()
     {
         if(hitmarker == null) return;

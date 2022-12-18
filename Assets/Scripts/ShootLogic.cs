@@ -31,6 +31,7 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
         {
             shootingPossible = false;
         }
+        
     }
 
     public void Setup(GameObject origin)

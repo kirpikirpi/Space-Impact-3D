@@ -83,7 +83,6 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
                     //early block
                     if (colorChangable) StartCoroutine(ChangeShieldColor(earlyBlockColor));
                     energy -= shieldEnergyCost;
-                    print(energy);
                     if (energy < 0)
                     {
                         energy = 0;
