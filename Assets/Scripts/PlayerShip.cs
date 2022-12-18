@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerShip : Spaceship
 {
     public ParticleSystem speedSystem;
+    private Vector3 particleSystemPos;
 
     private int startHealth = 100;
     private int startEnergy = 25;
@@ -33,7 +34,7 @@ public class PlayerShip : Spaceship
         _movement = gameObject.AddComponent<PlayerMovement>();
         _movement.Setup(rb);
 
-        if (speedSystem != null) speedSystem = Instantiate(speedSystem, transform.position, Quaternion.identity);
+        particleSystemPos = transform.position;
     }
 
     void Update()
@@ -92,7 +93,9 @@ public class PlayerShip : Spaceship
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = true;
         _movement.SetActive(false);
-        if (speedSystem != null) speedSystem.Pause();
+        
+        speedSystem.transform.parent = null;
+        speedSystem.transform.position = particleSystemPos;
     }
 
     public override void OnHit()
