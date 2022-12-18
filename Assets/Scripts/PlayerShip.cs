@@ -21,7 +21,8 @@ public class PlayerShip : Spaceship
     private float nextRegeneration = 0;
 
     private float horizontalSpeed = 8;
-    private float horizontalConstraint = 5;
+    private float rubberBandSpeed = 2;
+    private float horizontalConstraint = 7;
     private float horizontalMovement;
     private Vector3 spawnPosition;
 
@@ -94,9 +95,9 @@ public class PlayerShip : Spaceship
             if (distanceToTarget <= 0.2f) targetPos = spawnPosition;
             else
             {
-                float x = currentPos.x + directionToTarget.normalized.x * horizontalSpeed * Time.deltaTime;
-                float y = currentPos.y + directionToTarget.normalized.y * horizontalSpeed * Time.deltaTime;
-                float z = currentPos.z + directionToTarget.normalized.z * horizontalSpeed * Time.deltaTime;
+                float x = currentPos.x + directionToTarget.normalized.x * rubberBandSpeed * Time.deltaTime;
+                float y = currentPos.y + directionToTarget.normalized.y * rubberBandSpeed * Time.deltaTime;
+                float z = currentPos.z + directionToTarget.normalized.z * rubberBandSpeed * Time.deltaTime;
                 targetPos = new Vector3(x, y, z);
             }
         }

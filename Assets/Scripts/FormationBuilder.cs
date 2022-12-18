@@ -20,9 +20,9 @@ public class FormationBuilder : MonoBehaviour
         float xOffsetPerUnit = xAxisLength / formation.GetLength(0);
         float zOffsetPerUnit = zAxisLength / formation.GetLength(1);
 
-        float xIterationStartingPoint =-xAxisLength / 2;
-        float zIterationStartingPoint = -zAxisLength/ 2;
-        
+        float xIterationStartingPoint = -xAxisLength / 2;
+        float zIterationStartingPoint = -zAxisLength / 2;
+
         Vector3 iterationStartingPoint =
             new Vector3(xIterationStartingPoint, 0, zIterationStartingPoint);
 
@@ -34,7 +34,8 @@ public class FormationBuilder : MonoBehaviour
             {
                 if (formation[z, x])
                 {
-                    Vector3 spawnPos = new Vector3(x * xOffsetPerUnit, position.y, z * zOffsetPerUnit);
+                    Vector3 spawnPos = new Vector3(x * xOffsetPerUnit + xOffsetPerUnit / 2, position.y,
+                        z * zOffsetPerUnit + zOffsetPerUnit / 2);
                     spawnPos += iterationStartingPoint;
                     GameObject currentEscortShip =
                         Instantiate(escortShips, spawnPos, Quaternion.identity, lead.transform);
