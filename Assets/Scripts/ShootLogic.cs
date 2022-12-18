@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ShootLogic : MonoBehaviour, IOffenseModule
 {
-    public int epPerShot = 5;
+    public int epPerShot = 2;
     public int epPerSecondaryFireShot = 10;
     
     public float timeBetweenShots = 0.2f;

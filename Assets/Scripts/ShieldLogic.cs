@@ -23,7 +23,7 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
     private bool shieldActive;
 
     private int shieldEnergyCost = 5;
-    private int shieldEnergyYield = 8;
+    private int shieldEnergyYield = 10;
 
     void Start()
     {
