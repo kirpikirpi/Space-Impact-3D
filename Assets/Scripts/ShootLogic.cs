@@ -31,7 +31,12 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
         {
             shootingPossible = false;
         }
-        
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
+        {
+            UISingleton.instance.SetCrosshairPosition(hit.point);
+        }
     }
 
     public void Setup(GameObject origin)
@@ -69,9 +74,7 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
             GameObject newProjectile = Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
             newProjectile.transform.rotation = muzzle.transform.rotation;
             timeToNextShot = Time.time + timeBetweenShots;
-            
-            print("secondary fire");
-            
+
             return ep - epPerSecondaryFireShot;
         }
         if (ep < epPerSecondaryFireShot)

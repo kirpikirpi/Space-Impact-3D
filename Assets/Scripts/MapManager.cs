@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class MapManager : MonoBehaviour
 {
     public GameObject PlayerGameObject;
     public GameObject EnemyGameObject;
+    public Camera mainCamera;
     private Pooler pooler;
     private FormationBuilder _formationBuilder;
 
@@ -22,10 +24,8 @@ public class MapManager : MonoBehaviour
     {
         Vector3 playerSpawnPos = new Vector3(0, -5f, playerCameraOffset * 2);
         Instantiate(PlayerGameObject, playerSpawnPos, Quaternion.identity);
-
-
-        GameObject mainCamera = new GameObject("Main Camera");
-        mainCamera.AddComponent<Camera>();
+        
+        if(mainCamera == null) throw new Exception("no Camera attached to map manager!");
         mainCamera.transform.position = new Vector3(0, 0, playerCameraOffset);
         mainCamera.transform.Rotate(20f, 0, 0);
 

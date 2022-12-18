@@ -39,12 +39,15 @@ public class UISingleton : MonoBehaviour
     {
         if(hitmarker == null) return;
         hitmarker.gameObject.SetActive(false);
-        crosshair.transform.SetParent(crosshair.transform);
+        hitmarker.transform.SetParent(crosshair.transform);
     }
 
-    public void CrosshairPosition(Vector2 currentPos)
+    public void SetCrosshairPosition(Vector2 currentPos)
     {
-        crosshair.transform.position = new Vector3(currentPos.x,currentPos.y,0);
+        return;
+        Vector3 pos = Camera.main.WorldToScreenPoint(new Vector3(currentPos.x,0,0));
+        print("current point: "+currentPos + " calculated point: "+pos);
+        crosshair.rectTransform.anchoredPosition = pos;
     }
 
     public void ActivateHitmarker()
