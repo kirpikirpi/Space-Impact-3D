@@ -9,7 +9,7 @@ public class PlayerShip : Spaceship
     private Vector3 particleSystemPos;
 
     private int startHealth = 100;
-    private int startEnergy = 25;
+    private int startEnergy = 30;
     private int maxEnergy = 100;
     private float bulletSpeed = 30f;
 
@@ -19,7 +19,7 @@ public class PlayerShip : Spaceship
     bool isShooting;
     bool isBlocking;
 
-    private float energyRegenerationTime = 1f;
+    private float energyRegenerationTime = 0.8f;
     private int epRegenerationValue = 1;
     private float nextRegeneration = 0;
 

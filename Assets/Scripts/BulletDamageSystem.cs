@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletDamageSystem : MonoBehaviour, IDamageLogic
 {
-    private int hp = 1;
+    public int hp = 1;
 
     public ParticleSystem onDestroyEffect;
 
