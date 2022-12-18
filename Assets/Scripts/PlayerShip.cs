@@ -10,7 +10,7 @@ public class PlayerShip : Spaceship
     private int maxEnergy = 100;
     private float bulletSpeed = 30f;
 
-    private float secondaryFireInputTime = 0.2f;
+    private float secondaryFireInputTime = 0.4f;
     private float currentImputTime;
 
     bool isShooting;
@@ -67,13 +67,7 @@ public class PlayerShip : Spaceship
             DefenseModule.DeactivateDefense();
             isBlocking = false;
         }
-
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            DefenseModule.DeactivateDefense();
-            isBlocking = false;
-        }
+        
 
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 

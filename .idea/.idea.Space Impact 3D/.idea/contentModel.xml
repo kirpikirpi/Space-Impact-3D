@@ -11,6 +11,8 @@
           <e p="BulletLogic.cs" t="Include" />
           <e p="CollisionWall.cs" t="Include" />
           <e p="EnemyShip.cs" t="Include" />
+          <e p="FormationBuilder.cs" t="Include" />
+          <e p="Formations.cs" t="Include" />
           <e p="IDamageLogic.cs" t="Include" />
           <e p="IDefenseModule.cs" t="Include" />
           <e p="IOffenseModule.cs" t="Include" />
