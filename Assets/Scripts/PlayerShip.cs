@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerShip : Spaceship
 {
+    public ParticleSystem speedSystem;
+
     private int startHealth = 100;
     private int startEnergy = 25;
     private int maxEnergy = 100;
@@ -20,30 +22,30 @@ public class PlayerShip : Spaceship
     private int epRegenerationValue = 1;
     private float nextRegeneration = 0;
 
-    private float horizontalSpeed = 8;
-    private float rubberBandSpeed = 1;
-    private float horizontalConstraint = 7;
-    private float horizontalMovement;
-    private Vector3 spawnPosition;
+    private PlayerMovement _movement;
 
     void Start()
     {
         hp = startHealth;
         ep = startEnergy;
-        spawnPosition = transform.position;
 
         SetupModulesWithSpeed(bulletSpeed);
+        _movement = gameObject.AddComponent<PlayerMovement>();
+        _movement.Setup(rb);
+
+        if (speedSystem != null) speedSystem = Instantiate(speedSystem, transform.position, Quaternion.identity);
     }
 
     void Update()
     {
         UISingleton.instance.SetStats(ep.ToString(), hp.ToString());
         if (isDestroyed) return;
-        
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             currentImputTime = Time.time + secondaryFireInputTime;
         }
+
         if (Input.GetKeyUp(KeyCode.W) && !isBlocking)
         {
             if (Time.time < currentImputTime)
@@ -68,43 +70,8 @@ public class PlayerShip : Spaceship
             DefenseModule.DeactivateDefense();
             isBlocking = false;
         }
-        
-
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
-
 
         RegenerateEnergy();
-    }
-
-    void FixedUpdate()
-    {
-        Vector3 targetPos = Vector3.zero;
-        Vector3 currentPos = transform.position;
-
-        if (horizontalMovement > 0 || horizontalMovement < 0)
-        {
-            float xPos = currentPos.x + horizontalMovement * horizontalSpeed * Time.deltaTime;
-            xPos = Mathf.Clamp(xPos, -horizontalConstraint, horizontalConstraint);
-            targetPos = new Vector3(xPos, currentPos.y, currentPos.z);
-        }
-        else
-        {
-            
-            Vector3 directionToTarget = spawnPosition - currentPos;
-            float distanceToTarget = directionToTarget.magnitude;
-
-            if (distanceToTarget <= 0.2f) targetPos = spawnPosition;
-            else
-            {
-                float x = currentPos.x + directionToTarget.normalized.x * rubberBandSpeed * Time.deltaTime;
-                float y = currentPos.y + directionToTarget.normalized.y * rubberBandSpeed * Time.deltaTime;
-                float z = currentPos.z + directionToTarget.normalized.z * rubberBandSpeed * Time.deltaTime;
-                targetPos = new Vector3(x, y, z);
-            }
-            
-        }
-
-        rb.MovePosition(targetPos);
     }
 
     //regenerates to start energy
@@ -124,6 +91,8 @@ public class PlayerShip : Spaceship
         isDestroyed = true;
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = true;
+        _movement.SetActive(false);
+        if (speedSystem != null) speedSystem.Pause();
     }
 
     public override void OnHit()
