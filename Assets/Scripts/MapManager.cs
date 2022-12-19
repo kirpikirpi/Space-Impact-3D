@@ -31,18 +31,21 @@ public class MapManager : MonoBehaviour
 
         FormationType[] spawnFormations = new[]
         {
-            FormationType.Diamond,
-            FormationType.Wedge,
-            FormationType.Column,
-            FormationType.StackLeft,
-            FormationType.StackRight,
-            FormationType.Vee,
+            //FormationType.Diamond,
+            //FormationType.Wedge,
+            //FormationType.Column,
+            //FormationType.StackLeft,
+            //FormationType.StackRight,
+            //FormationType.Vee,
             FormationType.Line,
-            FormationType.FileLeft,
-            FormationType.FileRight,
-            FormationType.FormationX
+            FormationType.Line,
+            FormationType.Line,
+            //FormationType.FileLeft,
+            //FormationType.FileRight,
+            //FormationType.FormationX
         };
-        StartCoroutine(SpawnEnemies(numEnemies, spawnFormations));
+        //StartCoroutine(SpawnEnemies(numEnemies, spawnFormations));
+        SpawnEnemies(4);
     }
 
     void SpawnEnemies(int num)

@@ -9,6 +9,7 @@
         <e p="Scripts" t="Include">
           <e p="BulletDamageSystem.cs" t="Include" />
           <e p="BulletLogic.cs" t="Include" />
+          <e p="CargoShip.cs" t="Include" />
           <e p="CollisionWall.cs" t="Include" />
           <e p="EnemyShip.cs" t="Include" />
           <e p="FormationBuilder.cs" t="Include" />
@@ -20,6 +21,7 @@
           <e p="PlayerMovement.cs" t="Include" />
           <e p="PlayerShip.cs" t="Include" />
           <e p="Pooler.cs" t="Include" />
+          <e p="ShieldBasic.cs" t="Include" />
           <e p="ShieldLogic.cs" t="Include" />
           <e p="ShootLogic.cs" t="Include" />
           <e p="Spaceship.cs" t="Include" />

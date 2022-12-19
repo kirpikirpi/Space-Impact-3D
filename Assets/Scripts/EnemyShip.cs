@@ -35,6 +35,12 @@ public class EnemyShip : Spaceship
 
     void FixedUpdate()
     {
+        TargetSystem();
+        MovementSystem();
+    }
+
+    void TargetSystem()
+    {
         RaycastHit hit;
         if (!Physics.Raycast(transform.position, transform.forward, out hit, maxDetectionDistance, friendlyShips))
         {
@@ -45,7 +51,10 @@ public class EnemyShip : Spaceship
         {
             targetDetected = false;
         }
+    }
 
+    void MovementSystem()
+    {
         if (!movementDisabled)
         {
             Vector3 pos = transform.position + transform.forward * Time.deltaTime * movementSpeed;
