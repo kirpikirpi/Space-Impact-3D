@@ -24,6 +24,6 @@ public class ShieldBasic : MonoBehaviour, IDamageLogic
 
     public void OnDestroy()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

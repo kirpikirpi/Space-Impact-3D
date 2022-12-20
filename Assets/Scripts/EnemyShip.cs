@@ -35,6 +35,7 @@ public class EnemyShip : Spaceship
 
     void FixedUpdate()
     {
+        if(isDestroyed) return;
         TargetSystem();
         MovementSystem();
     }

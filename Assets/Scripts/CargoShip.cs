@@ -22,11 +22,14 @@ public class CargoShip : Spaceship
         hp = 75;
         ep = 50;
         SetupModulesWithSpeed(movementSpeed);
+        shield = Instantiate(shield, transform.position, Quaternion.identity);
+        shield.transform.Rotate(Vector3.left,90f);
     }
 
 
     void Update()
     {
+        shield.transform.position = transform.position;
     }
 
 
@@ -51,7 +54,7 @@ public class CargoShip : Spaceship
 
     public override void OnHit()
     {
-        UISingleton.instance.ActivateHitmarker();
+        //UISingleton.instance.ActivateHitmarker();
     }
 
     void MovementSystem()
