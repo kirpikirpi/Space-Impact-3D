@@ -7,6 +7,7 @@ public class TargetSystem : MonoBehaviour
     private float detectionRadius;
     private float targetableAngle;
     public LayerMask detectableObjects;
+    private int currentTargetIndex = 0;
 
     void Start()
     {
@@ -18,12 +19,7 @@ public class TargetSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Collider[] colliders = GetTargetsInRadar();
-            TargetsInTargetableAngle();
-            foreach (var collider in colliders)
-            {
-                print(collider.tag);
-            }
+            GetCurrentTarget();
         }
     }
 
@@ -57,6 +53,11 @@ public class TargetSystem : MonoBehaviour
 
     Collider GetCurrentTarget()
     {
-        return null;
+        Collider[] currentTargets = TargetsInTargetableAngle();
+        if (currentTargets.Length <= 0) return null;
+        int index = currentTargetIndex % currentTargets.Length;
+        currentTargetIndex += 1;
+        UISingleton.instance.SetCrosshairPosition(currentTargets[index].transform.position);
+        return currentTargets[index];
     }
 }

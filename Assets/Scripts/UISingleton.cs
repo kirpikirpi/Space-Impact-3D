@@ -27,7 +27,7 @@ public class UISingleton : MonoBehaviour
     
     private bool hitmarkerNotActive = true;
     public RawImage hitmarker;
-    public RawImage crosshair;
+    public GameObject crosshair;
 
     public void SetStats(String energy, String health)
     {
@@ -42,12 +42,9 @@ public class UISingleton : MonoBehaviour
         hitmarker.transform.SetParent(crosshair.transform);
     }
 
-    public void SetCrosshairPosition(Vector2 currentPos)
+    public void SetCrosshairPosition(Vector3 currentPos)
     {
-        return;
-        Vector3 pos = Camera.main.WorldToScreenPoint(new Vector3(currentPos.x,0,0));
-        print("current point: "+currentPos + " calculated point: "+pos);
-        crosshair.rectTransform.anchoredPosition = pos;
+        crosshair.transform.position = new Vector3(currentPos.x, currentPos.y, currentPos.z);
     }
 
     public void ActivateHitmarker()
