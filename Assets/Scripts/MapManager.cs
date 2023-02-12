@@ -45,7 +45,7 @@ public class MapManager : MonoBehaviour
             //FormationType.FormationX
         };
         //StartCoroutine(SpawnEnemies(numEnemies, spawnFormations));
-        SpawnEnemies(4);
+        SpawnEnemies(2);
     }
 
     void SpawnEnemies(int num)

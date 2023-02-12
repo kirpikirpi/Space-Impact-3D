@@ -24,6 +24,7 @@ public class PlayerShip : Spaceship
     private float nextRegeneration = 0;
 
     private PlayerMovement _movement;
+    private TargetSystem playerTargetingSystem;
 
     void Start()
     {
@@ -33,6 +34,8 @@ public class PlayerShip : Spaceship
         SetupModulesWithSpeed(bulletSpeed);
         _movement = gameObject.AddComponent<PlayerMovement>();
         _movement.Setup(rb);
+
+        if (playerTargetingSystem == null) playerTargetingSystem = gameObject.AddComponent<TargetSystem>();
 
         particleSystemPos = transform.position;
     }
@@ -93,7 +96,7 @@ public class PlayerShip : Spaceship
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = true;
         _movement.SetActive(false);
-        
+
         speedSystem.transform.parent = null;
         speedSystem.transform.position = particleSystemPos;
     }

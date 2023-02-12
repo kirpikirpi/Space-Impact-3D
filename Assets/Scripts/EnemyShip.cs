@@ -37,7 +37,7 @@ public class EnemyShip : Spaceship
     {
         if(isDestroyed) return;
         TargetSystem();
-        MovementSystem();
+        //MovementSystem();
     }
 
     void TargetSystem()

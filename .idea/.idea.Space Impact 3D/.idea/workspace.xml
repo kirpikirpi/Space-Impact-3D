@@ -6,8 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerJet Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerJet Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +24,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TargetSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Pooler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -52,13 +57,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Formations.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletDamageSystem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CargoShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldBasic.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TargetSystem.cs" />
       </list>
     </option>
   </component>
@@ -109,6 +115,7 @@
       <workItem from="1671362605424" duration="18507000" />
       <workItem from="1671387570946" duration="724000" />
       <workItem from="1671424144706" duration="1673000" />
+      <workItem from="1676182029718" duration="4323000" />
     </task>
     <servers />
   </component>

@@ -25,6 +25,7 @@
           <e p="ShieldLogic.cs" t="Include" />
           <e p="ShootLogic.cs" t="Include" />
           <e p="Spaceship.cs" t="Include" />
+          <e p="TargetSystem.cs" t="Include" />
           <e p="UISingleton.cs" t="Include" />
         </e>
       </e>
