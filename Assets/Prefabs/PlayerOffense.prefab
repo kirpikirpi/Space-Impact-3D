@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3966831278867150844
+--- !u!1 &2522563622439999584
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2423669581163835958}
-  - component: {fileID: 5278977200322693128}
+  - component: {fileID: 8536370184627580360}
+  - component: {fileID: 4484358465134838283}
   m_Layer: 0
-  m_Name: Shoot Module
+  m_Name: PlayerOffense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2423669581163835958
+--- !u!4 &8536370184627580360
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3966831278867150844}
+  m_GameObject: {fileID: 2522563622439999584}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.218139, y: -4.5792966, z: 3.8130717}
+  m_LocalPosition: {x: 665.8287, y: 318.1694, z: 3.0515904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5278977200322693128
+--- !u!114 &4484358465134838283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3966831278867150844}
+  m_GameObject: {fileID: 2522563622439999584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d244fbcdeeba73c488654e216b04208c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c6f45c47234c1a478564b91ba77a5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   epPerShot: 1
-  epPerSecondaryFireShot: 10
-  timeBetweenShots: 0.15
-  standardProjectile: {fileID: 5471644323142832638, guid: 2b6ac69ebb616a94cb357da4c2e14d1d, type: 3}
-  secondaryFireProjectile: {fileID: 5471644323142832638, guid: 24df31e3b32d93d45a1d29295f1e8d0b, type: 3}
+  epPerSecondaryFireShot: 1
+  timeBetweenShots: 0.2
+  standardProjectile: {fileID: 8839652760103422547, guid: f56cddd34451f5e459a93ae03dca5012, type: 3}
+  secondaryFireProjectile: {fileID: 8839652760103422547, guid: 2d5884f41f0dbdf4596661c9649d8c27, type: 3}

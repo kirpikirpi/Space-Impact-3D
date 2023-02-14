@@ -10,4 +10,6 @@ public interface IOffenseModule
     int ActivateOffense(int ep);
 
     int ActivateAlternativeOffense(int ep);
+    
+    int ActivateAlternativeOffense(int ep, GameObject target);
 }

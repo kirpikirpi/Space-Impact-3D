@@ -24,7 +24,7 @@ public class BulletDamageSystem : MonoBehaviour, IDamageLogic
     {
         MeshRenderer renderer = gameObject.GetComponent<MeshRenderer>();
         Collider collider = gameObject.GetComponent<Collider>();
-        renderer.enabled = false;
+        if (renderer != null) renderer.enabled = false;
         collider.enabled = false;
         if (onDestroyEffect != null) onDestroyEffect.Play();
     }

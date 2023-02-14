@@ -14,11 +14,13 @@
           <e p="EnemyShip.cs" t="Include" />
           <e p="FormationBuilder.cs" t="Include" />
           <e p="Formations.cs" t="Include" />
+          <e p="GuidedLaserLogic.cs" t="Include" />
           <e p="IDamageLogic.cs" t="Include" />
           <e p="IDefenseModule.cs" t="Include" />
           <e p="IOffenseModule.cs" t="Include" />
           <e p="MapManager.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
+          <e p="PlayerOffense.cs" t="Include" />
           <e p="PlayerShip.cs" t="Include" />
           <e p="Pooler.cs" t="Include" />
           <e p="ShieldBasic.cs" t="Include" />

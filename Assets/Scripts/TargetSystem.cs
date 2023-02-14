@@ -19,7 +19,7 @@ public class TargetSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            GetCurrentTarget();
+            //GetCurrentTarget();
         }
     }
 
@@ -51,7 +51,7 @@ public class TargetSystem : MonoBehaviour
         return targetsInRange.ToArray();
     }
 
-    Collider GetCurrentTarget()
+    public Collider GetCurrentTarget()
     {
         Collider[] currentTargets = TargetsInTargetableAngle();
         if (currentTargets.Length <= 0) return null;

@@ -1,14 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootLogic : MonoBehaviour, IOffenseModule
+public class PlayerOffense : MonoBehaviour, IOffenseModule
 {
-    public int epPerShot = 1;
+    public int epPerShot = 2;
     public int epPerSecondaryFireShot = 10;
     
-    public float timeBetweenShots = 0.15f;
+    public float timeBetweenShots = 0.2f;
     private float timeToNextShot = 0;
     private bool shootingPossible;
     private float movementSpeed;
@@ -19,36 +18,22 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
     private GameObject muzzle;
     private bool setupComplete = false;
 
-
-    void Update()
-    {
-        if(!setupComplete) return;
-        if (Time.time > timeToNextShot)
-        {
-            shootingPossible = true;
-        }
-        else
-        {
-            shootingPossible = false;
-        }
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
-        {
-            UISingleton.instance.SetCrosshairPosition(hit.point);
-        }
-    }
-
+    private TargetSystem targetSystem;
+    
+    
     public void Setup(GameObject origin)
     {
         muzzle = origin;
+        if (targetSystem == null) targetSystem = gameObject.AddComponent<TargetSystem>();
         setupComplete = true;
     }
+
     public void Setup(GameObject origin, float movementSpeed)
     {
         muzzle = origin;
-        BulletLogic bulletLogic = standardProjectile.GetComponent<BulletLogic>();
-        bulletLogic.AdaptMuzzleVelocity(movementSpeed);
+        if (targetSystem == null) targetSystem = gameObject.AddComponent<TargetSystem>();
+        //BulletLogic bulletLogic = standardProjectile.GetComponent<BulletLogic>();
+        //bulletLogic.AdaptMuzzleVelocity(movementSpeed);
         this.movementSpeed = movementSpeed;
         setupComplete = true;
     }
@@ -77,16 +62,20 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
 
             return ep - epPerSecondaryFireShot;
         }
-        if (ep < epPerSecondaryFireShot)
-        {
-            ep = ActivateOffense(ep);
-        }
 
         return ep;
     }
-
     public int ActivateAlternativeOffense(int ep, GameObject target)
     {
-        throw new NotImplementedException();
+        if (ep >= epPerSecondaryFireShot && secondaryFireProjectile != null && muzzle != null && shootingPossible)
+        {
+            GameObject newProjectile = Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
+            newProjectile.transform.rotation = muzzle.transform.rotation;
+            timeToNextShot = Time.time + timeBetweenShots;
+
+            return ep - epPerSecondaryFireShot;
+        }
+
+        return ep;
     }
 }

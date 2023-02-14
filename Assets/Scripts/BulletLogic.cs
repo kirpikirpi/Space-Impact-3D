@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
-    private int dmgValue = 25;
+    private int dmgValue = 3;
     private int collisionDamage = 50;
     private float projectileSpeed = 30f;
     public float cumulativeMuzzleVelocity; //public needed to change velocity in prefab
@@ -14,7 +14,7 @@ public class BulletLogic : MonoBehaviour
     private Vector3 startPoint;
     private Vector3 currentPoint;
 
-    private Rigidbody rb;
+    protected Rigidbody rb;
     private bool movementPossible;
 
 
@@ -55,7 +55,7 @@ public class BulletLogic : MonoBehaviour
     }
 
 
-    void MoveProjectile()
+    protected virtual void MoveProjectile()
     {
         Vector3 pos = transform.position + transform.forward * Time.deltaTime * cumulativeMuzzleVelocity;
         rb.MovePosition(pos);

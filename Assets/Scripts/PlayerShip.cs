@@ -13,7 +13,7 @@ public class PlayerShip : Spaceship
     private int maxEnergy = 100;
     private float bulletSpeed = 30f;
 
-    private float secondaryFireInputTime = 0.4f;
+    private float secondaryFireInputTime = 0.6f; //salvo length
     private float currentImputTime;
 
     bool isShooting;
@@ -24,7 +24,7 @@ public class PlayerShip : Spaceship
     private float nextRegeneration = 0;
 
     private PlayerMovement _movement;
-    private TargetSystem playerTargetingSystem;
+    public TargetSystem playerTargetingSystem;
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class PlayerShip : Spaceship
         _movement = gameObject.AddComponent<PlayerMovement>();
         _movement.Setup(rb);
 
-        if (playerTargetingSystem == null) playerTargetingSystem = gameObject.AddComponent<TargetSystem>();
+        if (playerTargetingSystem == null) throw new Exception("no target system attached to player!!");
 
         particleSystemPos = transform.position;
     }
@@ -50,16 +50,18 @@ public class PlayerShip : Spaceship
             currentImputTime = Time.time + secondaryFireInputTime;
         }
 
-        if (Input.GetKeyUp(KeyCode.W) && !isBlocking)
+        if (Input.GetKey(KeyCode.W) && !isBlocking)
         {
             if (Time.time < currentImputTime)
             {
                 ep = OffenseModule.ActivateOffense(ep);
             }
-            else
-            {
-                ep = OffenseModule.ActivateAlternativeOffense(ep);
-            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            GameObject target = playerTargetingSystem.GetCurrentTarget().gameObject;
+            ep = OffenseModule.ActivateAlternativeOffense(ep, target);
         }
 
         if (Input.GetKey(KeyCode.Space))
