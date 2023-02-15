@@ -6,7 +6,7 @@ public class GuidedLaserLogic : BulletLogic
 {
     private GameObject currentTarget;
     
-    void SetTargetLockOn(GameObject target)
+    public void SetTargetLockOn(GameObject target)
     {
         currentTarget = target;
     }

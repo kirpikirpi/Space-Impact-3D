@@ -6,17 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/trail.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/trail.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Shoot Module.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Shoot Module.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BulletDamageSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BulletDamageSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/IOffenseModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/IOffenseModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TargetSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TargetSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,13 +61,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UISingleton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletDamageSystem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/IOffenseModule.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TargetSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" />
       </list>
     </option>
   </component>
@@ -125,7 +119,8 @@
       <workItem from="1671387570946" duration="724000" />
       <workItem from="1671424144706" duration="1673000" />
       <workItem from="1676182029718" duration="5528000" />
-      <workItem from="1676350088117" duration="3359000" />
+      <workItem from="1676350088117" duration="3890000" />
+      <workItem from="1676435981186" duration="253000" />
     </task>
     <servers />
   </component>

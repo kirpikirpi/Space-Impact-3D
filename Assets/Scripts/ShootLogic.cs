@@ -35,7 +35,7 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
         {
-            UISingleton.instance.SetCrosshairPosition(hit.point);
+            //UISingleton.instance.SetCrosshairPosition(hit.point);
         }
     }
 

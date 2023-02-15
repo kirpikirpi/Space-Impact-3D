@@ -356,7 +356,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &550910821
 GameObject:
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0270b3111aaeca441912a28119543e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerGameObject: {fileID: 2013998710418132812, guid: 948cd2204f4ec974a913008f0ec23485, type: 3}
+  PlayerGameObject: {fileID: 2013998710418132812, guid: a56a7f9a92d3972409e9ec1f0ab5143b, type: 3}
   EnemyGameObject: {fileID: 9162690281873108606, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
   mainCamera: {fileID: 414671645}
 --- !u!114 &652144151
@@ -911,7 +911,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
       propertyPath: m_LocalPosition.x

@@ -21,6 +21,19 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
     private TargetSystem targetSystem;
     
     
+    void Update()
+    {
+        if(!setupComplete) return;
+        if (Time.time > timeToNextShot)
+        {
+            shootingPossible = true;
+        }
+        else
+        {
+            shootingPossible = false;
+        }
+    }
+    
     public void Setup(GameObject origin)
     {
         muzzle = origin;
@@ -42,6 +55,7 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
     {
         if (ep >= epPerShot && standardProjectile != null && muzzle != null && shootingPossible)
         {
+            print("mg!");
             GameObject newProjectile = Instantiate(standardProjectile, muzzle.transform.position, Quaternion.identity);
             newProjectile.transform.rotation = muzzle.transform.rotation;
             timeToNextShot = Time.time + timeBetweenShots;
@@ -69,7 +83,10 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
     {
         if (ep >= epPerSecondaryFireShot && secondaryFireProjectile != null && muzzle != null && shootingPossible)
         {
+            print("turbolaser!!");
             GameObject newProjectile = Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
+            GuidedLaserLogic laserLogic = newProjectile.GetComponent<GuidedLaserLogic>();
+            laserLogic.SetTargetLockOn(target);
             newProjectile.transform.rotation = muzzle.transform.rotation;
             timeToNextShot = Time.time + timeBetweenShots;
 
