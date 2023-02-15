@@ -61,7 +61,7 @@ public class PlayerShip : Spaceship
         if (Input.GetKeyDown(KeyCode.S))
         {
             GameObject target = playerTargetingSystem.GetCurrentTarget().gameObject;
-            ep = OffenseModule.ActivateAlternativeOffense(ep, target);
+            if (target != null) ep = OffenseModule.ActivateAlternativeOffense(ep, target);
         }
 
         if (Input.GetKey(KeyCode.Space))

@@ -6,7 +6,7 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
 {
     public int epPerShot = 2;
     public int epPerSecondaryFireShot = 10;
-    
+
     public float timeBetweenShots = 0.2f;
     private float timeToNextShot = 0;
     private bool shootingPossible;
@@ -19,11 +19,11 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
     private bool setupComplete = false;
 
     private TargetSystem targetSystem;
-    
-    
+
+
     void Update()
     {
-        if(!setupComplete) return;
+        if (!setupComplete) return;
         if (Time.time > timeToNextShot)
         {
             shootingPossible = true;
@@ -33,7 +33,7 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
             shootingPossible = false;
         }
     }
-    
+
     public void Setup(GameObject origin)
     {
         muzzle = origin;
@@ -45,8 +45,8 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
     {
         muzzle = origin;
         if (targetSystem == null) targetSystem = gameObject.AddComponent<TargetSystem>();
-        //BulletLogic bulletLogic = standardProjectile.GetComponent<BulletLogic>();
-        //bulletLogic.AdaptMuzzleVelocity(movementSpeed);
+        BulletLogic bulletLogic = standardProjectile.GetComponent<BulletLogic>();
+        bulletLogic.AdaptMuzzleVelocity(movementSpeed);
         this.movementSpeed = movementSpeed;
         setupComplete = true;
     }
@@ -55,7 +55,6 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
     {
         if (ep >= epPerShot && standardProjectile != null && muzzle != null && shootingPossible)
         {
-            print("mg!");
             GameObject newProjectile = Instantiate(standardProjectile, muzzle.transform.position, Quaternion.identity);
             newProjectile.transform.rotation = muzzle.transform.rotation;
             timeToNextShot = Time.time + timeBetweenShots;
@@ -70,7 +69,8 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
     {
         if (ep >= epPerSecondaryFireShot && secondaryFireProjectile != null && muzzle != null && shootingPossible)
         {
-            GameObject newProjectile = Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
+            GameObject newProjectile =
+                Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
             newProjectile.transform.rotation = muzzle.transform.rotation;
             timeToNextShot = Time.time + timeBetweenShots;
 
@@ -79,12 +79,13 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
 
         return ep;
     }
+
     public int ActivateAlternativeOffense(int ep, GameObject target)
     {
         if (ep >= epPerSecondaryFireShot && secondaryFireProjectile != null && muzzle != null && shootingPossible)
         {
-            print("turbolaser!!");
-            GameObject newProjectile = Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
+            GameObject newProjectile =
+                Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
             GuidedLaserLogic laserLogic = newProjectile.GetComponent<GuidedLaserLogic>();
             laserLogic.SetTargetLockOn(target);
             newProjectile.transform.rotation = muzzle.transform.rotation;

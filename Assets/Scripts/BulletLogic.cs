@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
-    private int dmgValue = 3;
+    protected int dmgValue = 3;
     private int collisionDamage = 50;
     private float projectileSpeed = 30f;
     public float cumulativeMuzzleVelocity; //public needed to change velocity in prefab
 
     private float range = 100f;
-    private Vector3 startPoint;
+    protected Vector3 startPoint;
     private Vector3 currentPoint;
 
     protected Rigidbody rb;
-    private bool movementPossible;
+    protected bool movementPossible;
 
 
     public void AdaptMuzzleVelocity(float movementSpeed)
@@ -61,7 +61,7 @@ public class BulletLogic : MonoBehaviour
         rb.MovePosition(pos);
     }
 
-    void CheckDistance()
+    protected void CheckDistance()
     {
         currentPoint = transform.position;
         float difference = (currentPoint - startPoint).sqrMagnitude;
