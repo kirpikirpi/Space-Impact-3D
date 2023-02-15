@@ -25,6 +25,7 @@ public class PlayerShip : Spaceship
 
     private PlayerMovement _movement;
     public TargetSystem playerTargetingSystem;
+    private GameObject currentTarget;
 
     void Start()
     {
@@ -58,17 +59,27 @@ public class PlayerShip : Spaceship
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            GameObject target = playerTargetingSystem.GetCurrentTarget().gameObject;
-            if (target != null) ep = OffenseModule.ActivateAlternativeOffense(ep, target);
+            currentTarget = playerTargetingSystem.SelectTarget().gameObject;
         }
+
 
         if (Input.GetKey(KeyCode.Space))
         {
+            int initialEp = ep;
             int newEp = DefenseModule.ActivateDefense(ep);
             ep = Mathf.Clamp(newEp, 0, maxEnergy);
             isBlocking = true;
+            if (newEp > initialEp)
+            {
+                if (currentTarget != null) ep = OffenseModule.ActivateAlternativeOffense(ep, currentTarget);
+                else
+                {
+                    currentTarget = playerTargetingSystem.GetCurrentTarget().gameObject;
+                    if (currentTarget != null) ep = OffenseModule.ActivateAlternativeOffense(ep, currentTarget);
+                }
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.Space))

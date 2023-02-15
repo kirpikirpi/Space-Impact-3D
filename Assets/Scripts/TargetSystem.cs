@@ -8,6 +8,7 @@ public class TargetSystem : MonoBehaviour
     private float targetableAngle;
     public LayerMask detectableObjects;
     private int currentTargetIndex = 0;
+    private Collider currentTarget;
 
     void Start()
     {
@@ -15,12 +16,9 @@ public class TargetSystem : MonoBehaviour
         targetableAngle = 45f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            //GetCurrentTarget();
-        }
+        SetCrosshairPos();
     }
 
     Collider[] GetTargetsInRadar()
@@ -51,13 +49,34 @@ public class TargetSystem : MonoBehaviour
         return targetsInRange.ToArray();
     }
 
+    void SetCrosshairPos()
+    {
+        //ToDo actualise pos (is targetable??)
+        if (currentTarget != null) UISingleton.instance.SetCrosshairPosition(currentTarget.transform.position);
+        else
+        {
+            //UISingleton.instance.SetCrosshairPosition(new Vector3(0, 0, 50));
+        }
+    }
+
+    public Collider SelectTarget()
+    {
+        currentTargetIndex += 1;
+        currentTarget = GetCurrentTarget();
+        return currentTarget;
+    }
+
     public Collider GetCurrentTarget()
     {
         Collider[] currentTargets = TargetsInTargetableAngle();
-        if (currentTargets.Length <= 0) return null;
+        if (currentTargets.Length <= 0)
+        {
+            currentTarget = null;
+            return null;
+        }
+
         int index = currentTargetIndex % currentTargets.Length;
-        currentTargetIndex += 1;
-        UISingleton.instance.SetCrosshairPosition(currentTargets[index].transform.position);
-        return currentTargets[index];
+        currentTarget = currentTargets[index];
+        return currentTarget;
     }
 }
