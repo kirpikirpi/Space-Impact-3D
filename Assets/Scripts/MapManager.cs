@@ -31,15 +31,15 @@ public class MapManager : MonoBehaviour
 
         FormationType[] spawnFormations = new[]
         {
-            FormationType.Diamond,
-            FormationType.Wedge,
-            FormationType.Column,
+            //FormationType.Diamond,
+            //FormationType.Wedge,
+            //FormationType.Column,
             FormationType.StackLeft,
-            FormationType.StackRight,
-            FormationType.Vee,
-            FormationType.Line,
-            FormationType.Line,
-            FormationType.Line,
+            //FormationType.StackRight,
+            //FormationType.Vee,
+            //FormationType.Line,
+            //FormationType.Line,
+            //FormationType.Line,
             //FormationType.FileLeft,
             //FormationType.FileRight,
             //FormationType.FormationX

@@ -9,4 +9,6 @@ public interface IDamageLogic
     void OnHit();
 
     void OnDestroy();
+
+    bool IsDestroyed();
 }

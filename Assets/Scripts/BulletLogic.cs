@@ -10,12 +10,14 @@ public class BulletLogic : MonoBehaviour
     private float projectileSpeed = 30f;
     public float cumulativeMuzzleVelocity; //public needed to change velocity in prefab
 
-    private float range = 100f;
+    private float range = 200f;
     protected Vector3 startPoint;
     private Vector3 currentPoint;
 
     protected Rigidbody rb;
     protected bool movementPossible;
+
+    private GameObject origin;
 
 
     public void AdaptMuzzleVelocity(float movementSpeed)
@@ -32,8 +34,16 @@ public class BulletLogic : MonoBehaviour
         }
 
         movementPossible = true;
+    }
 
-        startPoint = transform.position;
+    public void SetAgressingEntety(GameObject agressor)
+    {
+        this.origin = agressor;
+    }
+
+    public GameObject GetAgressor()
+    {
+        return origin;
     }
 
     void OnCollisionEnter(Collision collision)

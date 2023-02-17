@@ -33,14 +33,10 @@ public class TargetSystem : MonoBehaviour
         List<Collider> targetsInRange = new List<Collider>();
         int targetNum = 0;
 
-        Vector3 spaceshipPos = transform.position;
-        float spaceshipYrotation = transform.rotation.eulerAngles.y;
+        
         foreach (var target in targets)
         {
-            Vector3 targetDir = target.transform.position - transform.position;
-            float angleToTarget = Vector3.Angle(targetDir, transform.forward);
-
-            if (angleToTarget < targetableAngle)
+            if (IsTargetable(target.gameObject))
             {
                 targetsInRange.Add(target);
             }
@@ -49,14 +45,27 @@ public class TargetSystem : MonoBehaviour
         return targetsInRange.ToArray();
     }
 
+    bool IsTargetable(GameObject target)
+    {
+        Vector3 targetDir = target.transform.position - transform.position;
+        float angleToTarget = Vector3.Angle(targetDir, transform.forward);
+
+        return angleToTarget < targetableAngle;
+    }
+
     void SetCrosshairPos()
     {
-        //ToDo actualise pos (is targetable??)
-        if (currentTarget != null) UISingleton.instance.SetCrosshairPosition(currentTarget.transform.position);
-        else
+        if (currentTarget != null)
         {
-            //UISingleton.instance.SetCrosshairPosition(new Vector3(0, 0, 50));
+            bool isDestroyed = currentTarget.GetComponent<IDamageLogic>().IsDestroyed();
+            if(IsTargetable(currentTarget.gameObject) && !isDestroyed) UISingleton.instance.SetCrosshairPosition(currentTarget.transform.position);
+            else
+            {
+                UISingleton.instance.SetCrosshairPosition(new Vector3(0, -10, 70));
+                currentTarget = null;
+            }
         }
+        
     }
 
     public Collider SelectTarget()

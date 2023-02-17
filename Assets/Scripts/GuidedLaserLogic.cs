@@ -7,6 +7,7 @@ public class GuidedLaserLogic : BulletLogic
 {
     private GameObject currentTarget;
     private int damage = 20;
+    private float rocketSpeed = 100;
     
     public void SetTargetLockOn(GameObject target)
     {
@@ -16,7 +17,7 @@ public class GuidedLaserLogic : BulletLogic
     protected override void MoveProjectile()
     {
         transform.LookAt(currentTarget.transform);
-        Vector3 pos = transform.position + transform.forward * Time.deltaTime * 20;
+        Vector3 pos = transform.position + transform.forward * Time.deltaTime * rocketSpeed;
         rb.MovePosition(pos);
         
         /*

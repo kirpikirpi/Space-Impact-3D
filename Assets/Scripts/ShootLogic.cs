@@ -50,6 +50,9 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
         BulletLogic bulletLogic = standardProjectile.GetComponent<BulletLogic>();
         bulletLogic.AdaptMuzzleVelocity(movementSpeed);
         this.movementSpeed = movementSpeed;
+        
+        bulletLogic.SetAgressingEntety(transform.parent.gameObject);
+        
         setupComplete = true;
     }
 

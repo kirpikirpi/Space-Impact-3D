@@ -51,17 +51,18 @@ public class PlayerShip : Spaceship
             currentImputTime = Time.time + secondaryFireInputTime;
         }
 
-        if (Input.GetKey(KeyCode.W) && !isBlocking)
+        if (Input.GetKey(KeyCode.Mouse0) && !isBlocking)
         {
-            if (Time.time < currentImputTime)
+            //if (Time.time < currentImputTime)
             {
                 ep = OffenseModule.ActivateOffense(ep);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             currentTarget = playerTargetingSystem.SelectTarget().gameObject;
+            //ep = OffenseModule.ActivateAlternativeOffense(ep, currentTarget);
         }
 
 

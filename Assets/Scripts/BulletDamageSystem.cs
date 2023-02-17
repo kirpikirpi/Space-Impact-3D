@@ -28,4 +28,9 @@ public class BulletDamageSystem : MonoBehaviour, IDamageLogic
         collider.enabled = false;
         if (onDestroyEffect != null) onDestroyEffect.Play();
     }
+
+    public bool IsDestroyed()
+    {
+        throw new System.NotImplementedException();
+    }
 }

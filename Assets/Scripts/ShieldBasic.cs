@@ -26,4 +26,9 @@ public class ShieldBasic : MonoBehaviour, IDamageLogic
     {
         gameObject.SetActive(false);
     }
+
+    public bool IsDestroyed()
+    {
+        throw new System.NotImplementedException();
+    }
 }

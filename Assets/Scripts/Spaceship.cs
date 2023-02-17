@@ -46,6 +46,11 @@ public class Spaceship : MonoBehaviour, IDamageLogic
         throw new System.NotImplementedException();
     }
 
+    public bool IsDestroyed()
+    {
+        return isDestroyed;
+    }
+
     public void SetupModules()
     {
         if (OffenseModulePrefab == null)
