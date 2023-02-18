@@ -65,8 +65,11 @@ public class PlayerShip : Spaceship
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            currentTarget = playerTargetingSystem.SelectTarget().gameObject;
-            //ep = OffenseModule.ActivateAlternativeOffense(ep, currentTarget);
+            Collider possibleTarget = playerTargetingSystem.SelectTarget();
+            if (possibleTarget != null)
+            {
+                currentTarget =possibleTarget.gameObject;
+            }
         }
 
 

@@ -8,7 +8,6 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
     
     private float timeToNextShot = 0;
     private bool shootingPossible;
-    private float movementSpeed;
 
     private GameObject muzzle;
     private bool setupComplete = false;

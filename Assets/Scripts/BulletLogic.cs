@@ -5,13 +5,8 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour,IProjectile
 {
-    //protected int dmgValue = 3;
-    //private int collisionDamage = 50;
-    //private float projectileSpeed = 30f;
-    
     float cumulativeMuzzleVelocity;
-
-    //private float range = 200f;
+    
     protected ProjectileInfo projectileInfo;
     
     protected Vector3 startPoint;
@@ -26,6 +21,7 @@ public class BulletLogic : MonoBehaviour,IProjectile
     public void SetProjectileParameters(ProjectileInfo projectileInfo)
     {
         this.projectileInfo = projectileInfo;
+        cumulativeMuzzleVelocity = projectileInfo.speed;
     }
 
     public void AdaptMuzzleVelocity(float movementSpeed)
