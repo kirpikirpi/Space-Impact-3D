@@ -18,6 +18,7 @@
           <e p="IDamageLogic.cs" t="Include" />
           <e p="IDefenseModule.cs" t="Include" />
           <e p="IOffenseModule.cs" t="Include" />
+          <e p="IProjectile.cs" t="Include" />
           <e p="MapManager.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
           <e p="PlayerOffense.cs" t="Include" />

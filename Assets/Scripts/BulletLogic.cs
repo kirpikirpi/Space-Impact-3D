@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletLogic : MonoBehaviour
+public class BulletLogic : MonoBehaviour,IProjectile
 {
     protected int dmgValue = 3;
     private int collisionDamage = 50;
@@ -44,6 +44,11 @@ public class BulletLogic : MonoBehaviour
     public GameObject GetAgressor()
     {
         return origin;
+    }
+
+    public virtual void SetTargetLockOn(GameObject target)
+    {
+        return;
     }
 
     void OnCollisionEnter(Collision collision)

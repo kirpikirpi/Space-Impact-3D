@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a120fb83a3cc47645bfd1ad1ce43ddff, type: 3}
+  m_Name: EnemyMain
+  m_EditorClassIdentifier: 
+  projectileType: {fileID: 7098376884671748361, guid: 26fcca0f3afb3c84994395a33dfe1a1a, type: 3}
+  speed: 25
+  damage: 5
+  energyPerShot: 1
+  timeBetweenShots: 0.15
+  range: 100
+  collisionDamage: 50

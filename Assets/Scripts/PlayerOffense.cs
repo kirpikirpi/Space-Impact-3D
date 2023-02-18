@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class PlayerOffense : MonoBehaviour, IOffenseModule
 {
-    public int epPerShot = 5;
-    public int epPerSecondaryFireShot = 10;
-
-    public float timeBetweenShots = 0.2f;
+    public ProjectileInfo[] weaponSystems;
+    
     private float timeToNextShot = 0;
     private bool shootingPossible;
     private float movementSpeed;
-
-    public GameObject standardProjectile;
-    public GameObject secondaryFireProjectile;
 
     private GameObject muzzle;
     private bool setupComplete = false;
@@ -34,64 +29,32 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
         }
     }
 
-    public void Setup(GameObject origin)
+    public void Setup(GameObject muzzle)
     {
-        muzzle = origin;
+        this.muzzle = muzzle;
         if (targetSystem == null) targetSystem = gameObject.AddComponent<TargetSystem>();
         setupComplete = true;
     }
 
-    public void Setup(GameObject origin, float movementSpeed)
+    public void Setup(GameObject muzzle, float movementSpeed)
     {
-        muzzle = origin;
-        if (targetSystem == null) targetSystem = gameObject.AddComponent<TargetSystem>();
-        BulletLogic bulletLogic = standardProjectile.GetComponent<BulletLogic>();
-        bulletLogic.AdaptMuzzleVelocity(movementSpeed);
-        this.movementSpeed = movementSpeed;
-        setupComplete = true;
+        throw new System.NotImplementedException();
     }
 
-    public int ActivateOffense(int ep)
+    public int ActivateOffense(int ep, int weaponIndex, GameObject target)
     {
-        if (ep >= epPerShot && standardProjectile != null && muzzle != null && shootingPossible)
+        ProjectileInfo currentWeapon = weaponSystems[weaponIndex % weaponSystems.Length];
+        
+        if (ep >= currentWeapon.energyPerShot && currentWeapon.projectileType != null && muzzle != null && shootingPossible)
         {
-            GameObject newProjectile = Instantiate(standardProjectile, muzzle.transform.position, Quaternion.identity);
+            GameObject newProjectile = Instantiate(currentWeapon.projectileType, muzzle.transform.position, Quaternion.identity);
             newProjectile.transform.rotation = muzzle.transform.rotation;
-            timeToNextShot = Time.time + timeBetweenShots;
+            timeToNextShot = Time.time + currentWeapon.timeBetweenShots;
+            
+            IProjectile projectile = newProjectile.GetComponent<IProjectile>();
+            projectile.SetTargetLockOn(target);
 
-            return ep - epPerShot;
-        }
-
-        return ep;
-    }
-
-    public int ActivateAlternativeOffense(int ep)
-    {
-        if (ep >= epPerSecondaryFireShot && secondaryFireProjectile != null && muzzle != null && shootingPossible)
-        {
-            GameObject newProjectile =
-                Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
-            newProjectile.transform.rotation = muzzle.transform.rotation;
-            timeToNextShot = Time.time + timeBetweenShots;
-
-            return ep - epPerSecondaryFireShot;
-        }
-
-        return ep;
-    }
-
-    public int ActivateAlternativeOffense(int ep, GameObject target)
-    {
-        if (ep >= epPerSecondaryFireShot && secondaryFireProjectile != null && muzzle != null && shootingPossible)
-        {
-            GameObject newProjectile =
-                Instantiate(secondaryFireProjectile, muzzle.transform.position, Quaternion.identity);
-            GuidedLaserLogic laserLogic = newProjectile.GetComponent<GuidedLaserLogic>();
-            laserLogic.SetTargetLockOn(target);
-            newProjectile.transform.rotation = muzzle.transform.rotation;
-            timeToNextShot = Time.time + timeBetweenShots;
-
-            return ep - epPerSecondaryFireShot;
+            return ep - currentWeapon.energyPerShot;
         }
 
         return ep;

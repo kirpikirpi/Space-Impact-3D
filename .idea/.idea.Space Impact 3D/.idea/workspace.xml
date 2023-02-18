@@ -8,9 +8,16 @@
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerOffense.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerOffense.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Shoot Module.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Shoot Module.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/enemyOffense.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/enemyOffense.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/IOffenseModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/IOffenseModule.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +47,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Formations.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ShieldBasic.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CargoShip.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/IProjectile.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -56,20 +64,21 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CargoShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UISingleton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/IOffenseModule.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/IDamageLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletDamageSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldBasic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Spaceship.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TargetSystem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ProjectileInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/IProjectile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/IOffenseModule.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
       </list>
     </option>
   </component>
@@ -125,7 +134,7 @@
       <workItem from="1676435981186" duration="4514000" />
       <workItem from="1676609994794" duration="2914000" />
       <workItem from="1676665623284" duration="1227000" />
-      <workItem from="1676694622396" duration="873000" />
+      <workItem from="1676694622396" duration="4454000" />
     </task>
     <servers />
   </component>
@@ -156,6 +165,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1671364097374" />
+    <state x="195" y="0" width="1270" height="1027" key="dock-window-1" timestamp="1676697402437">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="195" y="0" width="1270" height="1027" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1676697402437" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1671080062807">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

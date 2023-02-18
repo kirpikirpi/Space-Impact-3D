@@ -4,12 +4,8 @@ using UnityEngine;
 
 public interface IOffenseModule
 {
-    void Setup(GameObject origin);
+    void Setup(GameObject muzzle);
 
-    public void Setup(GameObject origin, float movementSpeed);
-    int ActivateOffense(int ep);
-
-    int ActivateAlternativeOffense(int ep);
-    
-    int ActivateAlternativeOffense(int ep, GameObject target);
+    public void Setup(GameObject muzzle, float movementSpeed);
+    int ActivateOffense(int ep, int weaponIndex, GameObject target);
 }

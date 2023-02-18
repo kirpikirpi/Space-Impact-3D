@@ -28,7 +28,7 @@ public class EnemyShip : Spaceship
     {
         if (Time.time > timeToNextShot && targetDetected && !isDestroyed)
         {
-            ep = OffenseModule.ActivateOffense(ep);
+            ep = OffenseModule.ActivateOffense(ep, 0, null);
             timeToNextShot = Time.time + timeBetweenShots;
         }
     }

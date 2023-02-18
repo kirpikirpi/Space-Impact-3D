@@ -10,8 +10,9 @@ public class PlayerShip : Spaceship
 
     private int startHealth = 100;
     private int startEnergy = 30;
+
     private int maxEnergy = 100;
-    private float bulletSpeed = 30f;
+    //private float bulletSpeed = 30f;
 
     private float secondaryFireInputTime = 0.6f; //salvo length
     private float currentImputTime;
@@ -27,12 +28,15 @@ public class PlayerShip : Spaceship
     public TargetSystem playerTargetingSystem;
     private GameObject currentTarget;
 
+    
+
     void Start()
     {
         hp = startHealth;
         ep = startEnergy;
 
-        SetupModulesWithSpeed(bulletSpeed);
+        SetupModules();
+
         _movement = gameObject.AddComponent<PlayerMovement>();
         _movement.Setup(rb);
 
@@ -55,7 +59,7 @@ public class PlayerShip : Spaceship
         {
             if (Time.time < currentImputTime)
             {
-                ep = OffenseModule.ActivateOffense(ep);
+                ep = OffenseModule.ActivateOffense(ep, 0, currentTarget);
             }
         }
 
@@ -74,11 +78,11 @@ public class PlayerShip : Spaceship
             isBlocking = true;
             if (newEp > initialEp)
             {
-                if (currentTarget != null) ep = OffenseModule.ActivateAlternativeOffense(ep, currentTarget);
+                if (currentTarget != null) ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
                 else
                 {
                     currentTarget = playerTargetingSystem.GetCurrentTarget().gameObject;
-                    if (currentTarget != null) ep = OffenseModule.ActivateAlternativeOffense(ep, currentTarget);
+                    if (currentTarget != null) ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
                 }
             }
         }

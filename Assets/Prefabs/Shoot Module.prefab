@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d244fbcdeeba73c488654e216b04208c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSystems:
+  - {fileID: 11400000, guid: 9090461d4fc55d54aa722fd18c3291b0, type: 2}
   epPerShot: 1
   epPerSecondaryFireShot: 10
   timeBetweenShots: 0.15

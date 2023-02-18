@@ -9,7 +9,7 @@ public class GuidedLaserLogic : BulletLogic
     private int damage = 20;
     private float rocketSpeed = 100;
     
-    public void SetTargetLockOn(GameObject target)
+    public override  void SetTargetLockOn(GameObject target)
     {
         currentTarget = target;
     }
