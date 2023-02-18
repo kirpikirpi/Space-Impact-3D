@@ -23,6 +23,7 @@
           <e p="PlayerOffense.cs" t="Include" />
           <e p="PlayerShip.cs" t="Include" />
           <e p="Pooler.cs" t="Include" />
+          <e p="ProjectileInfo.cs" t="Include" />
           <e p="ShieldBasic.cs" t="Include" />
           <e p="ShieldLogic.cs" t="Include" />
           <e p="ShootLogic.cs" t="Include" />

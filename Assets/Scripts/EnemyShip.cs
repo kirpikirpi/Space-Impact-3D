@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class EnemyShip : Spaceship
 {
     private float maxDetectionDistance = 60f;
-    private float movementSpeed = 30f; //30
+    private float movementSpeed = 15f; //30
     public LayerMask engagebleTargets;
     public LayerMask friendlyShips;
     public ParticleSystem ParticleSystemOnDestroy;

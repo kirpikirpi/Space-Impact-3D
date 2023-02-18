@@ -46,14 +46,14 @@ public class PlayerShip : Spaceship
         UISingleton.instance.SetStats(ep.ToString(), hp.ToString());
         if (isDestroyed) return;
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             currentImputTime = Time.time + secondaryFireInputTime;
         }
 
         if (Input.GetKey(KeyCode.Mouse0) && !isBlocking)
         {
-            //if (Time.time < currentImputTime)
+            if (Time.time < currentImputTime)
             {
                 ep = OffenseModule.ActivateOffense(ep);
             }
