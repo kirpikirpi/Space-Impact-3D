@@ -11,4 +11,6 @@ public interface IProjectile
     public GameObject GetAgressor();
 
     void SetTargetLockOn(GameObject target);
+
+    public void SetProjectileParameters(ProjectileInfo projectileInfo);
 }

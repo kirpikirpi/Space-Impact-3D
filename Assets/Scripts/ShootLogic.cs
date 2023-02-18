@@ -59,6 +59,7 @@ public class ShootLogic : MonoBehaviour, IOffenseModule
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             projectile.SetTargetLockOn(target);
             projectile.SetAgressingEntety(transform.parent.gameObject);
+            projectile.SetProjectileParameters(currentWeapon);
             return ep - currentWeapon.energyPerShot;
         }
 

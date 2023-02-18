@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour,IProjectile
 {
-    protected int dmgValue = 3;
-    private int collisionDamage = 50;
-    private float projectileSpeed = 30f;
-    public float cumulativeMuzzleVelocity; //public needed to change velocity in prefab
+    //protected int dmgValue = 3;
+    //private int collisionDamage = 50;
+    //private float projectileSpeed = 30f;
+    
+    float cumulativeMuzzleVelocity;
 
-    private float range = 200f;
+    //private float range = 200f;
+    protected ProjectileInfo projectileInfo;
+    
     protected Vector3 startPoint;
     private Vector3 currentPoint;
 
@@ -20,9 +23,15 @@ public class BulletLogic : MonoBehaviour,IProjectile
     private GameObject origin;
 
 
+    public void SetProjectileParameters(ProjectileInfo projectileInfo)
+    {
+        this.projectileInfo = projectileInfo;
+    }
+
     public void AdaptMuzzleVelocity(float movementSpeed)
     {
-        cumulativeMuzzleVelocity = movementSpeed + projectileSpeed;
+        if(projectileInfo == null) throw new Exception("Projectile not set up correctly!!");
+        cumulativeMuzzleVelocity = movementSpeed + projectileInfo.speed;
     }
     void Start()
     {
@@ -53,10 +62,11 @@ public class BulletLogic : MonoBehaviour,IProjectile
 
     void OnCollisionEnter(Collision collision)
     {
+        if(projectileInfo == null) throw new Exception("Projectile not set up correctly!!");
         IDamageLogic target = collision.gameObject.GetComponent<IDamageLogic>();
         if (target != null)
         {
-            target.ApplyDamage(dmgValue);
+            target.ApplyDamage(projectileInfo.collisionDamage);
             cumulativeMuzzleVelocity = cumulativeMuzzleVelocity / 4;
             IDamageLogic bulletDamageLogic = gameObject.GetComponent<IDamageLogic>();
             bulletDamageLogic.ApplyDamage(50);
@@ -78,9 +88,10 @@ public class BulletLogic : MonoBehaviour,IProjectile
 
     protected void CheckDistance()
     {
+        if(projectileInfo == null) throw new Exception("Projectile not set up correctly!!");
         currentPoint = transform.position;
         float difference = (currentPoint - startPoint).sqrMagnitude;
-        if (difference > range * range)
+        if (difference > projectileInfo.range * projectileInfo.range)
         {
             Destroy(gameObject);
         }

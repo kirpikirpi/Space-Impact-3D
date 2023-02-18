@@ -53,6 +53,7 @@ public class PlayerOffense : MonoBehaviour, IOffenseModule
             
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             projectile.SetTargetLockOn(target);
+            projectile.SetProjectileParameters(currentWeapon);
 
             return ep - currentWeapon.energyPerShot;
         }

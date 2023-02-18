@@ -6,9 +6,7 @@ using UnityEngine;
 public class GuidedLaserLogic : BulletLogic
 {
     private GameObject currentTarget;
-    private int damage = 20;
-    private float rocketSpeed = 100;
-    
+
     public override  void SetTargetLockOn(GameObject target)
     {
         currentTarget = target;
@@ -17,7 +15,7 @@ public class GuidedLaserLogic : BulletLogic
     protected override void MoveProjectile()
     {
         transform.LookAt(currentTarget.transform);
-        Vector3 pos = transform.position + transform.forward * Time.deltaTime * rocketSpeed;
+        Vector3 pos = transform.position + transform.forward * Time.deltaTime * projectileInfo.speed;
         rb.MovePosition(pos);
         
         /*
@@ -42,9 +40,6 @@ public class GuidedLaserLogic : BulletLogic
         }
 
         movementPossible = true;
-
-        dmgValue = damage;
-
         startPoint = transform.position;
     }
 }
