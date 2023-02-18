@@ -28,7 +28,6 @@ public class PlayerShip : Spaceship
     public TargetSystem playerTargetingSystem;
     private GameObject currentTarget;
 
-    
 
     void Start()
     {
@@ -68,7 +67,7 @@ public class PlayerShip : Spaceship
             Collider possibleTarget = playerTargetingSystem.SelectTarget();
             if (possibleTarget != null)
             {
-                currentTarget =possibleTarget.gameObject;
+                currentTarget = possibleTarget.gameObject;
             }
         }
 
@@ -81,12 +80,11 @@ public class PlayerShip : Spaceship
             isBlocking = true;
             if (newEp > initialEp)
             {
+                //Todo implement return to sender mechanic
+
+
+                currentTarget = playerTargetingSystem.GetCurrentTarget().gameObject;
                 if (currentTarget != null) ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
-                else
-                {
-                    currentTarget = playerTargetingSystem.GetCurrentTarget().gameObject;
-                    if (currentTarget != null) ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
-                }
             }
         }
 

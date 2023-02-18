@@ -7,8 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +55,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CargoShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UISingleton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/IDamageLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletDamageSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldBasic.cs" />
@@ -68,9 +66,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/IProjectile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
       </list>
     </option>
   </component>
@@ -126,7 +125,7 @@
       <workItem from="1676435981186" duration="4514000" />
       <workItem from="1676609994794" duration="2914000" />
       <workItem from="1676665623284" duration="1227000" />
-      <workItem from="1676694622396" duration="5632000" />
+      <workItem from="1676694622396" duration="6067000" />
     </task>
     <servers />
   </component>
