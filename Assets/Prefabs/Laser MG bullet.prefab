@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8370561120452541258}
   - component: {fileID: 5146252433592174594}
   - component: {fileID: 8912221557555819551}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Laser MG bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394d900bb2ea7f945a0b611321414639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cumulativeMuzzleVelocity: 60
 --- !u!54 &5146252433592174594
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileType: {fileID: 8839652760103422547, guid: 2d5884f41f0dbdf4596661c9649d8c27, type: 3}
   speed: 150
-  damage: 50
+  damage: 100
   energyPerShot: 15
   timeBetweenShots: 0.2
   range: 150

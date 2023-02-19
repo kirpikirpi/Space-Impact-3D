@@ -19,6 +19,7 @@ public class PlayerShip : Spaceship
 
     bool isShooting;
     bool isBlocking;
+    private bool isRevengeShooting;
 
     private float energyRegenerationTime = 0.8f;
     private int epRegenerationValue = 1;
@@ -56,7 +57,12 @@ public class PlayerShip : Spaceship
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !isBlocking)
         {
-            if (Time.time < currentImputTime)
+            if (isRevengeShooting)
+            {
+                ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
+                isRevengeShooting = false;
+            }
+            else if (Time.time < currentImputTime && !isRevengeShooting)
             {
                 ep = OffenseModule.ActivateOffense(ep, 0, currentTarget);
             }
@@ -82,15 +88,19 @@ public class PlayerShip : Spaceship
             if (newEp > initialEp)
             {
                 currentTarget = blockInfo.aggressor;
-                if (currentTarget == null)
+                bool destroyed = currentTarget.GetComponent<Spaceship>().IsDestroyed();
+                
+                if (currentTarget == null || destroyed)
                 {
                     currentTarget = playerTargetingSystem.GetCurrentTarget().gameObject;
+                    ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
                 }
                 else
                 {
                     playerTargetingSystem.SetCurrentTarget(currentTarget);
+                    isRevengeShooting = true;
                 }
-                ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
+                
             }
         }
 

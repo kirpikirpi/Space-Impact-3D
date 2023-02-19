@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5146252433592174594}
   - component: {fileID: 8912221557555819551}
   - component: {fileID: 897223244959523006}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LaserGuided
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aa5690ff857faa64889b345194c90ca7, type: 2}
+  - {fileID: 2100000, guid: 3e933b2618a216549ad693b4d0af6384, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -215,4 +215,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a013029e29a7a42961ceaf129f26ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cumulativeMuzzleVelocity: 50

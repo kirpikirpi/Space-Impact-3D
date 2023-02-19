@@ -16,6 +16,6 @@ MonoBehaviour:
   speed: 25
   damage: 5
   energyPerShot: 1
-  timeBetweenShots: 0.15
+  timeBetweenShots: 0.3
   range: 100
   collisionDamage: 50
