@@ -3,6 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class BlockInfo
+{
+    public GameObject aggressor;
+    public int energySpent;
+
+    public BlockInfo(GameObject aggressor, int energySpent)
+    {
+        this.aggressor = aggressor;
+        this.energySpent = energySpent;
+    }
+
+    public BlockInfo(int energySpent)
+    {
+        aggressor = null;
+        this.energySpent = energySpent;
+    }
+}
+
 public class ShieldLogic : MonoBehaviour, IDefenseModule
 {
     public LayerMask blockableLayer;
@@ -43,9 +61,10 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
         }
     }
 
-    public int ActivateDefense(int energy)
+    public BlockInfo ActivateDefense(int energy)
     {
-        if (energy <= 0) return energy;
+        BlockInfo returnInfo = new BlockInfo(0);
+        if (energy <= 0) return returnInfo;
         if (!shieldActive)
         {
             shieldActive = true;
@@ -77,17 +96,24 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
                     //perfect block
                     if (colorChangable) StartCoroutine(ChangeShieldColor(perfectBlockColor));
                     energy += shieldEnergyYield;
+                    
+                    //get agressing entity
+                    GameObject aggressor = hitColliders[i].GetComponent<IProjectile>().GetAgressor();
+                    returnInfo.aggressor = aggressor;
                 }
                 else
                 {
                     //early block
                     if (colorChangable) StartCoroutine(ChangeShieldColor(earlyBlockColor));
                     energy -= shieldEnergyCost;
+
                     if (energy < 0)
                     {
                         energy = 0;
                         DeactivateDefense();
                     }
+
+                    returnInfo.energySpent = energy;
                 }
             }
             else if (distance < lateBlockRadius)
@@ -98,8 +124,9 @@ public class ShieldLogic : MonoBehaviour, IDefenseModule
 
             hitColliders[i].gameObject.SetActive(false);
         }
+        returnInfo.energySpent = energy;
 
-        return energy;
+        return returnInfo;
     }
 
     public void DeactivateDefense()

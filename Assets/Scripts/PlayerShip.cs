@@ -54,7 +54,7 @@ public class PlayerShip : Spaceship
             currentImputTime = Time.time + secondaryFireInputTime;
         }
 
-        if (Input.GetKey(KeyCode.Mouse0) && !isBlocking)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isBlocking)
         {
             if (Time.time < currentImputTime)
             {
@@ -75,16 +75,22 @@ public class PlayerShip : Spaceship
         if (Input.GetKey(KeyCode.Space))
         {
             int initialEp = ep;
-            int newEp = DefenseModule.ActivateDefense(ep);
+            BlockInfo blockInfo = DefenseModule.ActivateDefense(ep);
+            int newEp = blockInfo.energySpent;
             ep = Mathf.Clamp(newEp, 0, maxEnergy);
             isBlocking = true;
             if (newEp > initialEp)
             {
-                //Todo implement return to sender mechanic
-
-
-                currentTarget = playerTargetingSystem.GetCurrentTarget().gameObject;
-                if (currentTarget != null) ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
+                currentTarget = blockInfo.aggressor;
+                if (currentTarget == null)
+                {
+                    currentTarget = playerTargetingSystem.GetCurrentTarget().gameObject;
+                }
+                else
+                {
+                    playerTargetingSystem.SetCurrentTarget(currentTarget);
+                }
+                ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
             }
         }
 

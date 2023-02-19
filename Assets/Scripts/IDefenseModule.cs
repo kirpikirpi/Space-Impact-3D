@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDefenseModule
 {
-    int ActivateDefense(int energy);
+    BlockInfo ActivateDefense(int energy);
     void DeactivateDefense();
 }

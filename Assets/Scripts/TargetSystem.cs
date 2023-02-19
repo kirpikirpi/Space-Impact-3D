@@ -21,6 +21,11 @@ public class TargetSystem : MonoBehaviour
         SetCrosshairPos();
     }
 
+    public void SetCurrentTarget(GameObject target)
+    {
+        currentTarget = target.GetComponent<Collider>();
+    }
+
     Collider[] GetTargetsInRadar()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, detectableObjects);
