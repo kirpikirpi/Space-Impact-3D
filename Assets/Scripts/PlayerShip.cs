@@ -12,7 +12,6 @@ public class PlayerShip : Spaceship
     private int startEnergy = 30;
 
     private int maxEnergy = 100;
-    //private float bulletSpeed = 30f;
 
     private float secondaryFireInputTime = 0.6f; //salvo length
     private float currentImputTime;
@@ -61,6 +60,7 @@ public class PlayerShip : Spaceship
             {
                 ep = OffenseModule.ActivateOffense(ep, 1, currentTarget);
                 isRevengeShooting = false;
+                UISingleton.instance.DeactivateLockOn();
             }
             else if (Time.time < currentImputTime && !isRevengeShooting)
             {
@@ -98,6 +98,7 @@ public class PlayerShip : Spaceship
                 else
                 {
                     playerTargetingSystem.SetCurrentTarget(currentTarget);
+                    UISingleton.instance.ActivateLockOn(currentTarget.transform.position);
                     isRevengeShooting = true;
                 }
                 

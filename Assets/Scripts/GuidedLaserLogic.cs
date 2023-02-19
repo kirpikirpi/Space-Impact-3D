@@ -14,6 +14,8 @@ public class GuidedLaserLogic : BulletLogic
     
     protected override void MoveProjectile()
     {
+        //Todo exterminate look at bug
+        
         transform.LookAt(currentTarget.transform);
         Vector3 pos = transform.position + transform.forward * Time.deltaTime * projectileInfo.speed;
         rb.MovePosition(pos);

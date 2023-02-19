@@ -7,9 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="110cb4b1-ddbc-4664-9628-1c2ec488424b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Space Impact 3D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Laser MG bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Laser MG bullet.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/LaserGuided.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/LaserGuided.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +51,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Formations.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CargoShip.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UISingleton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/IDamageLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletDamageSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldBasic.cs" />
@@ -63,7 +60,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/EnemyShip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/IProjectile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShootLogic.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerOffense.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
@@ -71,6 +67,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/TargetSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldLogic.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerShip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UISingleton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GuidedLaserLogic.cs" />
       </list>
     </option>
   </component>
@@ -120,6 +118,7 @@
       <workItem from="1671275286864" duration="632000" />
       <workItem from="1671362605424" duration="18507000" />
       <workItem from="1671387570946" duration="724000" />
+<<<<<<< Updated upstream
       <workItem from="1671424144706" duration="1673000" />
       <workItem from="1676182029718" duration="5528000" />
       <workItem from="1676350088117" duration="3890000" />
@@ -127,7 +126,10 @@
       <workItem from="1676609994794" duration="2914000" />
       <workItem from="1676665623284" duration="1227000" />
       <workItem from="1676694622396" duration="6754000" />
-      <workItem from="1676781697900" duration="3033000" />
+      <workItem from="1676781697900" duration="4672000" />
+=======
+      <workItem from="1671424144706" duration="1848000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
