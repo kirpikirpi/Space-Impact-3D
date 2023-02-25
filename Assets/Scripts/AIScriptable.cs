@@ -7,7 +7,7 @@ public class AIScriptable : ScriptableObject
 {
     public LayerMask enemyLayer;
     public LayerMask spottableObjects;
-
+    
     public float visualSpottingRadius;
     public float visualSpottingAngle;
     public float peripheralViewAngle;

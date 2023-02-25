@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d2d67dbcb001094d9962e86b25bf235, type: 3}
-  m_Name: Data
+  m_Name: BasicEnemy
   m_EditorClassIdentifier: 
   enemyLayer:
     serializedVersion: 2
@@ -18,10 +18,8 @@ MonoBehaviour:
   spottableObjects:
     serializedVersion: 2
     m_Bits: 0
-  alertLevel: 0
-  visualSpottingRadius: 0
-  visualSpottingAngle: 0
-  peripheralViewAngle: 0
-  peripheralViewRadius: 0
-  passiveAlertRadius: 0
-  alertPingRadius: 0
+  visualSpottingRadius: 40
+  visualSpottingAngle: 45
+  peripheralViewAngle: 180
+  peripheralViewRadius: 15
+  alertPingRadius: 20

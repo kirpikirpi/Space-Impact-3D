@@ -1,31 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IAlertSystem
 {
     public AIScriptable AiScriptableObject;
 
     private int alertLevel;
+    private int maxAlertLevel = 10;
     private GameObject[] alliedGameObjects;
     private GameObject enemyGameObject;
 
 
     //Visual Spotting
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        //Todo: check if in Enemy Layer Mask
-        //use visual spotting angle and radius
-        //increase alert level
+        if ((AiScriptableObject.enemyLayer & (1 << other.gameObject.layer)) != 0)
+        {
+            if (IsDetectable(other.gameObject, AiScriptableObject.visualSpottingAngle,
+                AiScriptableObject.visualSpottingRadius))
+            {
+                enemyGameObject = other.gameObject;
+                IncreaseAlertLevel(2); //ToDo: timer
+            }
+        }
 
-        //Todo: check if in spottable Objects
-        //peripheral view angle and radius
-        //increase alert level
+        if ((AiScriptableObject.spottableObjects & (1 << other.gameObject.layer)) != 0)
+        {
+            if (IsDetectable(other.gameObject, AiScriptableObject.peripheralViewAngle,
+                AiScriptableObject.peripheralViewRadius))
+            {
+                IncreaseAlertLevel(1);
+            }
+        }
     }
 
     public int IncreaseAlertLevel(int alertValue)
     {
-        return 0;
+        int result = Mathf.Clamp(alertValue, 0, maxAlertLevel);
+        print("alert level: " + result);
+        return result;
+    }
+
+    bool IsDetectable(GameObject target, float targetableAngle, float range)
+    {
+        Vector3 targetDir = target.transform.position - transform.position;
+        float angleToTarget = Vector3.Angle(targetDir, transform.forward);
+        
+        //ToDo: add range
+
+        return angleToTarget < targetableAngle;
+    }
+
+    public void SetCurrentTarget(GameObject currentTarget)
+    {
+        enemyGameObject = currentTarget;
     }
 
     void AlertAllies()
