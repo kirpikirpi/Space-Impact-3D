@@ -19,8 +19,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 24704
   visualSpottingRadius: 70
-  visualSpottingAngle: 45
+  visualSpottingAngle: 5
   peripheralViewAngle: 180
-  peripheralViewRadius: 15
+  peripheralViewRadius: 2
   detectionRate: 0.5
   alertPingRadius: 20

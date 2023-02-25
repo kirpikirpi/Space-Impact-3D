@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     public AIScriptable AiScriptableObject;
 
     private int alertLevel;
-    private int maxAlertLevel = 10;
+    private int maxAlertLevel = 100;
     private GameObject[] alliedGameObjects;
     private GameObject targetGameObject;
 
@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
                 AiScriptableObject.visualSpottingRadius))
             {
                 targetGameObject = other.gameObject;
-                IncreaseAlertLevel(2); //ToDo: timer
+                IncreaseAlertLevel(5); //ToDo: timer
             }
         }
 
@@ -52,10 +52,11 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         if (target == null) return false;
         Vector3 targetDir = target.transform.position - transform.position;
         float angleToTarget = Vector3.Angle(targetDir, transform.forward);
-
-        //ToDo: add range
-
-        return angleToTarget < targetableAngle;
+        
+        float distance = (target.transform.position - transform.position).magnitude;
+        print(distance);
+        
+        return angleToTarget < targetableAngle && distance <= range;
     }
 
     public void SetCurrentTarget(GameObject currentTarget)
