@@ -10,7 +10,9 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     private int alertLevel;
     private int maxAlertLevel = 10;
     private GameObject[] alliedGameObjects;
-    private GameObject enemyGameObject;
+    private GameObject targetGameObject;
+
+    private float timeToNextAlert;
 
 
     //Visual Spotting
@@ -21,7 +23,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
             if (IsDetectable(other.gameObject, AiScriptableObject.visualSpottingAngle,
                 AiScriptableObject.visualSpottingRadius))
             {
-                enemyGameObject = other.gameObject;
+                targetGameObject = other.gameObject;
                 IncreaseAlertLevel(2); //ToDo: timer
             }
         }
@@ -38,16 +40,19 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
 
     public int IncreaseAlertLevel(int alertValue)
     {
-        int result = Mathf.Clamp(alertValue, 0, maxAlertLevel);
-        print("alert level: " + result);
-        return result;
+        alertLevel += alertValue;
+        alertLevel = Mathf.Clamp(alertLevel, 0, maxAlertLevel);
+
+        print("alert level: " + alertLevel);
+        return alertLevel;
     }
 
     bool IsDetectable(GameObject target, float targetableAngle, float range)
     {
+        if (target == null) return false;
         Vector3 targetDir = target.transform.position - transform.position;
         float angleToTarget = Vector3.Angle(targetDir, transform.forward);
-        
+
         //ToDo: add range
 
         return angleToTarget < targetableAngle;
@@ -55,7 +60,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
 
     public void SetCurrentTarget(GameObject currentTarget)
     {
-        enemyGameObject = currentTarget;
+        targetGameObject = currentTarget;
     }
 
     void AlertAllies()
@@ -85,8 +90,19 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     {
         alertLevel = 0;
         SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
-        sphereCollider.center = transform.position;
         sphereCollider.radius = AiScriptableObject.visualSpottingRadius;
         sphereCollider.isTrigger = true;
+    }
+
+    void FixedUpdate()
+    {
+        bool targetIsInSight = IsDetectable(targetGameObject, AiScriptableObject.visualSpottingAngle,
+            AiScriptableObject.visualSpottingRadius);
+
+        if (Time.fixedTime > timeToNextAlert && targetIsInSight)
+        {
+            timeToNextAlert = Time.fixedTime + AiScriptableObject.detectionRate;
+            IncreaseAlertLevel(1);
+        }
     }
 }

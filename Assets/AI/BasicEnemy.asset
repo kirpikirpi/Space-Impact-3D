@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   spottableObjects:
     serializedVersion: 2
-    m_Bits: 0
-  visualSpottingRadius: 40
+    m_Bits: 24704
+  visualSpottingRadius: 70
   visualSpottingAngle: 45
   peripheralViewAngle: 180
   peripheralViewRadius: 15
+  detectionRate: 0.5
   alertPingRadius: 20

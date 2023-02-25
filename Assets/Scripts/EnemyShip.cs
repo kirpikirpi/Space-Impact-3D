@@ -22,13 +22,14 @@ public class EnemyShip : Spaceship
         hp = 5;
         ep = 25;
         SetupModulesWithSpeed(movementSpeed);
+        //movementDisabled = true;
     }
 
     void Update()
     {
         if (Time.time > timeToNextShot && targetDetected && !isDestroyed)
         {
-            ep = OffenseModule.ActivateOffense(ep, 0, null);
+            //ep = OffenseModule.ActivateOffense(ep, 0, null);
             timeToNextShot = Time.time + timeBetweenShots;
         }
     }

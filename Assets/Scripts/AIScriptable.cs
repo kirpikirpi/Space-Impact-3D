@@ -12,5 +12,6 @@ public class AIScriptable : ScriptableObject
     public float visualSpottingAngle;
     public float peripheralViewAngle;
     public float peripheralViewRadius;
+    public float detectionRate;
     public float alertPingRadius;
 }
