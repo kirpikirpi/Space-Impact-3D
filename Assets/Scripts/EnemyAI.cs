@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
                 AiScriptableObject.visualSpottingRadius))
             {
                 targetGameObject = other.gameObject;
-                IncreaseAlertLevel(5); //ToDo: timer
+                IncreaseAlertLevel(5);
             }
         }
 
@@ -52,10 +52,9 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         if (target == null) return false;
         Vector3 targetDir = target.transform.position - transform.position;
         float angleToTarget = Vector3.Angle(targetDir, transform.forward);
-        
-        float distance = (target.transform.position - transform.position).magnitude;
-        print(distance);
-        
+
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+
         return angleToTarget < targetableAngle && distance <= range;
     }
 
@@ -92,6 +91,10 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         alertLevel = 0;
         SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
         sphereCollider.radius = AiScriptableObject.visualSpottingRadius;
+        sphereCollider.isTrigger = true;
+
+        sphereCollider = gameObject.AddComponent<SphereCollider>();
+        sphereCollider.radius = AiScriptableObject.peripheralViewRadius;
         sphereCollider.isTrigger = true;
     }
 

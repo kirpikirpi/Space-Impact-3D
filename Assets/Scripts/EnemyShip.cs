@@ -22,7 +22,7 @@ public class EnemyShip : Spaceship
         hp = 5;
         ep = 25;
         SetupModulesWithSpeed(movementSpeed);
-        //movementDisabled = true;
+        movementDisabled = true;
     }
 
     void Update()
