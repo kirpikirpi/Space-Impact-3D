@@ -6,6 +6,7 @@ using UnityEngine;
 public class AIScriptable : ScriptableObject
 {
     public LayerMask enemyLayer;
+    public LayerMask allyLayer;
     public LayerMask spottableObjects;
     
     public float visualSpottingRadius;

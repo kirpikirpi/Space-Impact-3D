@@ -15,12 +15,15 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
+  allyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   spottableObjects:
     serializedVersion: 2
     m_Bits: 24704
-  visualSpottingRadius: 70
+  visualSpottingRadius: 30
   visualSpottingAngle: 5
   peripheralViewAngle: 180
-  peripheralViewRadius: 2
+  peripheralViewRadius: 5
   detectionRate: 0.5
-  alertPingRadius: 20
+  alertPingRadius: 50

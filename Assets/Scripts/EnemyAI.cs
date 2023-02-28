@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         if ((AiScriptableObject.enemyLayer & (1 << other.gameObject.layer)) != 0)
         {
             if (IsDetectable(other.gameObject, AiScriptableObject.visualSpottingAngle,
-                AiScriptableObject.visualSpottingRadius))
+                AiScriptableObject.visualSpottingRadius, 0))
             {
                 targetGameObject = other.gameObject;
                 IncreaseAlertLevel(5);
@@ -31,9 +31,10 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         if ((AiScriptableObject.spottableObjects & (1 << other.gameObject.layer)) != 0)
         {
             if (IsDetectable(other.gameObject, AiScriptableObject.peripheralViewAngle,
-                AiScriptableObject.peripheralViewRadius))
+                AiScriptableObject.peripheralViewRadius, 0))
             {
                 IncreaseAlertLevel(1);
+                AlertAllies();
             }
         }
     }
@@ -43,11 +44,11 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         alertLevel += alertValue;
         alertLevel = Mathf.Clamp(alertLevel, 0, maxAlertLevel);
 
-        print("alert level: " + alertLevel);
+        print("alert level: " + alertLevel + " " + transform.name);
         return alertLevel;
     }
 
-    bool IsDetectable(GameObject target, float targetableAngle, float range)
+    bool IsDetectable(GameObject target, float targetableAngle, float range, float minDistance)
     {
         if (target == null) return false;
         Vector3 targetDir = target.transform.position - transform.position;
@@ -55,7 +56,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
 
         float distance = Vector3.Distance(transform.position, target.transform.position);
 
-        return angleToTarget < targetableAngle && distance <= range;
+        return angleToTarget < targetableAngle && distance <= range && distance >= minDistance;
     }
 
     public void SetCurrentTarget(GameObject currentTarget)
@@ -65,15 +66,22 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
 
     void AlertAllies()
     {
-        //Todo: Get allied positions
-        //create interface for increase alert level
-        //use alert ping radius
+        GameObject[] allies = GetAlliedPositions();
+        foreach (var ally in allies)
+        {
+            bool detectable = IsDetectable(ally, AiScriptableObject.peripheralViewAngle,
+                AiScriptableObject.alertPingRadius, 1);
+            IAlertSystem alertSystem = ally.GetComponent<IAlertSystem>();
+            if (alertSystem != null && detectable) alertSystem.IncreaseAlertLevel(1);
+        }
     }
 
     //returns null if no target detected
-    public GameObject GetCurrentTarget()
+    public Collider GetCurrentTarget()
     {
-        return null;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, AiScriptableObject.visualSpottingRadius,
+            AiScriptableObject.enemyLayer);
+        return colliders[0];
     }
 
     public Vector3 NextPosition()
@@ -83,7 +91,17 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
 
     GameObject[] GetAlliedPositions()
     {
-        return null;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, AiScriptableObject.visualSpottingRadius,
+            AiScriptableObject.allyLayer);
+
+        GameObject[] result = new GameObject[colliders.Length];
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            result[i] = colliders[i].transform.parent.gameObject; //ToDo: just add the game object once
+        }
+
+        return result;
     }
 
     void Start()
@@ -101,7 +119,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     void FixedUpdate()
     {
         bool targetIsInSight = IsDetectable(targetGameObject, AiScriptableObject.visualSpottingAngle,
-            AiScriptableObject.visualSpottingRadius);
+            AiScriptableObject.visualSpottingRadius, 0);
 
         if (Time.fixedTime > timeToNextAlert && targetIsInSight)
         {
