@@ -100,6 +100,7 @@ public class PlayerShip : Spaceship
                     playerTargetingSystem.SetCurrentTarget(currentTarget);
                     UISingleton.instance.ActivateLockOn(currentTarget.transform.position);
                     isRevengeShooting = true;
+                    StartCoroutine(ResetRevengeLockOn());
                 }
             }
         }
@@ -138,5 +139,12 @@ public class PlayerShip : Spaceship
 
     public override void OnHit()
     {
+    }
+
+    IEnumerator ResetRevengeLockOn()
+    {
+        yield return new WaitForSeconds(1.5f);
+        isRevengeShooting = false;
+        UISingleton.instance.DeactivateLockOn();
     }
 }
