@@ -611,6 +611,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AlienFighterGreen Variant (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9162690281873108606, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
 --- !u!1 &652144148
@@ -989,6 +993,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305955410}
   m_CullTransparentMesh: 1
+--- !u!1001 &1496172222
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 60.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161661763957597880, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162690281873108606, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_Name
+      value: AlienFighterGreen Variant (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162690281873108606, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
 --- !u!1001 &1582548761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1043,6 +1108,10 @@ PrefabInstance:
     - target: {fileID: 9162690281873108606, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
       propertyPath: m_Name
       value: AlienFighterGreen Variant (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162690281873108606, guid: a5a43d4de077a1e47850c056680d4743, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a43d4de077a1e47850c056680d4743, type: 3}

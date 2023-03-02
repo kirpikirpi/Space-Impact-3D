@@ -14,6 +14,7 @@
           <e p="CollisionWall.cs" t="Include" />
           <e p="EnemyAI.cs" t="Include" />
           <e p="EnemyShip.cs" t="Include" />
+          <e p="Enums.cs" t="Include" />
           <e p="FormationBuilder.cs" t="Include" />
           <e p="Formations.cs" t="Include" />
           <e p="GuidedLaserLogic.cs" t="Include" />

@@ -22,12 +22,12 @@ public class EnemyShip : Spaceship
         hp = 5;
         ep = 25;
         SetupModulesWithSpeed(movementSpeed);
-        movementDisabled = true;
+        //movementDisabled = true;
     }
 
     void Update()
     {
-        if (Time.time > timeToNextShot && targetDetected && !isDestroyed)
+        if (Time.time > timeToNextShot && targetDetected && !isDestroyed) //ToDo: add AI combat mode
         {
             ep = OffenseModule.ActivateOffense(ep, 0, null);
             timeToNextShot = Time.time + timeBetweenShots;
@@ -38,7 +38,7 @@ public class EnemyShip : Spaceship
     {
         if (isDestroyed) return;
         TargetSystem();
-        if (!targetDetected) MovementSystem();
+        if (!targetDetected) MovementSystem(); //Todo: add ai alert level
     }
 
     void TargetSystem()
@@ -74,6 +74,8 @@ public class EnemyShip : Spaceship
         shipRenderer.enabled = false;
         ParticleSystemOnDestroy.Play();
         movementSpeed = movementSpeed / 2;
+        //ToDo: callback to ai, alert ping
+        
         //particle system
         //Pooler.instance.PushPool(gameObject);
     }

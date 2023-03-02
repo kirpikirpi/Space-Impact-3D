@@ -15,4 +15,11 @@ public class AIScriptable : ScriptableObject
     public float peripheralViewRadius;
     public float detectionRate;
     public float alertPingRadius;
+
+    public int suspiciousLevel;
+    public int combatModeLevel;
+    public int alertValueEnemySpotted;
+    public int alertValueSuspiciousObjectSpotted;
+    public int alertValueOnShipDestroyed;
+    public float cooldownTime;
 }

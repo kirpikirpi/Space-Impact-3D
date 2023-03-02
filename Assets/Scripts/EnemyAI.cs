@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     public AIScriptable AiScriptableObject;
 
     private int alertLevel;
+    private Enums.AlertState alertState;
     private int maxAlertLevel = 100;
     private GameObject[] alliedGameObjects;
     private GameObject targetGameObject;
@@ -34,7 +35,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
                 AiScriptableObject.peripheralViewRadius, 0))
             {
                 IncreaseAlertLevel(1);
-                AlertAllies();
+                AlertAllies(AiScriptableObject.alertValueSuspiciousObjectSpotted);
             }
         }
     }
@@ -64,7 +65,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         targetGameObject = currentTarget;
     }
 
-    void AlertAllies()
+    void AlertAllies(int alertValue)
     {
         GameObject[] allies = GetAlliedPositions();
         if (allies.Length <= 0) return;
@@ -74,7 +75,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
             bool detectable = IsDetectable(ally, AiScriptableObject.peripheralViewAngle,
                 AiScriptableObject.alertPingRadius, 1);
             IAlertSystem alertSystem = ally.GetComponent<IAlertSystem>();
-            if (alertSystem != null && detectable) alertSystem.IncreaseAlertLevel(1);
+            if (alertSystem != null && detectable) alertSystem.IncreaseAlertLevel(alertValue);
         }
     }
 
@@ -110,9 +111,18 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         return result.ToArray();
     }
 
+    Enums.AlertState AssesAlertState(int currentLevel, int intermediadteLevel, int maxLevel)
+    {
+        Enums.AlertState state = Enums.AlertState.Scouting;
+        return state;
+    }
+
     void Start()
     {
         alertLevel = 0;
+        alertState = AssesAlertState(alertLevel, AiScriptableObject.suspiciousLevel,
+            AiScriptableObject.combatModeLevel);
+
         SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
         sphereCollider.radius = AiScriptableObject.visualSpottingRadius;
         sphereCollider.isTrigger = true;

@@ -21,9 +21,9 @@ MonoBehaviour:
   spottableObjects:
     serializedVersion: 2
     m_Bits: 24704
-  visualSpottingRadius: 30
+  visualSpottingRadius: 60
   visualSpottingAngle: 5
   peripheralViewAngle: 180
   peripheralViewRadius: 5
   detectionRate: 0.5
-  alertPingRadius: 50
+  alertPingRadius: 15
