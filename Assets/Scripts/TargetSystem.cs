@@ -8,12 +8,13 @@ public class TargetSystem : MonoBehaviour
     private float targetableAngle;
     public LayerMask detectableObjects;
     private int currentTargetIndex = 0;
-    private Collider currentTarget;
+    private GameObject currentTarget;
 
     void Start()
     {
         detectionRadius = 100f;
         targetableAngle = 45f;
+        UISingleton.instance.SetCrosshairPosition(new Vector3(0, -10, 70));
     }
 
     void FixedUpdate()
@@ -23,22 +24,34 @@ public class TargetSystem : MonoBehaviour
 
     public void SetCurrentTarget(GameObject target)
     {
-        currentTarget = target.GetComponent<Collider>();
+        currentTarget = target;
     }
 
-    Collider[] GetTargetsInRadar()
+    GameObject[] GetTargetsInRadar()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, detectableObjects);
-        return colliders;
+
+        List<GameObject> result = new List<GameObject>();
+
+        foreach (var targets in colliders)
+        {
+            if (!result.Contains(targets.gameObject))
+            {
+                result.Add(targets.gameObject);
+            }
+        }
+
+
+        return result.ToArray();
     }
 
-    Collider[] TargetsInTargetableAngle()
+    GameObject[] TargetsInTargetableAngle()
     {
-        Collider[] targets = GetTargetsInRadar();
-        List<Collider> targetsInRange = new List<Collider>();
+        GameObject[] targets = GetTargetsInRadar();
+        List<GameObject> targetsInRange = new List<GameObject>();
         int targetNum = 0;
 
-        
+
         foreach (var target in targets)
         {
             if (IsTargetable(target.gameObject))
@@ -63,26 +76,26 @@ public class TargetSystem : MonoBehaviour
         if (currentTarget != null)
         {
             bool isDestroyed = currentTarget.GetComponent<IDamageLogic>().IsDestroyed();
-            if(IsTargetable(currentTarget.gameObject) && !isDestroyed) UISingleton.instance.SetCrosshairPosition(currentTarget.transform.position);
+            if (IsTargetable(currentTarget.gameObject) && !isDestroyed)
+                UISingleton.instance.SetCrosshairPosition(currentTarget.transform.position);
             else
             {
                 UISingleton.instance.SetCrosshairPosition(new Vector3(0, -10, 70));
                 currentTarget = null;
             }
         }
-        
     }
 
-    public Collider SelectTarget()
+    public GameObject SelectTarget()
     {
         currentTargetIndex += 1;
         currentTarget = GetCurrentTarget();
         return currentTarget;
     }
 
-    public Collider GetCurrentTarget()
+    public GameObject GetCurrentTarget()
     {
-        Collider[] currentTargets = TargetsInTargetableAngle();
+        GameObject[] currentTargets = TargetsInTargetableAngle();
         if (currentTargets.Length <= 0)
         {
             currentTarget = null;

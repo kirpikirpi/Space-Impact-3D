@@ -70,10 +70,10 @@ public class PlayerShip : Spaceship
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            Collider possibleTarget = playerTargetingSystem.SelectTarget();
+            GameObject possibleTarget = playerTargetingSystem.SelectTarget();
             if (possibleTarget != null)
             {
-                currentTarget = possibleTarget.gameObject;
+                currentTarget = possibleTarget;
             }
         }
 
@@ -89,7 +89,7 @@ public class PlayerShip : Spaceship
             {
                 currentTarget = blockInfo.aggressor;
                 bool destroyed = currentTarget.GetComponent<Spaceship>().IsDestroyed();
-                
+
                 if (currentTarget == null || destroyed)
                 {
                     currentTarget = playerTargetingSystem.GetCurrentTarget().gameObject;
@@ -101,7 +101,6 @@ public class PlayerShip : Spaceship
                     UISingleton.instance.ActivateLockOn(currentTarget.transform.position);
                     isRevengeShooting = true;
                 }
-                
             }
         }
 
