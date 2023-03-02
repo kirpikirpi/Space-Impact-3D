@@ -67,6 +67,8 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     void AlertAllies()
     {
         GameObject[] allies = GetAlliedPositions();
+        if (allies.Length <= 0) return;
+
         foreach (var ally in allies)
         {
             bool detectable = IsDetectable(ally, AiScriptableObject.peripheralViewAngle,
@@ -93,15 +95,19 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, AiScriptableObject.visualSpottingRadius,
             AiScriptableObject.allyLayer);
+        if (colliders.Length <= 0) return null;
 
-        GameObject[] result = new GameObject[colliders.Length];
+        List<GameObject> result = new List<GameObject>();
 
-        for (int i = 0; i < colliders.Length; i++)
+        foreach (var ally in colliders)
         {
-            result[i] = colliders[i].transform.parent.gameObject; //ToDo: just add the game object once
+            if (!result.Contains(ally.gameObject))
+            {
+                result.Add(ally.gameObject);
+            }
         }
 
-        return result;
+        return result.ToArray();
     }
 
     void Start()
