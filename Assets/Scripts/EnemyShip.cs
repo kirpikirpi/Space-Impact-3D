@@ -47,7 +47,7 @@ public class EnemyShip : Spaceship
         {
             case Enums.AlertState.Scouting:
                 print("Scouting");
-                MovementSystem();
+                MovementSystem(); //ToDo: more elaborate movement system
                 break;
             case Enums.AlertState.Suspicious:
                 print("Suspicious"); //move to formation space faster

@@ -49,8 +49,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     {
         alertLevel += alertValue;
         alertLevel = Mathf.Clamp(alertLevel, 0, AiScriptableObject.combatModeLevel);
-
-        print("alert level: " + alertLevel + " " + transform.name);
+        
         return alertLevel;
     }
 
@@ -61,10 +60,6 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         float angleToTarget = Vector3.Angle(targetDir, transform.forward);
 
         float distance = Vector3.Distance(transform.position, target.transform.position);
-
-        print("angle: " + (angleToTarget < targetableAngle));
-        print("in range: " + (distance <= range));
-        print("bigger min dist: " + (distance >= minDistance));
 
         return angleToTarget < targetableAngle && distance <= range && distance >= minDistance;
     }

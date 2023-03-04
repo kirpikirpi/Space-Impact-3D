@@ -64,7 +64,7 @@ public class PlayerShip : Spaceship
             }
             else if (Time.time < currentImputTime && !isRevengeShooting)
             {
-                ep = OffenseModule.ActivateOffense(ep, 0, currentTarget);
+                ep = OffenseModule.ActivateOffense(ep, 0, currentTarget); //ToDo: update current target
             }
         }
 
