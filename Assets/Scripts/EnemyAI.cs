@@ -8,8 +8,6 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     public AIScriptable AiScriptableObject;
 
     private int alertLevel;
-    private Enums.AlertState alertState;
-    private int maxAlertLevel = 100;
     private GameObject[] alliedGameObjects;
     private GameObject targetGameObject;
 
@@ -25,7 +23,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
                 AiScriptableObject.visualSpottingRadius, 0))
             {
                 targetGameObject = other.gameObject;
-                IncreaseAlertLevel(5);
+                IncreaseAlertLevel(AiScriptableObject.alertValueEnemySpotted);
             }
         }
 
@@ -34,16 +32,29 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
             if (IsDetectable(other.gameObject, AiScriptableObject.peripheralViewAngle,
                 AiScriptableObject.peripheralViewRadius, 0))
             {
-                IncreaseAlertLevel(1);
+                IncreaseAlertLevel(AiScriptableObject.alertValueSuspiciousObjectSpotted);
                 AlertAllies(AiScriptableObject.alertValueSuspiciousObjectSpotted);
             }
+        }
+    }
+
+    //Visual spotting, player in view conus buildup
+    void FixedUpdate()
+    {
+        bool targetIsInSight = IsDetectable(targetGameObject, AiScriptableObject.visualSpottingAngle,
+            AiScriptableObject.visualSpottingRadius, 0);
+
+        if (Time.fixedTime > timeToNextAlert && targetIsInSight)
+        {
+            timeToNextAlert = Time.fixedTime + AiScriptableObject.detectionRate;
+            IncreaseAlertLevel(AiScriptableObject.alertValueEnemySpotted);
         }
     }
 
     public int IncreaseAlertLevel(int alertValue)
     {
         alertLevel += alertValue;
-        alertLevel = Mathf.Clamp(alertLevel, 0, maxAlertLevel);
+        alertLevel = Mathf.Clamp(alertLevel, 0, AiScriptableObject.combatModeLevel);
 
         print("alert level: " + alertLevel + " " + transform.name);
         return alertLevel;
@@ -60,11 +71,6 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         return angleToTarget < targetableAngle && distance <= range && distance >= minDistance;
     }
 
-    public void SetCurrentTarget(GameObject currentTarget)
-    {
-        targetGameObject = currentTarget;
-    }
-
     void AlertAllies(int alertValue)
     {
         GameObject[] allies = GetAlliedPositions();
@@ -77,19 +83,6 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
             IAlertSystem alertSystem = ally.GetComponent<IAlertSystem>();
             if (alertSystem != null && detectable) alertSystem.IncreaseAlertLevel(alertValue);
         }
-    }
-
-    //returns null if no target detected
-    public Collider GetCurrentTarget()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, AiScriptableObject.visualSpottingRadius,
-            AiScriptableObject.enemyLayer);
-        return colliders[0];
-    }
-
-    public Vector3 NextPosition()
-    {
-        return Vector3.zero;
     }
 
     GameObject[] GetAlliedPositions()
@@ -111,17 +104,17 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         return result.ToArray();
     }
 
-    Enums.AlertState AssesAlertState(int currentLevel, int intermediadteLevel, int maxLevel)
+    public Enums.AlertState AssesAlertState()
     {
-        Enums.AlertState state = Enums.AlertState.Scouting;
-        return state;
+        if (alertLevel > AiScriptableObject.suspiciousLevel && alertLevel < AiScriptableObject.combatModeLevel)
+            return Enums.AlertState.Suspicious;
+        if (alertLevel >= AiScriptableObject.combatModeLevel) return Enums.AlertState.CombatMode;
+        return Enums.AlertState.Scouting;
     }
 
     void Start()
     {
         alertLevel = 0;
-        alertState = AssesAlertState(alertLevel, AiScriptableObject.suspiciousLevel,
-            AiScriptableObject.combatModeLevel);
 
         SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
         sphereCollider.radius = AiScriptableObject.visualSpottingRadius;
@@ -132,15 +125,8 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         sphereCollider.isTrigger = true;
     }
 
-    void FixedUpdate()
+    public void SetCurrentTarget(GameObject currentTarget)
     {
-        bool targetIsInSight = IsDetectable(targetGameObject, AiScriptableObject.visualSpottingAngle,
-            AiScriptableObject.visualSpottingRadius, 0);
-
-        if (Time.fixedTime > timeToNextAlert && targetIsInSight)
-        {
-            timeToNextAlert = Time.fixedTime + AiScriptableObject.detectionRate;
-            IncreaseAlertLevel(1);
-        }
+        targetGameObject = currentTarget;
     }
 }

@@ -27,3 +27,9 @@ MonoBehaviour:
   peripheralViewRadius: 5
   detectionRate: 0.5
   alertPingRadius: 15
+  suspiciousLevel: 5
+  combatModeLevel: 10
+  alertValueEnemySpotted: 10
+  alertValueSuspiciousObjectSpotted: 5
+  alertValueOnShipDestroyed: 10
+  cooldownTime: 1

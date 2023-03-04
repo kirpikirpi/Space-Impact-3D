@@ -143,7 +143,7 @@ public class PlayerShip : Spaceship
 
     IEnumerator ResetRevengeLockOn()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.5f); //Todo: fix lock on cooldown
         isRevengeShooting = false;
         UISingleton.instance.DeactivateLockOn();
     }
