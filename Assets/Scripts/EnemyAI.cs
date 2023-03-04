@@ -19,12 +19,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     {
         if ((AiScriptableObject.enemyLayer & (1 << other.gameObject.layer)) != 0)
         {
-            if (IsDetectable(other.gameObject, AiScriptableObject.visualSpottingAngle,
-                AiScriptableObject.visualSpottingRadius, 0))
-            {
-                targetGameObject = other.gameObject;
-                IncreaseAlertLevel(AiScriptableObject.alertValueEnemySpotted);
-            }
+            if(targetGameObject == null) targetGameObject = other.gameObject;
         }
 
         if ((AiScriptableObject.spottableObjects & (1 << other.gameObject.layer)) != 0)
@@ -62,10 +57,14 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     bool IsDetectable(GameObject target, float targetableAngle, float range, float minDistance)
     {
         if (target == null) return false;
-        Vector3 targetDir = target.transform.position - transform.position;
+        Vector3 targetDir = target.transform.position - gameObject.transform.position;
         float angleToTarget = Vector3.Angle(targetDir, transform.forward);
 
         float distance = Vector3.Distance(transform.position, target.transform.position);
+
+        print("angle: " + (angleToTarget < targetableAngle));
+        print("in range: " + (distance <= range));
+        print("bigger min dist: " + (distance >= minDistance));
 
         return angleToTarget < targetableAngle && distance <= range && distance >= minDistance;
     }
