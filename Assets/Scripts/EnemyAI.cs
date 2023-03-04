@@ -33,7 +33,6 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
                 AiScriptableObject.peripheralViewRadius, 0))
             {
                 IncreaseAlertLevel(AiScriptableObject.alertValueSuspiciousObjectSpotted);
-                AlertAllies(AiScriptableObject.alertValueSuspiciousObjectSpotted);
             }
         }
     }
