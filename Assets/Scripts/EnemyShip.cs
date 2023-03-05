@@ -7,7 +7,9 @@ using Random = UnityEngine.Random;
 public class EnemyShip : Spaceship
 {
     private float maxDetectionDistance = 60f;
-    private float movementSpeed = 30; //30
+    private float movementSpeedScouting = 30; //30
+    private float movementSpeedSuspicious = 30; //30
+    private float movementSpeedCombat = 60; //30
     public LayerMask engagebleTargets;
     public LayerMask friendlyShips;
     public ParticleSystem ParticleSystemOnDestroy;
@@ -15,6 +17,7 @@ public class EnemyShip : Spaceship
     public EnemyAI ai;
     private bool isShooting;
     private float distanceToFriendlyShips = 2f;
+    private float distanceToPlayer = 40f;
 
     private float timeBetweenShots = 1.25f;
     private float timeToNextShot = 0;
@@ -24,7 +27,7 @@ public class EnemyShip : Spaceship
     {
         hp = 5;
         ep = 25;
-        SetupModulesWithSpeed(movementSpeed);
+        SetupModules();
         ai = GetComponent<EnemyAI>();
         if (ai == null) throw new Exception("No AI attached to: " + gameObject.name);
         //movementDisabled = true;
@@ -47,30 +50,41 @@ public class EnemyShip : Spaceship
         {
             case Enums.AlertState.Scouting:
                 print("Scouting");
-                MovementSystem(); //ToDo: more elaborate movement system
+                MovementSystem(movementSpeedScouting, ai.GetCurrentTarget());
                 break;
             case Enums.AlertState.Suspicious:
-                print("Suspicious"); //move to formation space faster
+                MovementSystem(movementSpeedScouting, ai.GetCurrentTarget());
+                print("Suspicious");
                 break;
             case Enums.AlertState.CombatMode:
-                isShooting = true;
+                bool isInEnemyRange = MovementSystem(movementSpeedCombat, ai.GetCurrentTarget());
+                if (isInEnemyRange) isShooting = true;
                 print("Combat Mode"); //shoot
                 break;
         }
     }
 
 
-    void MovementSystem()
+    bool MovementSystem(float speed, GameObject targetPos)
     {
+        bool isInEnemyRange = false;
         RaycastHit hit;
         if (!Physics.Raycast(transform.position, transform.forward, out hit, distanceToFriendlyShips, friendlyShips))
         {
-            if (!movementDisabled)
+            if (targetPos != null)
             {
-                Vector3 pos = transform.position + transform.forward * Time.deltaTime * movementSpeed;
+                float distance = Vector3.Distance(transform.position, targetPos.transform.position);
+                isInEnemyRange = distance <= distanceToPlayer;
+            }
+
+            if (!movementDisabled && !isInEnemyRange)
+            {
+                Vector3 pos = transform.position + transform.forward * Time.deltaTime * speed;
                 rb.MovePosition(pos);
             }
         }
+
+        return isInEnemyRange;
     }
 
     public override void OnDestroy()
@@ -82,11 +96,8 @@ public class EnemyShip : Spaceship
         shipCollider.enabled = false;
         shipRenderer.enabled = false;
         ParticleSystemOnDestroy.Play();
-        movementSpeed = movementSpeed / 2;
-        //ToDo: callback to ai, alert ping
 
-        //particle system
-        //Pooler.instance.PushPool(gameObject);
+        ai.OnDeathPing();
     }
 
     public override void OnHit()

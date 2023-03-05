@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     {
         if ((AiScriptableObject.enemyLayer & (1 << other.gameObject.layer)) != 0)
         {
-            if(targetGameObject == null) targetGameObject = other.gameObject;
+            if (targetGameObject == null) targetGameObject = other.gameObject;
         }
 
         if ((AiScriptableObject.spottableObjects & (1 << other.gameObject.layer)) != 0)
@@ -44,10 +44,11 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
             timeToNextAlert = Time.fixedTime + AiScriptableObject.detectionRate;
             IncreaseAlertLevel(AiScriptableObject.alertValueEnemySpotted);
         }
+
         if (Time.fixedTime > timeToNextEnemyAlert && targetIsInSight)
         {
             timeToNextEnemyAlert = Time.fixedTime + AiScriptableObject.alertPingTimeBetweenPings;
-            ReactToState();
+           //ReactToState();
         }
     }
 
@@ -55,7 +56,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     {
         alertLevel += alertValue;
         alertLevel = Mathf.Clamp(alertLevel, 0, AiScriptableObject.combatModeLevel);
-        
+
         return alertLevel;
     }
 
@@ -143,5 +144,15 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     public void SetCurrentTarget(GameObject currentTarget)
     {
         targetGameObject = currentTarget;
+    }
+
+    public GameObject GetCurrentTarget()
+    {
+        return targetGameObject;
+    }
+
+    public void OnDeathPing()
+    {
+        AlertAllies(AiScriptableObject.alertValueOnShipDestroyed);
     }
 }
