@@ -34,15 +34,15 @@ public class MapManager : MonoBehaviour
             //FormationType.Diamond,
             //FormationType.Wedge,
             //FormationType.Column,
-            //FormationType.StackLeft,
+            FormationType.StackLeft,
             //FormationType.StackRight,
-            FormationType.Vee,
+            //FormationType.Vee,
             //FormationType.Line,
-            //FormationType.Line,
+            FormationType.Line,
             //FormationType.Line,
             //FormationType.FileLeft,
             //FormationType.FileRight,
-            //FormationType.FormationX
+            FormationType.FormationX
         };
         StartCoroutine(SpawnEnemies(numEnemies, spawnFormations));
         //SpawnEnemies(1);

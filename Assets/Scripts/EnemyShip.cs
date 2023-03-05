@@ -8,15 +8,15 @@ public class EnemyShip : Spaceship
 {
     private float maxDetectionDistance = 60f;
     private float movementSpeedScouting = 30; //30
-    private float movementSpeedSuspicious = 30; //30
-    private float movementSpeedCombat = 60; //30
+    private float movementSpeedSuspicious = 40; 
+    private float movementSpeedCombat = 60;
     public LayerMask engagebleTargets;
     public LayerMask friendlyShips;
     public ParticleSystem ParticleSystemOnDestroy;
 
     public EnemyAI ai;
     private bool isShooting;
-    private float distanceToFriendlyShips = 2f;
+    private float distanceToFriendlyShips = 1f;
     private float distanceToPlayer = 40f;
 
     private float timeBetweenShots = 1.25f;
@@ -49,17 +49,17 @@ public class EnemyShip : Spaceship
         switch (alertState)
         {
             case Enums.AlertState.Scouting:
-                print("Scouting");
+                print("Scouting" + gameObject.name);
                 MovementSystem(movementSpeedScouting, ai.GetCurrentTarget());
                 break;
             case Enums.AlertState.Suspicious:
                 MovementSystem(movementSpeedScouting, ai.GetCurrentTarget());
-                print("Suspicious");
+                print("Suspicious" + gameObject.name);
                 break;
             case Enums.AlertState.CombatMode:
                 bool isInEnemyRange = MovementSystem(movementSpeedCombat, ai.GetCurrentTarget());
-                if (isInEnemyRange) isShooting = true;
-                print("Combat Mode"); //shoot
+                isShooting = isInEnemyRange;
+                print("Combat Mode" + gameObject+name); //shoot
                 break;
         }
     }
@@ -97,7 +97,7 @@ public class EnemyShip : Spaceship
         shipRenderer.enabled = false;
         ParticleSystemOnDestroy.Play();
 
-        ai.OnDeathPing();
+        //ai.OnDeathPing();  ToDo: this broken, needs fixing
     }
 
     public override void OnHit()
