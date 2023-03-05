@@ -21,15 +21,15 @@ MonoBehaviour:
   spottableObjects:
     serializedVersion: 2
     m_Bits: 24704
-  visualSpottingRadius: 10
-  visualSpottingAngle: 45
+  visualSpottingRadius: 70
+  visualSpottingAngle: 5
   peripheralViewAngle: 180
   peripheralViewRadius: 5
   detectionRate: 0.5
   alertPingRadius: 15
   suspiciousLevel: 5
   combatModeLevel: 10
-  alertValueEnemySpotted: 10
+  alertValueEnemySpotted: 1
   alertValueSuspiciousObjectSpotted: 5
   alertValueOnShipDestroyed: 10
   cooldownTime: 1
