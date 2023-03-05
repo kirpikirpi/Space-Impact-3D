@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
     private GameObject targetGameObject;
 
     private float timeToNextAlert;
+    private float timeToNextEnemyAlert;
 
 
     //Visual Spotting
@@ -43,6 +44,11 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
             timeToNextAlert = Time.fixedTime + AiScriptableObject.detectionRate;
             IncreaseAlertLevel(AiScriptableObject.alertValueEnemySpotted);
         }
+        if (Time.fixedTime > timeToNextEnemyAlert && targetIsInSight)
+        {
+            timeToNextEnemyAlert = Time.fixedTime + AiScriptableObject.alertPingTimeBetweenPings;
+            ReactToState();
+        }
     }
 
     public int IncreaseAlertLevel(int alertValue)
@@ -62,6 +68,22 @@ public class EnemyAI : MonoBehaviour, IAlertSystem
         float distance = Vector3.Distance(transform.position, target.transform.position);
 
         return angleToTarget < targetableAngle && distance <= range && distance >= minDistance;
+    }
+
+    void ReactToState()
+    {
+        Enums.AlertState alertState = AssesAlertState();
+        switch (alertState)
+        {
+            case Enums.AlertState.Scouting:
+                break;
+            case Enums.AlertState.Suspicious:
+                AlertAllies(AiScriptableObject.alertValueSuspiciousObjectSpotted);
+                break;
+            case Enums.AlertState.CombatMode:
+                AlertAllies(AiScriptableObject.alertValueEnemySpotted);
+                break;
+        }
     }
 
     void AlertAllies(int alertValue)

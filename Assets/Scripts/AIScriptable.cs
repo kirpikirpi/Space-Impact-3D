@@ -15,6 +15,7 @@ public class AIScriptable : ScriptableObject
     public float peripheralViewRadius;
     public float detectionRate;
     public float alertPingRadius;
+    public float alertPingTimeBetweenPings;
 
     public int suspiciousLevel;
     public int combatModeLevel;
