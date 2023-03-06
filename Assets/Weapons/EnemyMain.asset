@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyMain
   m_EditorClassIdentifier: 
   projectileType: {fileID: 7098376884671748361, guid: 26fcca0f3afb3c84994395a33dfe1a1a, type: 3}
-  speed: 25
+  speed: 60
   damage: 5
   energyPerShot: 1
   timeBetweenShots: 0.3
