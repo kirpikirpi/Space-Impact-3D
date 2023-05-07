@@ -14,7 +14,7 @@ public class TargetSystem : MonoBehaviour
     {
         detectionRadius = 100f;
         targetableAngle = 45f;
-        UISingleton.instance.SetCrosshairPosition(new Vector3(0, -10, 70));
+        if (UISingleton.instance != null) UISingleton.instance.SetCrosshairPosition(new Vector3(0, -10, 70));
     }
 
     void FixedUpdate()

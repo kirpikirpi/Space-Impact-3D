@@ -39,6 +39,8 @@ public class PlayerShip : Spaceship
         _movement = gameObject.AddComponent<PlayerMovement>();
         _movement.Setup(rb);
 
+        playerTargetingSystem = gameObject.GetComponent<TargetSystem>();
+        
         if (playerTargetingSystem == null) throw new Exception("no target system attached to player!!");
 
         particleSystemPos = transform.position;
@@ -46,7 +48,7 @@ public class PlayerShip : Spaceship
 
     void Update()
     {
-        UISingleton.instance.SetStats(ep.ToString(), hp.ToString());
+        if (UISingleton.instance != null) UISingleton.instance.SetStats(ep.ToString(), hp.ToString());
         if (isDestroyed) return;
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
