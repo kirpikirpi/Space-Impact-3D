@@ -72,6 +72,14 @@ public class PlayerMovement : MonoBehaviour
             float xPos = currentPos.x + horizontalMovement * horizontalSpeed * Time.deltaTime;
             float zForward = currentPos.z + currentSpeed * Time.deltaTime;
             targetPos = new Vector3(xPos, currentPos.y, zForward);
+            
+            float forward = currentSpeed * Time.deltaTime;
+            
+            Vector3 right = Vector3.Cross(transform.forward, transform.up);
+            float sidways = - horizontalMovement * horizontalSpeed * Time.deltaTime; //minus because controls are inverted
+            
+            targetPos = currentPos + transform.forward * forward;
+            targetPos = currentPos + right * sidways + transform.forward * forward;
 
             rb.MovePosition(targetPos);
         }
